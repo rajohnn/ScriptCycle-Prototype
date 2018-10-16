@@ -16,10 +16,16 @@ namespace ScriptCycle.Prototypes {
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(                      
+                      "~/Scripts/popper.min.js",
+                      "~/Scripts/knockout-3.4.2.js",
+                      "~/Scripts/knockout.mapping-latest.js",
+                      "~/Scripts/popper-utils.min.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/underscore.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                    "~/Content/font-awesome.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }

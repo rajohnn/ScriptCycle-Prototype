@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "ScriptCycle Prototype - Members";
+}
+
+<div class="row">
+    <div class="col-lg-9">
+        <a href="#">Members</a> -> <a href="#">Member Search</a>
+    </div>
+    <div class="col-lg-3">
+        <div class="float-right">
+            <button type="button" class="btn btn-primary">Configuration</button>
+        </div>
+    </div>
+</div>
+<section id="member-search" style="margin-top:7px">
+    <div class="card">
+        <div class="card-header">
+            <div class="panel-title">Member Search</div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="member-id">Member ID</label>
+                        <input id="member-id" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input id="first-name" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input id="last-name" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="SSN">SSN</label>
+                        <input id="SSN" class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input id="dob" class="form-control" type="text" />
+                    </div>
+                </div>  
+                <div class="col-lg-2">
+                    <span class="float-right">
+                        <label><input type="checkbox" checked />Show Active</label>
+                    </span>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div>
+                        <button class="btn btn-default" style="min-width:126px">Clear</button>
+                        <button style="min-width:185px" class="btn btn-primary">
+                            <span class="fa fa-search"></span> Search
+                        </button>
+                        
+                    </div>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered table-hover" style="margin-top:25px">
+                        <thead>
+                            <tr>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">Member Id</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">First Name</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">Last Name</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">DOB</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">SSN</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">Active Flag</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">Current Active Group</th>
+                                <th class="text-primary" style="text-align: center;font-weight:normal">Person Code</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-primary text-center">1234567</td>
+                                <td class="text-primary">John</td>
+                                <td class="text-primary">Doe</td>
+                                <td class="text-primary text-center">04/02/1995</td>
+                                <td class="text-primary text-center">555-55-1212</td>
+                                <td class="text-primary text-center">True</td>
+                                <td class="text-primary">Group A</td>
+                                <td class="text-primary text-center">123</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>        
+    </div>    
+</section>
+
+
+
+
+<section id="member-info">
+
+</section>
+
