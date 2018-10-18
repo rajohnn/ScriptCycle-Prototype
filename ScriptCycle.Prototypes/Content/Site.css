@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;   
+    font-size:10pt;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -16,9 +18,26 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.detail-font {
+    font-family: 'Merriweather', serif;
+    font-size:10pt;
+}
+
+.cell-header {
+    background-color: #f7f7f7;
+    border: solid 1px #ddd !important;
+    font-weight: normal;
+    padding:2px;
+}
+
+.form-control-sm {    
+    font-size: 0.690rem !important;    
+}
+
+.form-group {
+    margin-bottom: .70rem;
+}
+
+.btn-sm {
+    font-size: 0.690rem !important;
 }

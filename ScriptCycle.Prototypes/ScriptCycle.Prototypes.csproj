@@ -170,6 +170,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -211,6 +212,7 @@
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\Members.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -247,6 +249,13 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Members\_Profile.cshtml" />
+    <Content Include="Views\Members\_Details.cshtml" />
+    <Content Include="Views\Members\_Eligibility.cshtml" />
+    <Content Include="Views\Members\_Group.cshtml" />
+    <Content Include="Views\Members\_Notes.cshtml" />
+    <Content Include="Views\Members\_MemberSearch.cshtml" />
+    <Content Include="Views\Members\_MemberInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
