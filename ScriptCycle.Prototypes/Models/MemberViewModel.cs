@@ -71,11 +71,11 @@ namespace ScriptCycle.Prototypes.Models {
         public DateTime? CardPrinted { get; set; }
         public List<MembershipAdjustmentOption> MembershipAdjustmentOptions { get; set; } = new List<MembershipAdjustmentOption>();
         public AddressModel Address { get; set; } = new AddressModel();
-        public PhoneModel HomePhone { get; set; } = new PhoneModel { PhoneType = PhoneType.Home };
-        public PhoneModel WorkPhone { get; set; } = new PhoneModel { PhoneType = PhoneType.Business };
-        public PhoneModel MobilePhone { get; set; } = new PhoneModel { PhoneType = PhoneType.Mobile };
-        public PhoneModel Fax { get; set; } = new PhoneModel { PhoneType = PhoneType.Fax };
-        public EmailAddressModel EmailAddress { get; set; } = new EmailAddressModel();
+        public string HomePhone { get; set; } 
+        public string WorkPhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string Fax { get; set; } 
+        public string EmailAddress { get; set; }
         public string RelationshipCode { get; set; }
         public PrimacyCarePhysician Physician { get; set; } = new PrimacyCarePhysician();
         public List<PrimacyCarePhysician> PhysicianResults { get; set; } = new List<PrimacyCarePhysician>();

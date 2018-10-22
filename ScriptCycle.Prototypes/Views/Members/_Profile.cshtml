@@ -34,8 +34,8 @@
                 <div class="form-group">
                     <label for="Gender">Gender</label>
                     <select id="gender-options" class="form-control form-control-sm ">
-                        <option>Male</option>
-                        <option selected>Female</option>
+                        <option selected>Male</option>
+                        <option>Female</option>
                     </select>
                 </div>
             </div>
@@ -115,11 +115,11 @@
             </div>
             <div class="col-lg-4">
                 <label for="created-date">Date Created</label>
-                <div class=" form-control form-control-sm" data-bind="text: moment(DateCreated()).format('LL')"></div>
+                <div class="form-control form-control-sm text-primary" data-bind="text: moment(DateCreated()).format('LL')"></div>
             </div>
             <div class="col-lg-4">
                 <label for="card-print-date">Card Print Date</label>
-                <div class=" form-control form-control-sm">
+                <div class="form-control form-control-sm text-primary">
                     <span class="fa fa-print"></span> 
                     <span data-bind="text: moment(CardPrinted()).format('LL')"></span>
                 </div>

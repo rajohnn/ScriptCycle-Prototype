@@ -11,10 +11,10 @@ namespace ScriptCycle.Prototypes.Controllers {
             var vm = new MemberViewModel {
                 MemberModel = new MemberModel {
                     MemberId = "12345",
-                    FirstName = "Fred",
+                    FirstName = "Francisco",
                     PC = "98765",
-                    MiddleName = "Haas",
-                    LastName = "Steffen",
+                    MiddleName = "Franco",
+                    LastName = "Bahamonde",
                     ActiveIndicator = true,
                     AlternateId = "21322",
                     CarrierCode = "CC-1232",
@@ -32,16 +32,11 @@ namespace ScriptCycle.Prototypes.Controllers {
                         City = "Tampa",
                         Zip = "33674"
                     },
-                    EmailAddress = new EmailAddressModel {
-                        Domain = "google.com",
-                        EmailAddressType = EmailAddressType.Personal,
-                        LocalPart = "testor"
-                    }  ,
-                    HomePhone = new PhoneModel {
-                        AreaCode = "813",
-                        Number = "555-1212",
-                        PhoneType = PhoneType.Home
-                    }
+                    EmailAddress = "testme@google.com",                    
+                    HomePhone = "813-555-1212",
+                    WorkPhone = "813-555-1213",
+                    MobilePhone = "727-555-1212",
+                    Fax = "813-555-5555"
 
                 },
                 MemberSearchResults = new List<MemberSearchResultModel> {
