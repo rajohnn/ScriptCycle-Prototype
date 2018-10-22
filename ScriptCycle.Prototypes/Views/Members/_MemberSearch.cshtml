@@ -1,4 +1,4 @@
-﻿<section id="member-search" style="margin-top:7px;display:none">
+﻿<section id="member-search" style="margin-top:7px;" data-bind="visible: ShowSearch">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -6,29 +6,29 @@
                     <div class="panel-title">Member Search</div>
                 </div>
                 <div class="card-body text-primary">
-                    <div class="row">
+                    <div class="row" data-bind="with: MemberSearchModel">
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="member-id">Member ID</label>
-                                <input id="member-id" class="form-control" type="text" />
+                                <input id="member-id" data-bind="inputText: MemberId" class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="first-name">First Name</label>
-                                <input id="first-name" class="form-control" type="text" />
+                                <input id="first-name" data-bind="inputText: FirstName" class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="last-name">Last Name</label>
-                                <input id="last-name" class="form-control" type="text" />
+                                <input id="last-name" data-bind="inputText: LastName" class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <label for="SSN">SSN</label>
-                                <input id="SSN" class="form-control" type="text" />
+                                <input id="SSN" data-bind="inputText: SSN" class="form-control" type="text" />
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <span>
-                                <label><input type="checkbox" checked /> Active Indicator</label>
+                                <label><input data-bind="checked: MemberSearchModel.ActiveIndicator" type="checkbox" /> Active Indicator</label>
                             </span>
                         </div>
                     </div>
@@ -74,57 +74,17 @@
                                         <th class="text-primary" style="text-align: center;font-weight:normal">Person Code</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-primary text-center">1234567</td>
-                                        <td class="text-primary">John</td>
-                                        <td class="text-primary">Doe</td>
-                                        <td class="text-primary text-center">04/02/1995</td>
-                                        <td class="text-primary text-center">555-55-1212</td>
-                                        <td class="text-primary text-center">True</td>
-                                        <td class="text-primary">Group A</td>
-                                        <td class="text-primary text-center">123</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-primary text-center">1234567</td>
-                                        <td class="text-primary">John</td>
-                                        <td class="text-primary">Doe</td>
-                                        <td class="text-primary text-center">04/02/1995</td>
-                                        <td class="text-primary text-center">555-55-1212</td>
-                                        <td class="text-primary text-center">True</td>
-                                        <td class="text-primary">Group A</td>
-                                        <td class="text-primary text-center">123</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-primary text-center">1234567</td>
-                                        <td class="text-primary">John</td>
-                                        <td class="text-primary">Doe</td>
-                                        <td class="text-primary text-center">04/02/1995</td>
-                                        <td class="text-primary text-center">555-55-1212</td>
-                                        <td class="text-primary text-center">True</td>
-                                        <td class="text-primary">Group A</td>
-                                        <td class="text-primary text-center">123</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-primary text-center">1234567</td>
-                                        <td class="text-primary">John</td>
-                                        <td class="text-primary">Doe</td>
-                                        <td class="text-primary text-center">04/02/1995</td>
-                                        <td class="text-primary text-center">555-55-1212</td>
-                                        <td class="text-primary text-center">True</td>
-                                        <td class="text-primary">Group A</td>
-                                        <td class="text-primary text-center">123</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-primary text-center">1234567</td>
-                                        <td class="text-primary">John</td>
-                                        <td class="text-primary">Doe</td>
-                                        <td class="text-primary text-center">04/02/1995</td>
-                                        <td class="text-primary text-center">555-55-1212</td>
-                                        <td class="text-primary text-center">True</td>
-                                        <td class="text-primary">Group A</td>
-                                        <td class="text-primary text-center">123</td>
-                                    </tr>
+                                <tbody data-bind="foreach: MemberSearchResults">
+                                    <tr style="cursor: pointer" data-bind="click: members.onMemberResultClicked">
+                                        <td data-bind="text: MemberId"></td>
+                                        <td data-bind="text: FirstName"></td>
+                                        <td data-bind="text: LastName"></td>
+                                        <td data-bind="text: moment(DOB()).format('LL')"></td>
+                                        <td data-bind="text: SSN"></td>
+                                        <td data-bind="text: ActiveFlag"></td>
+                                        <td data-bind="text: CurrentActiveGroup"></td>
+                                        <td data-bind="text: PersonCode"></td>
+                                    </tr>                                    
                                 </tbody>
                             </table>
                         </div>

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="ScriptCycle.Prototypes.Models.MemberViewModel">
+    <Position X="2.5" Y="3.25" Width="4.25" />
+    <AssociationLine Name="MemberSearchResults" Type="ScriptCycle.Prototypes.Models.MemberSearchResultModel" FixedFromPoint="true">
+      <Path>
+        <Point X="5.688" Y="5.123" />
+        <Point X="5.688" Y="5.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAIBAAAAAAAAAAIQAAAACAAAAAAAAAAAAAAAAAAMA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MemberModel" />
+      <Property Name="MemberSearchModel" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MemberSearchResults" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberSearchModel">
+    <Position X="2.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>EAAIAEAAAAAAAAAAAAAAAQAAAAAQAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberSearchResultModel">
+    <Position X="2.5" Y="5.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAEAACAABAQAAAAAAAQACAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberBenefitSummaryModel">
+    <Position X="2.5" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABACAAAAAQJAIAAABAAAAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberModel">
+    <Position X="8.75" Y="3.25" Width="3.75" />
+    <AssociationLine Name="HomePhone" Type="ScriptCycle.Prototypes.Models.PhoneModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.082" Y="8.392" />
+        <Point X="10.082" Y="9.151" />
+        <Point X="12.171" Y="9.151" />
+        <Point X="12.171" Y="9.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="MobilePhone" Type="ScriptCycle.Prototypes.Models.PhoneModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.082" Y="8.392" />
+        <Point X="10.082" Y="9.151" />
+        <Point X="9.329" Y="9.151" />
+        <Point X="9.329" Y="9.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="WorkPhone" Type="ScriptCycle.Prototypes.Models.PhoneModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.082" Y="8.392" />
+        <Point X="10.082" Y="9.151" />
+        <Point X="11.224" Y="9.151" />
+        <Point X="11.224" Y="9.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Fax" Type="ScriptCycle.Prototypes.Models.PhoneModel" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.082" Y="8.392" />
+        <Point X="10.082" Y="9.151" />
+        <Point X="10.171" Y="9.151" />
+        <Point X="10.171" Y="9.5" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="PhysicianResults" Type="ScriptCycle.Prototypes.Models.PrimacyCarePhysician" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="5.438" />
+        <Point X="12.875" Y="5.438" />
+        <Point X="12.875" Y="5.434" />
+        <Point X="14.5" Y="5.434" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.252" Y="0.122" Height="0.182" Width="1.611" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="PharmacyResults" Type="ScriptCycle.Prototypes.Models.PharmacyModel">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.206" Y="0.06" Height="0.182" Width="1.625" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAIAVgCqDAAIAAAAgQQAYBAgABRAGACAIAEAwAAACg=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+      <Property Name="EmailAddress" />
+      <Property Name="HomePhone" />
+      <Property Name="MobilePhone" />
+      <Property Name="WorkPhone" />
+      <Property Name="Fax" />
+      <Property Name="Pharmacy" />
+      <Property Name="Physician" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="PhysicianResults" />
+      <Property Name="MembershipAdjustmentOptions" />
+      <Property Name="PharmacyResults" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberSubgroup">
+    <Position X="19.25" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAEAAAAECAAAAAAAAAgAAAAAEAAE=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberGroup">
+    <Position X="13.75" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAEAAAAUAAEAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.PharmacyModel">
+    <Position X="14.5" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.PrimacyCarePhysician">
+    <Position X="14.5" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAoAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MemberEligibilityModel">
+    <Position X="16.5" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAECAAACAAAAAAAAAAAEAAE=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.SelectionModel">
+    <Position X="18" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.MembershipAdjustmentOption">
+    <Position X="15" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.AddressModel">
+    <Position X="7.75" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAACAAAAAwAAAAAAAAABAQAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AddressType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.PhoneModel">
+    <Position X="8.75" Y="9.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAABAAEAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PhoneType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.EmailAddressModel">
+    <Position X="11" Y="1.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EmailAddressType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.State" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ScriptCycle.Prototypes.Models.AddressType" Collapsed="true">
+    <Position X="11.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAABA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ScriptCycle.Prototypes.Models.PhoneType" Collapsed="true">
+    <Position X="5.75" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAgEAAAAAAAAAAAAAAAAQAAACAAAAAAAAAABA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ScriptCycle.Prototypes.Models.EmailAddressType" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAEAAAAAAAAAAAAAAAAAABAAAAAAAAACAABA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

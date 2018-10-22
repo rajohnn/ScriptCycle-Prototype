@@ -3,11 +3,17 @@
     model: null,
     init: function () {       
 
-        if (configuration.serverModel) {
-            configuration.model = ko.observable(ko.mapping.fromJS(members.serverModel));
+        if (members.serverModel) {
+            members.model = ko.observable(ko.mapping.fromJS(members.serverModel));
         }        
         ko.applyBindings(members.model);
-    }    
+    },
+    onMemberResultClicked: function () {
+       members.model().ShowSearch(false);
+    },
+    gotoSearch: function () {
+        members.model().ShowSearch(true);
+    }
 });
 
 $(function () {  

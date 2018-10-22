@@ -5,7 +5,10 @@
 <div class="row">
     <div class="col-lg-9">
         <div style="margin-top:5px">
-            <a href="#">Members</a> -> <a href="#">Member Search</a> -> <a href="#">Member Info</a>
+            <a href="#">Members</a> -> <a data-bind="click: members.gotoSearch" href="#">Member Search</a>
+            <span data-bind="visible: !ShowSearch()">
+                -> <a href="#">Member Info</a>
+            </span>            
         </div>
     </div>
     <div class="col-lg-3">
@@ -14,9 +17,11 @@
         </div>
     </div>
 </div>
+<div style="display:none" data-bind="visible: true">
+    @Html.Partial("_MemberSearch")
+    @Html.Partial("_MemberInfo")
+</div>
 
-@Html.Partial("_MemberSearch")
-@Html.Partial("_MemberInfo")
 
 @section scripts {
     <script src="~/Scripts/Members.js"></script>

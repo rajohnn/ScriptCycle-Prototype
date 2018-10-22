@@ -1,15 +1,15 @@
-﻿<section id="member-info" style="margin-top:7px">
-    <div class="row">
-        <div class="col-lg-8">
+﻿<section id="member-info" style="margin-top:7px" data-bind="visible: !ShowSearch()">
+    <div class="row" data-bind="with: MemberModel">
+        <div class="col-lg-7">
             <div class="card">
                 <div class="card-header">
                     <span class="text-primary" style="font-size:14pt;">Member Info</span>
                     <div class="btn-group btn-group-sm float-right">
-                        <button type="button" style="font-size:10px" class="btn btn-primary">MPA's</button>
-                        <button type="button" style="font-size:10px" class="btn btn-primary">Claim History</button>
-                        <button type="button" style="font-size:10px" class="btn btn-primary">Dependents</button>
-                        <button type="button" style="font-size:10px" class="btn btn-primary">Create Card Holder</button>
-                        <button type="button" style="font-size:10px" class="btn btn-primary">Create Dependent</button>
+                        <button type="button" style="font-size:10px" class="btn btn-outline-primary">MPA's</button>
+                        <button type="button" style="font-size:10px" class="btn btn-outline-primary">Claim History</button>
+                        <button type="button" style="font-size:10px" class="btn btn-outline-primary">Dependents</button>
+                        <button type="button" style="font-size:10px" class="btn btn-outline-primary">Create Card Holder</button>
+                        <button type="button" style="font-size:10px" class="btn btn-outline-primary">Create Dependent</button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -18,45 +18,51 @@
                         <tbody>
                             <tr>
                                 <td class="cell-header text-primary">Member ID</td>
-                                <td>12345</td>
+                                <td data-bind="text: MemberId"></td>
                                 <td class="cell-header text-primary">First Name</td>
-                                <td>Elizabeth</td>
+                                <td data-bind="text: FirstName"></td>
                                 <td class="cell-header text-primary">Active Indicator</td>
-                                <td>True</td>
+                                <td data-bind="text: ActiveIndicator"></td>
                                 <td class="cell-header text-primary">Alternate ID</td>
-                                <td>21323</td>
+                                <td data-bind="text: AlternateId"></td>
                             </tr>
                             <tr>
                                 <td class="cell-header text-primary">PC</td>
-                                <td>98765</td>
+                                <td data-bind="text: PC"></td>
                                 <td class="cell-header text-primary">Last Name</td>
-                                <td>Montgomery</td>
+                                <td data-bind="text: LastName"></td>
                                 <td class="cell-header text-primary">Carrier Code</td>
-                                <td>CC-1232</td>
+                                <td data-bind="text: CarrierCode"></td>
                                 <td class="cell-header text-primary">Previous ID</td>
-                                <td></td>
+                                <td data-bind="text: PreviousId"></td>
                             </tr>
                         </tbody>
                     </table>
 
                     <!-- tabs -->
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#profile-tab">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#details-tab">Details</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#eligibility-tab">Eligibility</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#group-tab">Group</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#notes-tab">Notes</a>
-                        </li>
-                    </ul>
+                    <span class="float-right text-primary" style="margin-top:10px">
+                        <label><input type="checkbox" /> Student</label>
+                    </span>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#profile-tab">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#details-tab">Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#eligibility-tab">Eligibility</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#group-tab">Group</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#notes-tab">Notes</a>
+                            </li>
+                        </ul>
+                        
+                   
+                    
 
                     <div class="tab-content">
                         <div class="tab-pane active text-primary detail-font" style="font-size:11px" id="profile-tab">
@@ -80,27 +86,14 @@
                         </div>
 
                     </div>
-                    <hr />
+                    <hr />                   
+                    
                     <button type="button" class="btn btn-sm btn-primary float-right">Save Changes</button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Member Benefit Summary</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Member Group Eligibility</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">Member Eligibility</div>
-                </div>
-            </div>
+        <div class="col-lg-5 text-primary">
+           @Html.Partial("_SummaryPanel")
         </div>
     </div>
 </section>
