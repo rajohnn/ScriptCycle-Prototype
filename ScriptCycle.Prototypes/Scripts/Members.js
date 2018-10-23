@@ -70,4 +70,39 @@ $(function () {
             rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
         }
     });
+    $("#new-dob").datepicker({
+        uiLibrary: 'bootstrap4',
+        size: 'small',
+        icons: {
+            rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
+        }
+    });
+    $("#new-effective-date").datepicker({
+        uiLibrary: 'bootstrap4',
+        size: 'small',
+        icons: {
+            rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
+        }
+    });
+    $("#new-term-date").datepicker({
+        uiLibrary: 'bootstrap4',
+        size: 'small',
+        icons: {
+            rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
+        }
+    });
+    $("#new-group-effective-date").datepicker({
+        uiLibrary: 'bootstrap4',
+        size: 'small',
+        icons: {
+            rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
+        }
+    });
+    $("#new-group-term-date").datepicker({
+        uiLibrary: 'bootstrap4',
+        size: 'small',
+        icons: {
+            rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
+        }
+    });
 });

@@ -71,7 +71,7 @@
 .modal.right .modal-dialog {
     position: fixed;
     margin: auto;
-    width: 520px;
+    width: 800px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
     -ms-transform: translate3d(0%, 0, 0);
@@ -92,7 +92,7 @@
 
 /*Left*/
 .modal.left.fade .modal-dialog {
-    left: -520px;
+    left: -800px;
     -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
     -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
     -o-transition: opacity 0.3s linear, left 0.3s ease-out;
@@ -105,7 +105,7 @@
 
 /*Right*/
 .modal.right.fade .modal-dialog {
-    right: -520px;
+    right: -800px;
     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
     -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
