@@ -3,14 +3,28 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel2">
+                <span class="modal-title" id="myModalLabel2">
                     Create Dependent
-                </h5>
+                </span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
             </div>
-            <div class="modal-body">
-                <div class="modal-body">
+            
+            <div class="modal-body" style="margin:0!important">
+                <table class="table bg-info text-white" style="width:500px;margin-top:-15px;margin-left:-15px">
+                    <tr>
+                        <td align="center">
+                            Group Number: 2342342
+                        </td>
+                        <td align="center">
+                            Effective Date: 06/01/2018
+                        </td>
+                        <td align="center">
+                            Term Date: 05/31/2019
+                        </td>
+                    </tr>
+                </table>  
+                <section id="dependent-data-entry" class="text-primary">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -54,7 +68,6 @@
                         </div>
                     </div>
                     <div class="row">
-
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="new-gender">Gender</label>
@@ -64,18 +77,10 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="new-relationship">Relationship Code</label>
                                 <input id="new-relationship" class="form-control form-control-sm" type="text" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-coverage-type">Coverage Type</label>
-                                <div id="new-coverage-type" class="form-control form-control-sm" type="text" >Family</div>
                             </div>
                         </div>
                     </div>
@@ -95,21 +100,10 @@
                         </div>
                     </div>
                     <hr />
-                    <table class="table bg-info text-white">
-                        <tr>
-                            <td align="center">
-                                Group Number: 2342342
-                            </td>
-                            <td align="center">
-                                Effective Date: 06/01/2018
-                            </td>
-                            <td align="center">
-                                Term Date: 05/31/2019
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                </section>
+               
             </div>
+           
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Create Dependent</button>

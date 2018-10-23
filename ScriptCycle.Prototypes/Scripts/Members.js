@@ -34,7 +34,7 @@
     }
 });
 
-$(function () {  
+$(function () {      
     $("#date-of-birth").datepicker({
         uiLibrary: 'bootstrap4',
         size: 'small',
@@ -104,5 +104,5 @@ $(function () {
         icons: {
             rightIcon: '<i class="fa fa-calendar text-primary" aria-hidden="true"></i>'
         }
-    });
+    });    
 });

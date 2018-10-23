@@ -6,7 +6,8 @@ namespace ScriptCycle.Prototypes {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles) {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -17,16 +18,17 @@ namespace ScriptCycle.Prototypes {
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(                      
-                      "~/Scripts/popper.min.js",
+                      "~/Scripts/umd/popper.min.js",
                       "~/Scripts/knockout-3.4.2.js",
                       "~/Scripts/knockout.mapping-latest.js",
-                      "~/Scripts/popper-utils.min.js",
+                      "~/Scripts/umd/popper-utils.min.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/underscore.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/font-awesome.css",
                       "~/Content/bootstrap.css",
+                      "~/Content/jquery-ui.css",
                       "~/Content/site.css"));
         }
     }
