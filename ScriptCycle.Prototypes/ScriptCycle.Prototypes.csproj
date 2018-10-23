@@ -259,6 +259,12 @@
     <Content Include="Views\Members\_MemberSearch.cshtml" />
     <Content Include="Views\Members\_MemberInfo.cshtml" />
     <Content Include="Views\Members\_SummaryPanel.cshtml" />
+    <Content Include="Views\Shared\_ModalConfiguration.cshtml" />
+    <Content Include="Views\Members\_ModalMPA.cshtml" />
+    <Content Include="Views\Members\_ModalClaimHistory.cshtml" />
+    <Content Include="Views\Members\_ModalDependents.cshtml" />
+    <Content Include="Views\Members\_ModalCreateCardHolder.cshtml" />
+    <Content Include="Views\Members\_ModalCreateDependent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

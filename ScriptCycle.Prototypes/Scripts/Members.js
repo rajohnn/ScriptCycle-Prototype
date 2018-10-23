@@ -13,6 +13,24 @@
     },
     gotoSearch: function () {
         members.model().ShowSearch(true);
+    },
+    openConfigurationModal: function () {
+        $("#configuration-modal").modal('show');
+    },
+    openClaimHistoryModal: function () {
+        $("#claim-history-modal").modal('show');
+    },
+    openCreateCardHolderModal: function () {
+        $("#create-card-holder-modal").modal('show');
+    },
+    openCreateDependentModal: function () {
+        $("#create-dependent-modal").modal('show');
+    },
+    openDependentsModal: function () {
+        $("#dependents-modal").modal('show');
+    },
+    openMPAModal: function () {
+        $("#mpa-modal").modal('show');
     }
 });
 

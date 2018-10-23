@@ -37,7 +37,6 @@ namespace ScriptCycle.Prototypes.Controllers {
                     WorkPhone = "813-555-1213",
                     MobilePhone = "727-555-1212",
                     Fax = "813-555-5555"
-
                 },
                 MemberSearchResults = new List<MemberSearchResultModel> {
                     new MemberSearchResultModel {
@@ -60,6 +59,17 @@ namespace ScriptCycle.Prototypes.Controllers {
                         PersonCode = "35353",
                         SSN = "555-55-1212"
                     }
+                },
+                MemberBenefitSummaryModel = new MemberBenefitSummaryModel {                     
+                    ActiveGroup = "Plan Beta 2",
+                    BenefitStartDate = DateTime.Now.AddYears(-1).AddMonths(3),
+                    FamilyBenefit = 1000,
+                    FamilyCopay = 5000,
+                    FamilyDeducatible = 2000,
+                    IndividualBenefit = 0,
+                    IndividualCopay = 0,
+                    IndividualDeductible = 0,
+                    Id = 1
                 }
             };
             vm.ShowSearch = true;

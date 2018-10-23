@@ -38,11 +38,40 @@
     font-size: 0.690rem !important;
 }
 
+.modal-body.modal-tab-container {
+    padding: 0;
+}
 
+    .modal-body.modal-tab-container .modal-tabs {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+        -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+
+        .modal-body.modal-tab-container .modal-tabs .nav-link {
+            padding: 10px 20px;
+            border: none;
+        }
+
+            .modal-body.modal-tab-container .modal-tabs .nav-link:hover, .modal-body.modal-tab-container .modal-tabs .nav-link.active {
+                color: #85CE36;
+                border-bottom: 2px solid #85CE36;
+            }
+
+            .modal-body.modal-tab-container .modal-tabs .nav-link.active {
+                font-weight: 600;
+            }
+
+
+.modal.left .modal-dialog,
 .modal.right .modal-dialog {
     position: fixed;
     margin: auto;
-    width: 412px;
+    width: 520px;
     height: 100%;
     -webkit-transform: translate3d(0%, 0, 0);
     -ms-transform: translate3d(0%, 0, 0);
@@ -50,29 +79,51 @@
     transform: translate3d(0%, 0, 0);
 }
 
+.modal.left .modal-content,
 .modal.right .modal-content {
     height: 100%;
     overflow-y: auto;
 }
 
+.modal.left .modal-body,
 .modal.right .modal-body {
     padding: 15px 15px 80px;
 }
 
+/*Left*/
+.modal.left.fade .modal-dialog {
+    left: -520px;
+    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+    transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.show .modal-dialog {
+    left: 0;
+}
+
+/*Right*/
 .modal.right.fade .modal-dialog {
-    right: -412px;
+    right: -520px;
     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
     -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
     transition: opacity 0.3s linear, right 0.3s ease-out;
 }
 
-.modal.right.fade.in .modal-dialog {
+.modal.right.fade.show .modal-dialog {
     right: 0;
 }
 
+/* ----- MODAL STYLE ----- */
 .modal-content {
     border-radius: 0;
     border: none;
+}
+
+.modal-header {
+    border-bottom-color: #EEEEEE;
+    background-color: #FAFAFA;
 }
 

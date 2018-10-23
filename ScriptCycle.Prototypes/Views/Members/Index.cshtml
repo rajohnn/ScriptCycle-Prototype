@@ -2,6 +2,14 @@
 @{
     ViewBag.Title = "ScriptCycle Prototype - Members";
 }
+
+@Html.Partial("_ModalConfiguration")
+@Html.Partial("_ModalClaimHistory")
+@Html.Partial("_ModalCreateCardHolder")
+@Html.Partial("_ModalCreateDependent")
+@Html.Partial("_ModalDependents")
+@Html.Partial("_ModalMPA")
+
 <div class="row">
     <div class="col-lg-9">
         <div style="margin-top:5px">
@@ -13,7 +21,7 @@
     </div>
     <div class="col-lg-3">
         <div class="float-right">
-            <button type="button" class="btn btn-sm btn-primary">Configuration</button>
+            <button type="button" data-bind="click: members.openConfigurationModal" class="btn btn-sm btn-primary">Configuration</button>
         </div>
     </div>
 </div>
