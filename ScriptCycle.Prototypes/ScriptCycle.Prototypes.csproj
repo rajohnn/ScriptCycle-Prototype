@@ -276,6 +276,7 @@
     <Content Include="Views\Members\_ModalDependents.cshtml" />
     <Content Include="Views\Members\_ModalCreateCardHolder.cshtml" />
     <Content Include="Views\Members\_ModalCreateDependent.cshtml" />
+    <Content Include="Views\Members\_ModalDiagnosisCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

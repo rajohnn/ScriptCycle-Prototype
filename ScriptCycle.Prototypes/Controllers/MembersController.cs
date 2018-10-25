@@ -32,11 +32,14 @@ namespace ScriptCycle.Prototypes.Controllers {
                         City = "Tampa",
                         Zip = "33674"
                     },
-                    EmailAddress = "testme@google.com",                    
+                    EmailAddress = "testme@google.com",
                     HomePhone = "813-555-1212",
                     WorkPhone = "813-555-1213",
                     MobilePhone = "727-555-1212",
-                    Fax = "813-555-5555"
+                    Fax = "813-555-5555",
+                    DiagnosisCodes = new List<DiagnosisCode> {
+                        new DiagnosisCode { Id = 1, Value = "Z32.0", Description = "", Count = 1}
+                    }
                 },
                 MemberSearchResults = new List<MemberSearchResultModel> {
                     new MemberSearchResultModel {
@@ -60,7 +63,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                         SSN = "555-55-1212"
                     }
                 },
-                MemberBenefitSummaryModel = new MemberBenefitSummaryModel {                     
+                MemberBenefitSummaryModel = new MemberBenefitSummaryModel {
                     ActiveGroup = "Plan Beta 2",
                     BenefitStartDate = DateTime.Now.AddYears(-1).AddMonths(3),
                     FamilyBenefit = 1000,
@@ -70,7 +73,8 @@ namespace ScriptCycle.Prototypes.Controllers {
                     IndividualCopay = 0,
                     IndividualDeductible = 0,
                     Id = 1
-                }
+                },
+               
             };
             vm.ShowSearch = true;
             return View(vm);

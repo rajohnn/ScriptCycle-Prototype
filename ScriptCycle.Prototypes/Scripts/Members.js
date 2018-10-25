@@ -31,6 +31,25 @@
     },
     openMPAModal: function () {
         $("#mpa-modal").modal('show');
+    },
+    addDiagnosisCodeClicked: function () {
+        $("#diagnosis-code-modal").modal('show');
+    },
+    createDiagnosisCode: function () {
+        var model = members.model();
+        var code = model.NewDiagnosisCode();
+        var existingCodes = model.MemberModel.DiagnosisCodes();
+        if (code) {
+            var dc = {
+                Id: 0,
+                Value: code,
+                Description: '',
+                Count: existingCodes.length + 1
+            };
+            model.MemberModel.DiagnosisCodes.push(ko.mapping.fromJS(dc));
+            model.NewDiagnosisCode(null);
+            $("#diagnosis-code-modal").modal('hide');
+        }
     }
 });
 

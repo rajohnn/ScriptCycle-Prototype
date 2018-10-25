@@ -138,32 +138,20 @@
         <div class="card">
             <div class="card-header">
                 <span class="pull-right">
-                    <a href="#">
+                    <a href="#" data-bind="click: members.addDiagnosisCodeClicked">
                         <span class="fa fa-plus-circle"></span> Add Diagnosis
                     </a>
                 </span>
                 <span class="card-title">Diagnosis Codes</span>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-4">
+                <div class="row" data-bind="foreach: DiagnosisCodes">                   
+                    <div class="col-lg-4" >
                         <div class="form-group">
-                            <label for="d1">Diagnosis Code 1</label>
-                            <input id="d1" class="form-control form-control-sm" value="Z32.0" />
+                            <label for="d1">Diagnosis Code <span data-bind="text: Count"></span></label>
+                            <input id="d1" class="form-control form-control-sm" data-bind="textInput: Value" />
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="d1">Diagnosis Code 2</label>
-                            <input id="d1" class="form-control form-control-sm" value="Z32.0" />
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label for="d1">Diagnosis Code 3</label>
-                            <input id="d1" class="form-control form-control-sm" value="Z32.0" />
-                        </div>
-                    </div>
+                    </div>                   
                 </div>
 
             </div>

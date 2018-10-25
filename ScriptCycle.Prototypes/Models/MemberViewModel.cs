@@ -11,8 +11,8 @@ namespace ScriptCycle.Prototypes.Models {
         public List<MemberGroup> MemberGroups { get; set; } = new List<MemberGroup>();
         public List<MemberSubgroup> MemberSubgroups { get; set; } = new List<MemberSubgroup>();
         public MemberBenefitSummaryModel MemberBenefitSummaryModel { get; set; } = new MemberBenefitSummaryModel();
-        public bool ShowSearch { get; set; } = true;
-
+        public bool ShowSearch { get; set; } = true;       
+        public string NewDiagnosisCode { get; set; }
     }
 
     public class MemberSearchModel {
@@ -81,6 +81,7 @@ namespace ScriptCycle.Prototypes.Models {
         public List<PrimacyCarePhysician> PhysicianResults { get; set; } = new List<PrimacyCarePhysician>();
         public PharmacyModel Pharmacy { get; set; } = new PharmacyModel();
         public List<PharmacyModel> PharmacyResults { get; set; } = new List<PharmacyModel>();
+        public List<DiagnosisCode> DiagnosisCodes { get; set; } = new List<DiagnosisCode>();
     }
 
     public class MemberSubgroup {
@@ -192,5 +193,12 @@ namespace ScriptCycle.Prototypes.Models {
         public int Id { get; set; }
         public string Abbreviation { get; set; }
         public string Name { get; set; }
+    }
+
+    public class DiagnosisCode {
+        public int Id { get; set; } = 0;
+        public string Value { get; set; } 
+        public string Description { get; set; }
+        public int Count = 1;
     }
 }
