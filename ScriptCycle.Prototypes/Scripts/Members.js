@@ -62,7 +62,15 @@
     }
 });
 
-$(function () {      
+$(function () {  
+    $("#diagnosis-code").keypress(function (e) {
+        if (e.which === 13)
+            members.createDiagnosisCode();
+    });
+    $("#diagnosis-code-modal").on('shown.bs.modal', function () {
+        $("#diagnosis-code").focus();
+    });
+
     $("#date-of-birth").datepicker({
         uiLibrary: 'bootstrap4',
         size: 'small',
