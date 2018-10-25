@@ -149,7 +149,15 @@
                     <div class="col-lg-4" >
                         <div class="form-group">
                             <label for="d1">Diagnosis Code <span data-bind="text: Count"></span></label>
-                            <input id="d1" class="form-control form-control-sm" data-bind="textInput: Value" />
+                            <div class="input-group input-group-sm">
+                                <input id="d1" class="form-control form-control-sm" data-bind="textInput: Value" />
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-danger" data-bind="click: members.deleteDiagnosis">
+                                        <span class="fa fa-trash"></span>
+                                    </button>                                   
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>                   
                 </div>

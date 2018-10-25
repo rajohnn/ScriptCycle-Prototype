@@ -50,6 +50,15 @@
             model.NewDiagnosisCode(null);
             $("#diagnosis-code-modal").modal('hide');
         }
+    },
+    deleteDiagnosis: function (item) {   
+        var codes = members.model().MemberModel.DiagnosisCodes;
+        codes.remove(item);
+        var i = 0;
+        _.forEach(codes(), function (item) {
+            i++;
+            item.Count(i);
+        });
     }
 });
 
