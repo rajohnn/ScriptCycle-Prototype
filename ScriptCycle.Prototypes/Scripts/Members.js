@@ -37,7 +37,7 @@
     },
     createDiagnosisCode: function () {
         var model = members.model();
-        var code = model.NewDiagnosisCode();
+        var code = $("#diagnosis-code").val();
         var existingCodes = model.MemberModel.DiagnosisCodes();
         if (code) {
             var dc = {
@@ -47,7 +47,8 @@
                 Count: existingCodes.length + 1
             };
             model.MemberModel.DiagnosisCodes.push(ko.mapping.fromJS(dc));
-            model.NewDiagnosisCode(null);
+            model.NewDiagnosisCode('');
+            $("#diagnosis-code").val("");
             $("#diagnosis-code-modal").modal('hide');
         }
     },
@@ -64,7 +65,8 @@
 
 $(function () {  
     $("#diagnosis-code").keypress(function (e) {
-        if (e.which === 13)
+        console.log(e.which);
+        if (e.which == 13)
             members.createDiagnosisCode();
     });
     $("#diagnosis-code-modal").on('shown.bs.modal', function () {
