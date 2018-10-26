@@ -3,25 +3,59 @@
 
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel2">
+                <span class="modal-title" id="myModalLabel2" style="font-size:12pt">
                     Claim History
-                </h5>
+                </span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
             </div>
             <div class="modal-body">
-                <p>Modal content will go here.</p>
-
+                <table class="table table-bordered table-hover detail-font">
+                    <thead>
+                        <tr class="bg-info text-white">
+                            <th style="font-weight:normal" class="text-center">Paid/Reversed Status</th>
+                            <th style="font-weight:normal" class="text-center">Process Time Stamp</th>
+                            <th style="font-weight:normal" class="text-center">RX#</th>
+                            <th style="font-weight:normal" class="text-center">NCPDP#</th>
+                            <th style="font-weight:normal" class="text-center">Pharmacy Name</th>
+                            <th style="font-weight:normal" class="text-center">NDC</th>
+                            <th style="font-weight:normal" class="text-center">Drug Name</th>
+                            <th style="font-weight:normal" class="text-center">Pharmacy Paid</th>
+                            <th style="font-weight:normal" class="text-center">Copay Amount/Patient Paid Amount</th>
+                            <th style="font-weight:normal" class="text-center">Amt Applied to Deductible/MOOP/Cap</th>                            
+                        </tr>
+                    </thead>
+                    <tbody style="cursor:pointer">
+                        
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <span class="pull-right">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" style="width:125px" class="btn btn-primary">Save</button>
                 </span>
-                
+
             </div>
         </div>
 
     </div>
 </div>
 
+<!--
+
+Claim History button  – Displays all related prescriptions/claims processed for the member, both paid and reversed.
+
+Paid/Reversed Status
+Process Time/Date
+Rx#
+NCPDP#
+Pharmacy Name
+NDC
+Drug Name
+Pharmacy Paid
+Copay Amount/Patient Paid Amt
+Amt Applied to Deductible/MOOP/Cap
+Prescriber NPI
+Prescriber Name
+
+-->

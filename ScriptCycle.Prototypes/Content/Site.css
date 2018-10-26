@@ -40,7 +40,7 @@
 
 .modal-header {
     display:block;
-    height:55px
+    height:55px;
 }
 
 .modal-footer {
@@ -79,13 +79,12 @@
             }
 
 .modal-lg  {
-    max-width: 800px !important;
-    width: 800px!important;
+    max-width: 1300px !important;
+    width: 1300px!important;
     position: center !important;
     transform: translate(0, -50%)!important;
     top: 50%!important;
-    margin: 0 auto!important;
-    overflow-y:auto;
+    margin: 0 auto!important;    
 }
 .modal-dialog-centered {
     display: -webkit-box;
