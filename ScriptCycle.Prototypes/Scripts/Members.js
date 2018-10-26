@@ -57,8 +57,7 @@
         codes.remove(item);
         var i = 0;
         _.forEach(codes(), function (item) {
-            i++;
-            item.Count(i);
+            i++; item.Count(i);
         });
     }
 });
@@ -66,7 +65,7 @@
 $(function () {  
     $("#diagnosis-code").keypress(function (e) {
         console.log(e.which);
-        if (e.which == 13)
+        if (e.which === 13)
             members.createDiagnosisCode();
     });
     $("#diagnosis-code-modal").on('shown.bs.modal', function () {

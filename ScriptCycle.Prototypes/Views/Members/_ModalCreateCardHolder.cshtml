@@ -7,120 +7,138 @@
                 </span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="margin-bottom:-60px">
                 <section id="card-holder-data-entry" class="text-primary">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-group-number">Group Number</label>
-                                <input id="new-group-number" class="form-control form-control-sm" />
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <span class="card-title">Group Number Entry</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-bottom:-15px;margin-top:-10px">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="new-group-number">Group Number</label>
+                                        <div class="input-group">
+                                            <input id="new-group-number" style="max-width:200px" placeholder="Enter an existing group number" class="form-control form-control-sm" />
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-sm btn-primary">Apply</button>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                   
                     <hr/>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-member-id">CH ID</label>
-                                <input id="new-member-id" class="form-control form-control-sm" type="text" />
-                            </div>
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            <span class="card-title">Cardholder Information</span>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-person-code">Person Code</label>
-                                <input id="new-person-code" class="form-control form-control-sm" type="text" />
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-member-id">CH ID</label>
+                                        <input id="new-member-id" class="form-control form-control-sm" type="text" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-person-code">Person Code</label>
+                                        <input id="new-person-code" class="form-control form-control-sm" type="text" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-first-name">First Name</label>
-                                <input id="new-first-name" class="form-control form-control-sm" type="text" />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-first-name">First Name</label>
+                                        <input id="new-first-name" class="form-control form-control-sm" type="text" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-lastname">Last Name</label>
+                                        <input id="new-lastname" class="form-control form-control-sm" type="text" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-lastname">Last Name</label>
-                                <input id="new-lastname" class="form-control form-control-sm" type="text" />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-dob">Date of Birth</label>
+                                        <input id="new-dob" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-ssn">SSN</label>
+                                        <input id="new-ssn" class="form-control form-control-sm" type="text" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-dob">Date of Birth</label>
-                                <input id="new-dob" class="form-control form-control-sm" />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-gender">Gender</label>
+                                        <select id="new-gender" class="form-control form-control-sm">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-coverage-type">Coverage Type</label>
+                                        <select id="new-coverage-type" class="form-control form-control-sm">
+                                            <option>Family</option>
+                                            <option>Individual</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-ssn">SSN</label>
-                                <input id="new-ssn" class="form-control form-control-sm" type="text" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-gender">Gender</label>
-                                <select id="new-gender" class="form-control form-control-sm">
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-coverage-type">Coverage Type</label>
-                                <select id="new-coverage-type" class="form-control form-control-sm">
-                                    <option>Family</option>
-                                    <option>Individual</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-relationship">Relationship Code</label>
-                                <input id="new-relationship" class="form-control form-control-sm" type="text" />
-                            </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-relationship">Relationship Code</label>
+                                        <input id="new-relationship" class="form-control form-control-sm" type="text" />
+                                    </div>
+                                </div>
 
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-effective-date">Effective Date</label>
+                                        <input id="new-effective-date" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-term-date">Termination Date</label>
+                                        <input id="new-term-date" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-group-effective-date">Group Effective Date</label>
+                                        <input id="new-group-effective-date" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="new-group-term-date">Group Termination Date</label>
+                                        <input id="new-group-term-date" class="form-control form-control-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-effective-date">Effective Date</label>
-                                <input id="new-effective-date" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-term-date">Termination Date</label>
-                                <input id="new-term-date" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-group-effective-date">Group Effective Date</label>
-                                <input id="new-group-effective-date" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="new-group-term-date">Group Termination Date</label>
-                                <input id="new-group-term-date" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <hr />                
+                </section>                              
             </div>
             <div class="modal-footer">
                 <span class="pull-right">
