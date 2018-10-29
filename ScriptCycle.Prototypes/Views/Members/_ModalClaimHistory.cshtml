@@ -13,22 +13,135 @@
                 <table class="table table-bordered table-hover detail-font">
                     <thead>
                         <tr class="bg-info text-white">
-                            <th style="font-weight:normal" class="text-center">Paid/Reversed Status</th>
-                            <th style="font-weight:normal" class="text-center">Process Time Stamp</th>
-                            <th style="font-weight:normal" class="text-center">RX#</th>
-                            <th style="font-weight:normal" class="text-center">NCPDP#</th>
-                            <th style="font-weight:normal" class="text-center">Pharmacy Name</th>
-                            <th style="font-weight:normal" class="text-center">NDC</th>
-                            <th style="font-weight:normal" class="text-center">Drug Name</th>
-                            <th style="font-weight:normal" class="text-center">Pharmacy Paid</th>
-                            <th style="font-weight:normal" class="text-center">Copay Amount/Patient Paid Amount</th>
-                            <th style="font-weight:normal" class="text-center">Amt Applied to Deductible/MOOP/Cap</th>                            
+                            <th style="font-weight:normal;width:200px" class="text-center">Processed On</th>
+                            <th style="font-weight:normal" class="text-center">Transaction</th>
+                            <th style="font-weight:normal" class="text-center">Details</th>
+                            <th style="font-weight:normal" class="text-center">Transaction Status</th>
                         </tr>
                     </thead>
                     <tbody style="cursor:pointer">
-                        
+                        <tr>
+                            <td>
+                                08/31/2018 13:26PM EST<br/>                                
+                            </td>
+                            <td>
+                                <b>GROUP:</b> 1<br />
+                                <b>RX:</b> 664852<br />
+                                <b>NCPDP:</b> 4567825
+                            </td>
+                            <td>
+                                <b>Pharmacy:</b> CVS #4466<br />
+                                <b>NDC: </b> 93000-4056-10<br />
+                                <b>Drug: </b> Lotrel 10 MB
+                            </td>
+                            <td>
+                                <span class="text-success">
+                                    <b>Status: </b> Paid<br />
+                                    <b>Pharmacy: </b> $27.49<br />
+                                    <b>Client: </b> $35.88
+                                </span>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                08/31/2018 13:40PM EST<br />
+                                <span class="text-danger">Retry Count: 8</span>
+                            </td>
+                            <td>
+                                <b>GROUP:</b> 2<br />
+                                <b>RX:</b> 714251<br />
+                                <b>NCPDP:</b> 444215
+                            </td>
+                            <td>
+                                <b>Pharmacy:</b> WalMart #8144<br />
+                                <b>NDC: </b> 57614-1855-15<br />
+                                <b>Drug: </b> Prozac 20MG
+                            </td>
+                            <td>
+                                <span class="text-danger">
+                                    <b>Status: </b>  <span class="fa fa-thumbs-down"></span> Rejected - 75<br />
+                                    Prior Authorization Required
+                                </span>                            
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                08/31/2018 14:36PM EST
+                            </td>
+                            <td>
+                                <b>GROUP:</b> 54<br />
+                                <b>RX:</b> 854224555<br />
+                                <b>NCPDP:</b> 5849265
+                            </td>
+                            <td>
+                                <b>Pharmacy:</b> CVS #2914<br />
+                                <b>NDC: </b> 50698-5640-05<br />
+                                <b>Drug: </b> Claritan 10MG
+                            </td>
+                            <td>
+                                <span class="text-success">
+                                    <b>Status: </b> Paid<br />
+                                    <b>Pharmacy: </b> $11.99<br />
+                                    <b>Client: </b> $31.42
+                                </span>                               
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                08/31/2018 14:36PM EST
+                            </td>
+                            <td>
+                                <b>GROUP:</b> 15<br />
+                                <b>RX:</b> 45261<br />
+                                <b>NCPDP:</b> 7412468
+                            </td>
+                            <td>
+                                <b>Pharmacy:</b> Longs Drug Store #0050<br />
+                                <b>NDC: </b> 346199-0500-05<br />
+                                <b>Drug: </b> Zyprexa 10 MG
+                            </td>
+                            <td>
+                                <span class="text-success">
+                                    <b>Status: </b> Paid<br />
+                                    <b>Pharmacy: </b> $611.99<br />
+                                    <b>Client: </b> $831.42
+                                </span>
+                              
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                08/31/2018 13:26PM EST
+                            </td>
+                            <td>
+                                <b>GROUP:</b> 55<br />
+                                <b>RX:</b> 25648<br />
+                                <b>NCPDP:</b> 435612
+                            </td>
+                            <td>
+                                <b>Pharmacy:</b> Happy Harry's #010<br />
+                                <b>NDC: </b> 81452-6005-05<br />
+                                <b>Drug: </b> Metformin 500 MG
+                            </td>
+                            <td>
+                                <span class="text-success">
+                                    <b>Status: </b> Paid<br />
+                                    <b>Pharmacy: </b> $62.55<br />
+                                    <b>Client: </b> $174.66
+                                </span>                                
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
+                <nav aria-label="Page navigation example" class="pull-right">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
             </div>
             <div class="modal-footer">
                 <span class="pull-right">
