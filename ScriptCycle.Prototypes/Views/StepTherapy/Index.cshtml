@@ -1,0 +1,47 @@
+﻿@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Step Therapy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/steptherapy.css" />
+    
+}
+    <div class="card-deck" data-bind="foreach: Programs">
+        @Html.Partial("program_template")
+    </div>
+
+
+@section scripts {
+    <script src="~/Scripts/d3/d3.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/StepTherapy.js"></script>
+    <script type="text/javascript">
+        
+        $(function () {
+            step.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            step.init();
+        });
+
+        function onDragEnter(event) {
+            var items = event.dataTransfer.items;
+            for (var i = 0; i < items.length; ++i) {
+                var item = items[i];
+                if (item.kind == 'string' && item.type == step.internalDNDType) {
+                    event.preventDefault();
+                    return;
+                }
+            }
+        }
+        function onDragOver(event) {
+            event.dataTransfer.dropEffect = 'move';
+            event.preventDefault();
+        }
+        function onDrop(event) {
+            var li = document.createElement('li');
+            var data = event.dataTransfer.getData(step.internalDNDType);
+            console.log(data);
+            event.target.appendChild(li);
+        }
+    </script>
+}

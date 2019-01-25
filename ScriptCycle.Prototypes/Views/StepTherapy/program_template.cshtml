@@ -1,0 +1,21 @@
+﻿<div class="col-lg-4">        
+    <div class="program">
+        <div class="program-header bg-program-standard text-white">
+            <span data-bind="text: Name"></span> 
+        </div>
+        <div class="row" data-bind="foreach: Tiers">            
+            <div class="col-lg-12">
+                <div class="tier border-standard" draggable="true">                        
+                    <span>
+                        <b><span class="tier-title" data-bind="text: Name"></span>:</b> <span data-bind="text: Description"></span>
+                    </span>
+                    <ol class="list-group" data-bind="foreach: Lines" ondragenter="onDragEnter(event)" ondragover="onDragOver(event)" ondrop="onDrop(event)">
+                        <li draggable="true" class="list-group-item therapy-line-item list-group-item-action ui-state-default">                          
+                            <span data-bind="text: DisplayValue"></span>
+                        </li>
+                    </ol>                                          
+                </div>                
+            </div>
+        </div>
+    </div>  
+</div>

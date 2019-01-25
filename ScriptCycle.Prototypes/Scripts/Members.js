@@ -1,8 +1,7 @@
 ﻿Declare("members", {
     serverModel: null,
     model: null,
-    init: function () {       
-
+    init: function () {
         if (members.serverModel) {
             members.model = ko.observable(ko.mapping.fromJS(members.serverModel));
         }        
