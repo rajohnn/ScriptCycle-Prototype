@@ -116,7 +116,7 @@
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-    padding: 15px 15px 80px;
+    padding: 15px 15px 0px;
 }
 
 /*Left*/

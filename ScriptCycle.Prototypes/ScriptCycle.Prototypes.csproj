@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LinqExtensions.cs" />
     <Compile Include="Models\MemberViewModel.cs" />
     <Compile Include="Models\StepTherapyViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -301,6 +302,9 @@
     <Content Include="Views\StepTherapy\Index.cshtml" />
     <Content Include="Views\StepTherapy\program_template.cshtml" />
     <Content Include="Views\StepTherapy\_tierTemplate.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Shared\_Ribbon.cshtml" />
+    <Content Include="Views\StepTherapy\_ModalTier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
