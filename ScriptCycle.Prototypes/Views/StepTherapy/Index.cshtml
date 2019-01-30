@@ -5,60 +5,92 @@
 }
 @section styles {
     <link rel="stylesheet" href="~/Content/steptherapy.css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 }
 
 @Html.Partial("_ModalTier")
-<section id="step-therapy-toolbar" class="row view-toolbar">
-    <div class="col-lg-12">
-        <span class="header">Step Therapy</span>
-        <span id="function-panel" class="pull-right">
-            <button type="button" class="btn btn-sm btn-default ">
-                Create Program
-            </button>           
-        </span>
-    </div>
-</section>
-<div class="row">
-    <div class="col-lg-4">
-        <div data-bind="foreach: ProgramColumn1">
-            @Html.Partial("program_template")
+
+<div id="dependency-view" style="display:none" data-bind="visible: true">
+
+    <section id="step-therapy-toolbar" class="row view-toolbar">
+        <div class="col-lg-12">
+            <span class="header">Dependencies</span>
+            <span id="function-panel" class="pull-right">
+                <button type="button" data-bind="visible: ShowStepTherapy" class="btn btn-sm btn-default ">
+                    <span class="fa fa-plus"></span> Add Program
+                </button>
+                <button type="button" data-bind="visible: !ShowStepTherapy()" class="btn btn-sm btn-default">
+                    <span class="fa fa-plus"></span> Add Drug Fill
+                </button>
+
+            </span>
         </div>
-    </div>
-    <div class="col-lg-4">
-        <div data-bind="foreach: ProgramColumn2">
-            @Html.Partial("program_template")
+    </section>
+    <section id="view-management">
+        <div class="row dependency-bar">
+            <div class="col-lg-6">
+                <section id="filter-control" data-bind="visible: ShowStepTherapy">
+                    <div class="input-group input-group-sm">
+                        <input type="text" data-bind="textInput: Filter" class="form-control form-control-sm" style="max-width:250px" placeholder="Filter" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-sm">
+                                <span class="fa fa-search"></span> Apply
+                            </button>
+                        </div>
+                    </div>
+                </section>                
+            </div>
+            <div class="col-lg-6">
+                <span class="pull-right">
+                    <input id="view-toggle"
+                           type="checkbox"
+                           data-bind="bootstrapToggleOn: ShowStepTherapy"
+                           data-toggle="toggle"
+                           data-onstyle="primary"
+                           data-offstyle="info"
+                           data-on="Step Therapy"
+                           data-off="Fill Rules" />
+                </span>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-4">
-        <div data-bind="foreach: ProgramColumn3">
-            @Html.Partial("program_template")
+    </section>
+    <section id="step-therapy" data-bind="slideVisible: ShowStepTherapy">
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div data-bind="foreach: ProgramsColumn1">
+                    @Html.Partial("program_template")
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-bind="foreach: ProgramsColumn2">
+                    @Html.Partial("program_template")
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-bind="foreach: ProgramsColumn3">
+                    @Html.Partial("program_template")
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+    <section id="drug-fill" data-bind="slideVisible: !ShowStepTherapy()">
+        <h2 class="text-primary">Fill Rules</h2>
+    </section>
 </div>
+
+
 @section scripts {
-    <script src="~/Scripts/d3/d3.min.js"></script>
+
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="~/Scripts/jquery-ui.js"></script>
     <script src="~/Scripts/StepTherapy.js"></script>
     <script type="text/javascript">
-
+        $("#view-toggle").bootstrapToggle({ width: 175, height: 35 });
         $(function () {
             step.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
-            step.init();            
-
-            $(".column-tiers").sortable({
-                placeholder: "sortable-placeholder",
-                over: function () {
-                    $(".sortable-placeholder").stop().animate({
-                        height: 0
-                    }, 400);
-                },
-                change: function () {
-                    $(".sortable-placeholder").stop().animate({
-                        height: 100
-                    }, 400);
-                }
-            });
-
+            step.init();
+            step.applySortable();          
         });
     </script>
 }

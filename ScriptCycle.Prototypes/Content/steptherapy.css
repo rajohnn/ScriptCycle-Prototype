@@ -20,13 +20,13 @@
   border-radius: 8px;
 }
 .bg-program-standard {
-  background-color: #004793;
+  background-color: #0367B4;
 }
 .border-standard {
-  border-color: #4f81bd !important;
+  border-color: #0367B4 !important;
 }
 .sortable-placeholder {
-  border: 2px dotted #004793;
+  border: 2px dotted #FF9200;
   border-radius: 7px;
   visibility: visible !important;
   margin-left: 5px;
@@ -42,6 +42,20 @@
 }
 .tier-title {
   font-size: 12pt;
+}
+.tier-modal-header {
+  border-radius: 0;
+  background-color: #0367B4;
+}
+.tier-modal-body {
+  color: #0367B4;
+}
+.tier-footer {
+  border-radius: 0;
+  background-color: #0367B4;
+}
+.tier-options {
+  background-color: #0367B4;
 }
 .tier {
   margin-top: 5px;
@@ -69,14 +83,12 @@
   color: #4f81bd;
   border: 1px solid rgba(79, 129, 189, 0.15);
 }
-/*.draggable {
-    width: 90px;
-    height: 80px;
-    padding: 5px;
-    float: left;
-    margin: 0 10px 10px 0;
-    font-size: .9em;
-}*/
+.dependency-bar {
+  border: 1px solid #0367B4;
+  background-color: #77BEF5;
+  height: 55px;
+  padding-top: 10px;
+}
 .view-toolbar {
   background-color: #0367B4;
   margin-top: -9px;

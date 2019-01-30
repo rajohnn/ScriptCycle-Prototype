@@ -71,16 +71,16 @@
 }
 
 .bg-program-standard {
-    background-color: #004793;
+    background-color: @color-primary-4;
 }
 
 .border-standard {
-    border-color: #4f81bd !important;
+    border-color: @color-primary-4 !important;
 }
 
 .sortable-placeholder {
     margin-left: 5px;
-    border: 2px dotted #004793;
+    border: 2px dotted @color-complement-4;
     border-radius: 7px;
     visibility: visible !important;
     margin-left: 5px;
@@ -97,6 +97,24 @@
 
 .tier-title {
     font-size:12pt;
+}
+
+.tier-modal-header {
+    border-radius:0;
+    background-color: @color-primary-4;
+}
+
+.tier-modal-body {
+    color: @color-primary-4;
+}
+
+.tier-footer {
+    border-radius:0;
+    background-color: @color-primary-4;
+}
+
+.tier-options {
+    background-color: @color-primary-4;
 }
 
 .tier {
@@ -127,14 +145,12 @@
     border: 1px solid rgba(79,129,189, .15);
 }
 
-/*.draggable {
-    width: 90px;
-    height: 80px;
-    padding: 5px;
-    float: left;
-    margin: 0 10px 10px 0;
-    font-size: .9em;
-}*/
+.dependency-bar {
+    border: 1px solid @color-primary-4;
+    background-color: @color-primary-1;
+    height:55px;
+    padding-top:10px;
+}
 
 .view-toolbar {
     background-color: @color-primary-4;

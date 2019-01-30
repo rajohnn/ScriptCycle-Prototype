@@ -41,3 +41,37 @@ ko.bindingHandlers.fadeVisible = {
         ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
     }
 };
+
+// handles binding with bootstrap toggle buttons
+ko.bindingHandlers.bootstrapToggleOn = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+        $elem = $(element);
+        $(element).bootstrapToggle({
+            on: 'Yes',
+            off: 'No',
+            onstyle: 'primary',
+            offstyle: 'danger'
+        });
+        if (ko.utils.unwrapObservable(valueAccessor())) {
+            $elem.bootstrapToggle('on');
+        } else {
+            $elem.bootstrapToggle('off');
+        }
+
+        $elem.change(function () {
+            if ($(this).prop('checked')) {
+                valueAccessor()(true);
+            } else {
+                valueAccessor()(false);
+            }
+        });
+
+    },
+    update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+        var vStatus = $(element).prop('checked');
+        var vmStatus = ko.utils.unwrapObservable(valueAccessor());
+        if (vStatus !== vmStatus) {
+            $(element).bootstrapToggle('toggle');
+        }
+    }
+};
