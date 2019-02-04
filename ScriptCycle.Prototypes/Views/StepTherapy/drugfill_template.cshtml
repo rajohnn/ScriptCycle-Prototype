@@ -1,4 +1,4 @@
-﻿<div class="drug-fill" style="margin-top:7px">
+﻿<div class="program" style="margin-top:7px">
     <div class="program-header bg-program-standard text-white">
         <span class="pull-right">
             <a href="#" class="btn btn-outline-light btn-sm" data-bind="click:  step.loadModal">
@@ -9,9 +9,9 @@
     </div>
     <div class="row">
         <div class="col-lg-12 ">
-            <div class="tier border-standard" data-bind="click: step.loadModal">                            
+            <div class="tier border-standard">                            
                 <ul class="list-group" data-bind="foreach: FillLines">
-                    <li class="list-group-item therapy-line-item list-group-item-action">
+                    <li class="list-group-item therapy-line-item list-group-item-action" data-bind="click: step.loadModal">
                         <span data-bind="text: DisplayValue"></span>
                     </li>
                 </ul>

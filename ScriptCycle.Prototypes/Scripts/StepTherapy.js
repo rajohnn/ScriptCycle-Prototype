@@ -137,6 +137,7 @@
                     step.vm.ChunkedPrograms = new ko.observableArray();
                     step.vm.ChunkedPrograms(programs);
                     step.applyChunks();
+                    step.clearProgramModal();
                 }
                 else {
                     console.log("Create program call failed.");
@@ -148,5 +149,9 @@
             .always(function () {
             });
         }
+    },
+    clearProgramModal: function () {
+        step.vm.NewProgramName("");
+        $("#modal-create-program").modal("hide");
     }
 });
