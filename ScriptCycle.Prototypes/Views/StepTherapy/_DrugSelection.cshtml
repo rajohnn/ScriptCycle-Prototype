@@ -1,0 +1,93 @@
+﻿<div data-bind="with: DrugSelection">
+    <section id="main-drug-selection">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label>Type</label>
+                    <select id="type" class="form-control form-control-sm text-primary"
+                            data-bind="options: DrugOptions,
+                                value: SelectedDrugType,
+                                optionsText: 'Value',
+                                optionsValue: 'Id'"></select>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <section id="drug-search"  data-bind="if: SelectedDrugType() == 1 || SelectedDrugType() == 2">
+                    <label>Drug ID</label>
+                    <div class="input-group">
+                        <input type="text" id="drugid" class="form-control form-control-sm" />
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-outline-primary" data-bind="click: step.showPanel">
+                                <span class="fa fa-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <section id="formulary-selection" data-bind="if: SelectedDrugType() == 3">
+                    <label>Formulary</label>
+                    <select id="type" class="form-control form-control-sm text-primary"
+                            data-bind="options: Formularies,
+                                value: SelectedFormulary,
+                                optionsText: 'Value',
+                                optionsValue: 'Id'"></select>
+                </section>
+            </div>            
+        </div>
+        
+        <section id="drug-panel" data-bind="slideVisible: ShowPanel">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label>Dosage Options</label>
+                    <select class="form-control form-control-sm" size="6">
+                       <option>Option 1</option>
+                       <option>Option 2</option>
+                       <option>Option 3</option>
+                    </select>
+                </div>
+                <div class="col-lg-6">
+                    <label>Strengths</label>
+                    <select class="form-control form-control-sm" size="6">
+                        <option>Strength 1</option>
+                        <option>Strength 2</option>
+                        <option>Strength 3</option>
+                        <option>Strength 4</option>
+                        <option>Strength 5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group" style="margin-top:6px">
+                        <span class="pull-right">
+                            <a href="#" class="small text-danger"  style="margin-top:15px">Pass to full drug search</a>
+                        </span>
+                        <label for="foobar">NDC/GPI</label>
+                        <select id="foobar" class="form-control form-control-sm" size="7">
+                            <option>1234*</option>
+                            <option>123456*</option>
+                            <option>12345678*</option>
+                            <option>1234567890*</option>
+                           
+                        </select>
+                    </div>    
+                    
+                    <button data-bind="click: step.onDrugSelectApply" style="margin-top:-5px" class="btn btn-sm btn-primary pull-right">Apply</button>
+                   
+                </div>
+            </div>
+            
+        </section>
+       
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label>Display As (Description)</label>
+                    <input type="text" id="drug-description" class="form-control form-control-sm" />
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+

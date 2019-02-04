@@ -305,6 +305,10 @@
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Shared\_Ribbon.cshtml" />
     <Content Include="Views\StepTherapy\_ModalTier.cshtml" />
+    <Content Include="Views\StepTherapy\drugfill_template.cshtml" />
+    <Content Include="Views\StepTherapy\_ModalCreateProgram.cshtml" />
+    <Content Include="Views\StepTherapy\_ModalCreateDrugFill.cshtml" />
+    <Content Include="Views\StepTherapy\_DrugSelection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

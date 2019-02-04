@@ -9,6 +9,8 @@
 }
 
 @Html.Partial("_ModalTier")
+@Html.Partial("_ModalCreateDrugFill")
+@Html.Partial("_ModalCreateProgram")
 
 <div id="dependency-view" style="display:none" data-bind="visible: true">
 
@@ -16,10 +18,10 @@
         <div class="col-lg-12">
             <span class="header">Dependencies</span>
             <span id="function-panel" class="pull-right">
-                <button type="button" data-bind="visible: ShowStepTherapy" class="btn btn-sm btn-default ">
+                <button type="button" data-bind="visible: ShowStepTherapy, click: step.onAddProgram" class="btn btn-sm btn-default ">
                     <span class="fa fa-plus"></span> Add Program
                 </button>
-                <button type="button" data-bind="visible: !ShowStepTherapy()" class="btn btn-sm btn-default">
+                <button type="button" data-bind="visible: !ShowStepTherapy(), click: step.onAddFill" class="btn btn-sm btn-default">
                     <span class="fa fa-plus"></span> Add Drug Fill
                 </button>
 
@@ -47,7 +49,7 @@
                            data-bind="bootstrapToggleOn: ShowStepTherapy"
                            data-toggle="toggle"
                            data-onstyle="primary"
-                           data-offstyle="info"
+                           data-offstyle="success"
                            data-on="Step Therapy"
                            data-off="Fill Rules" />
                 </span>
@@ -55,7 +57,6 @@
         </div>
     </section>
     <section id="step-therapy" data-bind="slideVisible: ShowStepTherapy">
-
         <div class="row">
             <div class="col-lg-4">
                 <div data-bind="foreach: ProgramsColumn1">
@@ -75,7 +76,23 @@
         </div>
     </section>
     <section id="drug-fill" data-bind="slideVisible: !ShowStepTherapy()">
-        <h2 class="text-primary">Fill Rules</h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div data-bind="foreach: DrugsColumn1">
+                    @Html.Partial("drugfill_template")
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-bind="foreach: DrugsColumn2">
+                    @Html.Partial("drugfill_template")
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-bind="foreach: DrugsColumn3">
+                    @Html.Partial("drugfill_template")
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 

@@ -9,39 +9,7 @@
             </div>
             <div class="modal-body tier-modal-body">
                 <section id="top-panel">
-
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label>Type</label>
-                                <select id="type" class="form-control form-control-sm text-primary">
-                                    <option value="All">All Drugs</option>
-                                    <option value="Maintenance">Maintenance Drugs</option>
-                                    <option value="GPI">GPI</option>
-                                    <option value="NDC">NDC</option>
-                                    <option value="Formulary">Formulary List</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <label>Drug ID</label>
-                            <div class="input-group">
-
-                                <input type="text" id="drugid" class="form-control form-control-sm" />
-                                <div class="input-group-append">
-                                    <button class="btn btn-sm btn-outline-primary"><span class="fa fa-search"></span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Display As (Description)</label>
-                                <input type="text" id="drug-description" class="form-control form-control-sm" />
-                            </div>
-                        </div>
-                    </div>
+                  @Html.Partial("_DrugSelection")
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
@@ -67,7 +35,9 @@
                         </div>
                     </div>
                 </section>
+
                 <hr class="form-divider" />
+
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -151,7 +121,9 @@
                         </div>
                     </div>
                 </div>
+
                 <hr class="form-divider" />
+
                 <div class="row">
                     <div class="col-lg-4">
                         <label>Start Date</label>
@@ -209,12 +181,23 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <input type="checkbox" id="must-have-days-used" /><label class="check-label" for="must-have-days-used"> Must have days used for same level N/A to apply</label><br />
-                                    <input type="checkbox" id="count-in-hand" /><label class="check-label" for="count-in-hand">  Count in hand as days used</label><br />
+                                    <input type="checkbox" id="count-in-hand" /><label class="check-label" for="count-in-hand">  Count in hand as days used</label> <br />
                                     <input type="checkbox" id="days-used-for-same-level" /><label class="check-label" for="days-used-for-same-level"> Days used must be concurrent</label>
                                 </div>
+                                <div class="col-lg-6">
+                                        <label style="margin-bottom:0" for="no-hx-claims">No Hx Claims Where QTY <= </label>
+                                        <input type="text" class="form-control form-control-sm" id="no-hx-claims" />
+                                </div>
+                                <div class="col-lg-6">
+                                   
+                                        <label style="margin-bottom:0" for="not-before-days">Not Before Days</label>
+                                        <input type="text" class="form-control form-control-sm" id="not-before-days" />
+                                                                   
+                                </div>                                
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-12">
-                                    <input type="checkbox" id="hx-claims" /><label class="check-label" for="hx-claims"> No Hx Claims where Qty <= </label> <br />
-                                    <input type="checkbox" id="not-before-days" /><label class="check-label" for="not-before-days"> Reject Crossover Claims</label>
+
                                 </div>
                             </div>
                             <div class="row" style="margin-top:12px">
@@ -238,6 +221,7 @@
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-sm btn-primary">Save Changes</button>
                 </span>
+                <button type="button" class="btn btn-sm btn-default">Reset Inheritance</button>
             </div>
         </div>
     </div>
