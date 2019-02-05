@@ -1,9 +1,5 @@
-﻿//json-genarator.com for mock data
-$.get("https://next.json-generator.com/api/json/get/V1cGoKmDV", function (data) {
-    console.log(data);
-    // use a data source with 'id' and 'name' keys
-    $(".rule").typeahead({ source: data });
-}, 'json');
+﻿
+
 
 
 //https://github.com/bassjobsen/Bootstrap-3-Typeahead

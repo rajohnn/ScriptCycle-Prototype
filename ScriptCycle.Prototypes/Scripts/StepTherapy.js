@@ -2,6 +2,7 @@
     serverModel: null,
     model: null,
     vm: null,
+    haveDrugSource: false,
     init: function () {
         if (step.serverModel) {
             step.model = ko.observable(ko.mapping.fromJS(step.serverModel));
@@ -15,11 +16,28 @@
         });
 
         step.vm.DrugSelection.SelectedDrugType.subscribe(function (value) {
-            if (value < 1 || value > 2)
+            if (value < 1 || value > 2) {
                 step.vm.DrugSelection.ShowPanel(false);
+            }
+            else {
+                if (!step.haveDrugSource)
+                    step.initDrugSource();
+            }
+                
         });
-
         ko.applyBindings(step.model);
+
+        $.get("https://next.json-generator.com/api/json/get/V1cGoKmDV", function (data) {
+            console.log(data);
+            $(".rule").typeahead({ source: data });
+        }, 'json');  
+    },
+    initDrugSource: function () {        
+        $.get("https://next.json-generator.com/api/json/get/V1cGoKmDV", function (data) {
+            console.log(data);
+            $("#drugid").typeahead({ source: data });
+        }, 'json');
+        step.haveDrugSource = true;
     },
     initChunks: function () {
         var count = step.vm.Programs().length;
@@ -110,7 +128,7 @@
     onAddFill: function () {
         $("#modal-drug-fill").modal("show");
     },
-    showPanel: function () {
+    showPanel: function () {        
         step.vm.DrugSelection.ShowPanel(!step.vm.DrugSelection.ShowPanel());
     },
     onDrugSelectApply: function () {
