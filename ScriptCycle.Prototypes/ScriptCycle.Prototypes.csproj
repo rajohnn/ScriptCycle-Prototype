@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\SharedControlsController.cs" />
     <Compile Include="Controllers\StepTherapyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -261,6 +262,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Scripts\DrugSearch.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -310,7 +312,8 @@
     <Content Include="Views\StepTherapy\drugfill_template.cshtml" />
     <Content Include="Views\StepTherapy\_ModalCreateProgram.cshtml" />
     <Content Include="Views\StepTherapy\_ModalCreateDrugFill.cshtml" />
-    <Content Include="Views\StepTherapy\_DrugSelection.cshtml" />
+    <Content Include="Views\Shared\_DrugSelection.cshtml" />
+    <Content Include="Views\SharedControls\DrugSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

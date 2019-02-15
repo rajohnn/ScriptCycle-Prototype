@@ -8,23 +8,17 @@
             step.model = ko.observable(ko.mapping.fromJS(step.serverModel));
         }
         step.vm = step.model();
+        // set the drug search view model
+        drugsearch.vm = step.model();
+        drugsearch.initSubscriptions();
+
         step.initChunks();
 
         step.vm.Filter.subscribe(function (value) {
             if (value)
                 step.applyFilteredProgramChunks(value);
-        });
-
-        step.vm.DrugSelection.SelectedDrugType.subscribe(function (value) {
-            if (value < 1 || value > 2) {
-                step.vm.DrugSelection.ShowPanel(false);
-            }
-            else {
-                if (!step.haveDrugSource)
-                    step.initDrugSource();
-            }
-                
-        });
+        });      
+        
         ko.applyBindings(step.model);
 
         $.get("https://next.json-generator.com/api/json/get/V1cGoKmDV", function (data) {

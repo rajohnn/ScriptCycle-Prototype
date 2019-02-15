@@ -169,13 +169,13 @@ namespace ScriptCycle.Prototypes.Models {
             var program5 = new Program { Name = "Antihypertensives (High Blood Pressure)" };
             program5.Tiers.Add(new Tier {
                 Action = StepTherapyAction.NoRule,
-                Level = 1,
+                Level = 1,               
                 Name = "Category A",
                 Description = "Approved all members",
                 Lines = new List<StepTherapyLine>() {
-                    new StepTherapyLine { Order = 1, DrugID = DrugID.GPI, DisplayValue = "Any generic ACE inhibitor", MONY = "MON", Value = "234234" },
+                    new StepTherapyLine { Order = 1, IsInheriting=false, DrugID = DrugID.GPI, DisplayValue = "Any generic ACE inhibitor", MONY = "MON", Value = "234234" },
                     new StepTherapyLine { Order = 2, DrugID = DrugID.GPI, DisplayValue = "Any generic ACE inhibitor HCTZ", MONY = "MON", Value = "234234" },
-                    new StepTherapyLine { Order = 3, DrugID = DrugID.GPI, DisplayValue = "lostartan/lostartan HCTZ", MONY = "MON", Value = "34234" },
+                    new StepTherapyLine { Order = 3, IsInheriting = false, DrugID = DrugID.GPI, DisplayValue = "lostartan/lostartan HCTZ", MONY = "MON", Value = "34234" },
                     new StepTherapyLine { Order = 4, DrugID = DrugID.GPI, DisplayValue = "valsartan/valsartan HCTZ", MONY = "MON", Value = "34234" }
                 }
             });
@@ -1102,9 +1102,10 @@ namespace ScriptCycle.Prototypes.Models {
         public DrugSelectionViewModel() {
             DrugOptions = new List<SelectionModel>() {
                 new SelectionModel { Id = 0, Value = "All Drugs" },
-                new SelectionModel { Id = 1, Value = "GPI" },
-                new SelectionModel { Id = 2, Value = "NDC" },
-                new SelectionModel { Id = 3, Value = "Formulary" }
+                new SelectionModel { Id = 1, Value = "Maintenance" },
+                new SelectionModel { Id = 2, Value = "GPI" },
+                new SelectionModel { Id = 3, Value = "NDC" },
+                new SelectionModel { Id = 4, Value = "Formulary" }
             };
             Formularies = new List<SelectionModel>() {
                 new SelectionModel { Id = 1, Value = "Formulary 1" },
@@ -1172,6 +1173,7 @@ namespace ScriptCycle.Prototypes.Models {
         public DrugID DrugID { get; set; } = DrugID.All;
         public string Value { get; set; }
         public string DisplayValue { get; set; }
+        public bool IsInheriting { get; set; } = true;
         public StepTherapyAction StepAction { get; set; } = StepTherapyAction.NoRule;
     }
 

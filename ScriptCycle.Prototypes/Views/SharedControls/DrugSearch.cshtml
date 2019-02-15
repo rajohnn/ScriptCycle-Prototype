@@ -1,0 +1,26 @@
+﻿@using Newtonsoft.Json
+<section>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Drug Selection Test Control
+                </div>
+                <div class="card-body">
+                    @Html.Partial("_DrugSelection")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/DrugSearch.js"></script>
+    <script type="text/javascript">      
+        $(function () {
+            drugsearch.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            drugsearch.init();
+        });
+    </script>
+}

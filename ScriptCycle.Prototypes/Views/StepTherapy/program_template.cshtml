@@ -25,7 +25,13 @@
                     <b><span class="tier-title" data-bind="text: Name"></span>:</b> <span data-bind="text: Description"></span>
                 </span>
                 <ul class="list-group" data-bind="foreach: Lines">
-                    <li class="list-group-item therapy-line-item list-group-item-action" data-bind="click: step.loadModal">                        
+                    <li class="list-group-item therapy-line-item list-group-item-action" data-bind="click: step.loadModal"> 
+                        <span data-bind="visible: !IsInheriting()">
+                            <i class="fa fa-unlink text-success"></i>
+                        </span>
+                        <span data-bind="visible: IsInheriting()">
+                            <i class="fa fa-bars"></i>
+                        </span>
                         <span data-bind="text: DisplayValue"></span>
                     </li>
                 </ul>
