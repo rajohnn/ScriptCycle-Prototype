@@ -26,6 +26,10 @@
     padding:2px;
 }
 
+.drug-listbox {
+    margin-top:-6px;
+}
+
 .form-control-sm {    
     font-size: 0.690rem !important;    
 }

@@ -26,7 +26,7 @@ namespace ScriptCycle.Prototypes.Models {
         public List<Rule> Rules { get; set; } = new List<Rule>();
         public string NewProgramName { get; set; }
         public string NewFillRuleName { get; set; }
-        public DrugSelectionViewModel DrugSelection { get; set; } = new DrugSelectionViewModel();
+        public DrugSelectionViewModel DrugSelection { get; set; } = new DrugSelectionViewModel { DrugSelectionOption = DrugSelectionOption.All };
 
         public static StepTherapyViewModel GetTestModel() {
             var model = new StepTherapyViewModel();
@@ -1091,37 +1091,9 @@ namespace ScriptCycle.Prototypes.Models {
         }
     }
 
-    public class DrugSelectionViewModel {
-        public int? SelectedDrugType { get; set; }
-        public int? SelectedFormulary { get; set; }
-        public List<SelectionModel> DrugOptions { get; set; } = new List<SelectionModel>();
-        public List<SelectionModel> Formularies { get; set; } = new List<SelectionModel>();
-        public string DisplayAs { get; set; }
-        public bool ShowPanel { get; set; } = false;
+   
 
-        public DrugSelectionViewModel() {
-            DrugOptions = new List<SelectionModel>() {
-                new SelectionModel { Id = 0, Value = "All Drugs" },
-                new SelectionModel { Id = 1, Value = "Maintenance" },
-                new SelectionModel { Id = 2, Value = "GPI" },
-                new SelectionModel { Id = 3, Value = "NDC" },
-                new SelectionModel { Id = 4, Value = "Formulary" }
-            };
-            Formularies = new List<SelectionModel>() {
-                new SelectionModel { Id = 1, Value = "Formulary 1" },
-                new SelectionModel { Id = 1, Value = "Formulary 2" },
-                new SelectionModel { Id = 1, Value = "Formulary 3" },
-                new SelectionModel { Id = 1, Value = "Formulary 4" },
-                new SelectionModel { Id = 1, Value = "Formulary 5" },
-                new SelectionModel { Id = 1, Value = "Formulary 6" },
-                new SelectionModel { Id = 1, Value = "Formulary 7" },
-                new SelectionModel { Id = 1, Value = "Formulary 8" },
-                new SelectionModel { Id = 1, Value = "Formulary 9" },
-                new SelectionModel { Id = 1, Value = "Formulary 10" },
-                new SelectionModel { Id = 1, Value = "Formulary 11" },
-            };
-        }
-    }
+    
 
     public class Program {
         public int? Id { get; set; }
@@ -1182,8 +1154,7 @@ namespace ScriptCycle.Prototypes.Models {
         public int? Order { get; set; }
         public DrugID DrugID { get; set; } = DrugID.All;
         public string Value { get; set; }
-        public string DisplayValue { get; set; }
-        public string MONY { get; set; }
+        public string DisplayValue { get; set; }       
         public FillAction FillAction { get; set; } = FillAction.LastScriptDaySupply;
     }
 

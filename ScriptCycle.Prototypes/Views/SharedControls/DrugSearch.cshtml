@@ -1,4 +1,12 @@
 ﻿@using Newtonsoft.Json
+@section styles {
+    <style>
+        .dropdown-item {
+            color: #007bff;
+            font-size:10pt !important;
+        }
+    </style>    
+}
 <section>
     <div class="row">
         <div class="col-lg-4">
@@ -9,6 +17,9 @@
                 <div class="card-body">
                     @Html.Partial("_DrugSelection")
                 </div>
+                <div class="card-footer bg-primary text-white">
+                    Total Drug Results: <span data-bind="text: DrugSelection.SearchResults().length"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -17,6 +28,7 @@
 
 @section scripts {
     <script type="text/javascript" src="~/Scripts/DrugSearch.js"></script>
+    <script type="text/javascript" src="~/Scripts/TypeAhead.js"></script>
     <script type="text/javascript">      
         $(function () {
             drugsearch.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
