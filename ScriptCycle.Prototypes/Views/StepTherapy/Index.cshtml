@@ -1,0 +1,141 @@
+﻿@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Step Therapy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/steptherapy.css" />   
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+}
+
+@Html.Partial("_ModalTier")
+@Html.Partial("_ModalCreateDrugFill")
+@Html.Partial("_ModalCreateProgram")
+
+    <div id="dependency-view" style="display:none" data-bind="visible: true">
+        <section id="step-therapy-toolbar" class="row view-toolbar">
+            <div class="col-lg-12">
+                <span class="header">Dependencies</span>
+                <span id="function-panel" class="pull-right">
+                    <button type="button" data-bind="visible: ShowStepTherapy, click: step.onAddProgram" class="btn btn-sm btn-default ">
+                        <span class="fa fa-plus"></span> Add Program
+                    </button>
+                    <button type="button" data-bind="visible: !ShowStepTherapy(), click: step.onAddFill" class="btn btn-sm btn-default">
+                        <span class="fa fa-plus"></span> Add Drug Fill
+                    </button>
+
+                </span>
+            </div>
+        </section>
+        <section id="view-management">
+            <div class="row dependency-bar">
+                <div class="col-lg-6">
+                    <section id="filter-control" data-bind="visible: ShowStepTherapy">
+                        <div class="input-group input-group-sm">
+                            <input type="text" data-bind="textInput: Filter" class="form-control form-control-sm" style="max-width:250px" placeholder="Filter" />
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-sm">
+                                    <span class="fa fa-search"></span> Apply
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <span class="pull-right">
+                        <input id="view-toggle"
+                               type="checkbox"
+                               data-bind="bootstrapToggleOn: ShowStepTherapy"
+                               data-toggle="toggle"
+                               data-onstyle="primary"
+                               data-offstyle="success"
+                               data-on="Step Therapy"
+                               data-off="Fill Rules" />
+                    </span>
+                </div>
+            </div>
+        </section>
+        <section id="step-therapy" data-bind="slideVisible: ShowStepTherapy">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div data-bind="foreach: ProgramsColumn1">
+                        @Html.Partial("program_template")
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div data-bind="foreach: ProgramsColumn2">
+                        @Html.Partial("program_template")
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div data-bind="foreach: ProgramsColumn3">
+                        @Html.Partial("program_template")
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="drug-fill" data-bind="slideVisible: !ShowStepTherapy()">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div data-bind="foreach: DrugsColumn1">
+                        @Html.Partial("drugfill_template")
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div data-bind="foreach: DrugsColumn2">
+                        @Html.Partial("drugfill_template")
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div data-bind="foreach: DrugsColumn3">
+                        @Html.Partial("drugfill_template")
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="dropdown-menu dropdown-menu-sm" id="context-menu">            
+            <a class="dropdown-item" href="#">
+                <span class="fa fa-copy text-primary"></span> Copy to another program
+            </a>
+            <a class="dropdown-item" href="#">
+                <span class="fa fa-trash text-danger"></span> Delete Program
+            </a>
+        </div>
+
+    </div>
+
+
+@section scripts {
+
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/StepTherapy.js"></script>   
+    <script src="~/Scripts/DrugSearch.js"></script>
+    <script src="~/Scripts/TypeAhead.js"></script>
+    <script type="text/javascript">
+        $("#view-toggle").bootstrapToggle({ width: 175, height: 35 });
+        $(function () {
+            step.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            step.init();
+            step.applySortable();
+
+            $('.program').on('contextmenu', function (e) {
+                var top = e.pageY - 10;
+                var left = e.pageX - 90;
+                $("#context-menu").css({
+                    display: "block",
+                    top: top,
+                    left: left
+                }).addClass("show");
+                return false; //blocks default Webbrowser right click menu
+            }).on("click", function () {
+                $("#context-menu").removeClass("show").hide();
+            });
+
+            $("#context-menu a").on("click", function () {
+                $(this).parent().removeClass("show").hide();
+            });
+        });
+    </script>
+}

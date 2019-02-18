@@ -1,0 +1,228 @@
+﻿<div class="modal right fade" id="step-tier-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-light">
+            <div class="modal-header text-white tier-modal-header">
+                <span class="modal-title" id="myModalLabel2" style="font-size:12pt">
+                    PROGRAM NAME - TIER NAME
+                </span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body tier-modal-body">
+                <section id="top-panel">
+                  @Html.Partial("_DrugSelection")
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Level</label>
+                                <input type="text" id="level" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>MONY</label>
+                                <input type="text" class="form-control form-control-sm" id="mony" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>RX/OTC</label>
+                                <select class="form-control form-control-sm text-primary" id="rxotc">
+                                    <option value="RX">RX</option>
+                                    <option value="OTC">OTC</option>
+                                    <option value="Both">Both</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="form-divider" />
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Action</label>
+                            <select class="form-control form-control-sm text-primary" id="rules">
+                                <option value="0">No Rule</option>
+                                <option value="1">Previous Level</option>
+                                <option value="2">Same Level</option>
+                                <option value="3">Previous Two Levels</option>
+                                <option value="4">All Levels</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Matching On</label>
+                            <input type="text" id="matching-on" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Period Type</label>
+                            <select class="form-control form-control-sm text-primary" id="period-type">
+                                <option value="0">Not Active</option>
+                                <option value="1">Script</option>
+                                <option value="2">X Days</option>
+                                <option value="3">Calendar Months</option>
+                                <option value="4">X Months</option>
+                                <option value="5">Calendar Year</option>
+                                <option value="6">Benefit Year</option>
+                                <option value="7">X Years</option>
+                                <option value="8">Lifetime</option>
+                                <option value="9">Calendar Quarter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Period</label>
+                            <input type="text" id="period" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Yes Rule</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm rule" id="yes-rule" />
+                                @*<div class="input-group-append">
+                                    <button class="btn btn-sm btn-outline-primary"><span class="fa fa-search"></span></button>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-bind="visible: ShowStepTherapy">
+                        <div class="form-group">
+                            <label>No Rule</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm rule" placeholder="Default Reject Rule" id="no-rule" />
+                                @*<div class="input-group-append">
+                                    <button class="btn btn-sm btn-outline-primary"><span class="fa fa-search"></span></button>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Days Used</label>
+                            <input id="days-used" class="form-control form-control-sm" type="text" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label># Distinct Drugs</label>
+                            <input type="text" id="distinct-drug-count" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="form-divider" />
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Start Date</label>
+                        <input type="text" placeholder="01/01/2019" class="form-control form-control-sm" id="start-date" />
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Termination Date</label>
+                        <input type="text" placeholder="01/01/2019" class="form-control form-control-sm" id="term-date" />
+                    </div>
+                    <div class="col-lg-4">
+                        <label>Don't Apply Before</label>
+                        <input type="text" placeholder="01/01/2019" class="form-control form-control-sm" id="apply-before" />
+                    </div>
+                </div>
+
+                <section id="additional-options">
+
+                    <div class="card" data-bind="visible: !ShowStepTherapy()" style="margin-top:20px;margin-bottom:3px">
+                        <div class="card-header tier-options text-white">
+                            Additional Options
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="checkbox" id="same-nabp" /><label class="check-label" for="same-nabp"> Same NABP</label><br />
+                                    <input type="checkbox" id="same-prescriber" /><label class="check-label" for="same-prescriber">  Same Prescriber</label><br />
+                                    <input type="checkbox" id="same-written-date" /><label class="check-label" for="same-written-date"> Same Written Date</label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="checkbox" id="first-match" /><label class="check-label" for="first-match"> First Match Starts Period</label> <br />
+                                    <input type="checkbox" id="reject-crossovers" /><label class="check-label" for="reject-crossovers"> Reject Crossover Claims</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:12px">
+                                <div class="col-lg-12">
+                                    <input type="checkbox" id="exclude-transition" /><label class="check-label" for="exclude-transition"> Exclude Transition Claims from History Check</label><br />
+                                    <input type="checkbox" id="history-claims" /><label class="check-label" for="history-claims">  History Claims DS Refines Period</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="checkbox" id="historical-script" /><label class="check-label" for="historical-script">Historical Script Tag Match</label>
+                                    <input type="text" class="form-control form-control-sm" id="historical-script-value" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-bind="visible: ShowStepTherapy()" style="margin-top:20px;margin-bottom:3px">
+                        <div class="card-header tier-options text-white">
+                            Additional Options
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="checkbox" id="must-have-days-used" /><label class="check-label" for="must-have-days-used"> Must have days used for same level N/A to apply</label><br />
+                                    <input type="checkbox" id="count-in-hand" /><label class="check-label" for="count-in-hand">  Count in hand as days used</label> <br />
+                                    <input type="checkbox" id="days-used-for-same-level" /><label class="check-label" for="days-used-for-same-level"> Days used must be concurrent</label>
+                                </div>
+                                <div class="col-lg-6">
+                                        <label style="margin-bottom:0" for="no-hx-claims">No Hx Claims Where QTY <= </label>
+                                        <input type="text" class="form-control form-control-sm" id="no-hx-claims" />
+                                </div>
+                                <div class="col-lg-6">
+                                   
+                                        <label style="margin-bottom:0" for="not-before-days">Not Before Days</label>
+                                        <input type="text" class="form-control form-control-sm" id="not-before-days" />
+                                                                   
+                                </div>                                
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:12px">
+                                <div class="col-lg-12">
+                                    <input type="checkbox" id="not-applicable-rx" />
+                                        <label class="check-label" for="not-applicable-rx"> Not applicable if Rx of same level paid during period</label>                                 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="checkbox" id="historical-script-st" /><label class="check-label" for="historical-script-st">Historical Script Tag Match</label>
+                                    <input type="text" class="form-control form-control-sm" id="historical-script-value-st" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>             
+            </div>
+            <div class="modal-footer tier-footer">
+                <span class="pull-right">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-primary">Save Changes</button>
+                </span>
+                <button type="button" class="btn btn-sm btn-default">Reset Inheritance</button>
+            </div>
+        </div>
+    </div>
+</div>

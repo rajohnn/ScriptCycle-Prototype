@@ -26,6 +26,10 @@
     padding:2px;
 }
 
+.drug-listbox {
+    margin-top:-6px;
+}
+
 .form-control-sm {    
     font-size: 0.690rem !important;    
 }
@@ -116,7 +120,7 @@
 
 .modal.left .modal-body,
 .modal.right .modal-body {
-    padding: 15px 15px 80px;
+    padding: 15px 15px 0px;
 }
 
 /*Left*/

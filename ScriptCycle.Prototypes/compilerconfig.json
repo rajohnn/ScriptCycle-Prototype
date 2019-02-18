@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Content/steptherapy.css",
+    "inputFile": "Content/steptherapy.less"
+  },
+  {
+    "outputFile": "Scripts/bootstrap-menu.es5.js",
+    "inputFile": "Scripts/bootstrap-menu.js"
+  },
+  {
+    "outputFile": "Content/toastr.css",
+    "inputFile": "Content/toastr.less"
+  }
+]
