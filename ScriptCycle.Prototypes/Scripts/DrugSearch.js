@@ -67,7 +67,7 @@
             }           
         });
 
-        // invoked whne the selected drug type changes
+        // invoked when the selected drug type changes
         drugsearch.vm.DrugSelection.SelectedDrugType.subscribe(function (value) {            
             if (value === 0 || value === 1 || value === 4) {
                 drugsearch.vm.DrugSelection.ShowPanel(false);
@@ -225,8 +225,6 @@
         var dvm = drugsearch.vm.DrugSelection;
         var filteredSearchResults = null;
 
-        $.blockUI();
-
         if (dosage && strength) {
             filteredSearchResults = _.filter(dvm.SearchResults(), function (searchResult) {
                 return searchResult.dosage_form === dosage &&
@@ -266,8 +264,10 @@
         _.forEach(uniqueGPIs, function (item) { dvm.FilteredGPIs.push(item.generic_product_identifier); });
         _.forEach(filteredSearchResults, function (item) { dvm.FilteredNDCs.push(item.ndc_upc_hri); });
 
-
-        $.unblockUI();
+       
+    },
+    afterRender: function () {
+        console.log("after render called...");
     },
     // clears the filtered lists 
     updateViewModel: function (response) {

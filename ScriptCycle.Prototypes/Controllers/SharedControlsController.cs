@@ -17,6 +17,7 @@ namespace ScriptCycle.Prototypes.Controllers {
             var context = new ScriptCycleContext();            
             return View(vm);
         }
+
         [HttpGet]
         public JsonResult GetDrugList() {
             var context = new ScriptCycleContext();
