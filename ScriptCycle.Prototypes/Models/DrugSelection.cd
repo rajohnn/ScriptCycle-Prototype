@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Comment CommentText="The DrugSearchResultDto is returned to the client after an Http request.">
+    <Position X="11.927" Y="0.958" Height="0.49" Width="3.054" />
+  </Comment>
+  <Class Name="ScriptCycle.Prototypes.Models.DrugSelectionViewModel">
+    <Position X="6" Y="1.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>GQBABAAAAgAAAABAEAAIRAAAEABEIgMQBBAYAgAAQAQ=</HashCode>
+      <FileName>Models\DrugSelectionViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DrugSelectionOption" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="SearchResults" />
+      <Property Name="Formularies" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.DrugSearchResultDto">
+    <Position X="12" Y="1.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>CAAAEAAAAAAAAABAAAAAAAAAAABAAAIAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\DrugSelectionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.DrugSearchResult">
+    <Position X="12" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAECAAAAAACAACAAAABAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\DrugSelectionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.SelectionModel">
+    <Position X="1.25" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\MemberViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ScriptCycle.Prototypes.Models.DrugSelectionOption">
+    <Position X="1.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\DrugSelectionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Calibri" Size="10" />
+</ClassDiagram>

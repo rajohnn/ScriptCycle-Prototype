@@ -12,9 +12,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                 DrugSelection = new DrugSelectionViewModel {
                     DrugSelectionOption = DrugSelectionOption.Standard
                 }
-            };
-
-            var context = new ScriptCycleContext();            
+            };        
             return View(vm);
         }
 
