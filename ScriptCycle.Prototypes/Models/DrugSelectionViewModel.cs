@@ -67,21 +67,23 @@ namespace ScriptCycle.Prototypes.Models {
             new SelectionModel { Id = 1, Value = "Formulary 11" }
         };
 
-        public void MapResultsToViewModel(List<DrugSearchResult> results) {
+        public void MapResultsToViewModel(List<DrugSearchResult> results, string drugId) {
             this.SearchResults = results;
             if (results.Count > 0) {
                 this.DisplayAs = results[0].DisplayName;
                 var uniqueDoages = results.GroupBy(d => d.dosage_form).Select(d => d.First()).ToList();
                 var uniqueStrengths = results.GroupBy(d => d.strength).Select(d => d.First()).ToList();
+                var resultGPIs = new List<string>();
+
                 results.ForEach(r => {
 
                     var exists = this.NDCs.SingleOrDefault(n => n == r.ndc_upc_hri);
                     if (string.IsNullOrEmpty(exists))
                         this.NDCs.Add(r.ndc_upc_hri);
 
-                    exists = this.GPIs.SingleOrDefault(n => n == r.generic_product_identifier);
+                    exists = resultGPIs.SingleOrDefault(n => n == r.generic_product_identifier);
                     if (string.IsNullOrEmpty(exists))
-                        this.GPIs.Add(r.generic_product_identifier);
+                        resultGPIs.Add(r.generic_product_identifier);
 
                     exists = this.DosageOptions.SingleOrDefault(n => n == r.dosage_form);
                     if (string.IsNullOrEmpty(exists))
@@ -92,10 +94,23 @@ namespace ScriptCycle.Prototypes.Models {
                         this.Strengths.Add(r.strength + r.strength_unit_of_measure);
 
                 });
+                resultGPIs.Sort();
+                int length = drugId.Length;
+                var partialGPIs = new List<string>();
+
+                // make sure we have a proper partial GPI
+                if ( length % 2 == 0 && length < 13) {
+                    for(int i = drugId.Length + 2; i < 13; i = i + 2) {
+                        partialGPIs.AddRange(GeneratePartialGPIs(results, i));                        
+                    }
+                }
+                this.GPIs.AddRange(partialGPIs);
+                this.GPIs.AddRange(resultGPIs);
+
                 this.Strengths.Sort();
                 this.DosageOptions.Sort();
                 this.NDCs.Sort();
-                this.GPIs.Sort();
+                
             }
             else {
                 this.DisplayAs = string.Empty;
@@ -104,6 +119,17 @@ namespace ScriptCycle.Prototypes.Models {
                 this.NDCs = new List<string>();
                 this.GPIs = new List<string>();
             }
+        }
+
+        private List<string> GeneratePartialGPIs(List<DrugSearchResult> results, int length) {
+            var partialGPIs = new List<string>();
+            results.ForEach(r => {
+                var gpi = r.generic_product_identifier.Substring(0, length);
+                var exists = partialGPIs.SingleOrDefault(g => g == gpi);
+                if (exists == null)
+                    partialGPIs.Add(gpi);
+            });
+            return partialGPIs;
         }
     }
 

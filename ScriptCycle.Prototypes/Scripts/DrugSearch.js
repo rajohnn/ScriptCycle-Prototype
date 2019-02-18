@@ -114,6 +114,7 @@
         if (drugId.length < 1)
             return;
 
+        drugId = drugId.trim();
         var isNumeric = drugsearch.vm.DrugSelection.IsSearchNumeric();
         var selectedDrugType = drugsearch.vm.DrugSelection.SelectedDrugType();
         console.log(selectedDrugType);

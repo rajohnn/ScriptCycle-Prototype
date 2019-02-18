@@ -14,10 +14,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                 }
             };
 
-            var context = new ScriptCycleContext();
-            //var repo = new DrugRepo(context);
-            //var results = repo.FindByGPI("39400075");
-            //vm.DrugSelection.MapResultsToViewModel(results);
+            var context = new ScriptCycleContext();            
             return View(vm);
         }
         [HttpGet]
@@ -27,14 +24,15 @@ namespace ScriptCycle.Prototypes.Controllers {
             var drugs = repo.GetDrugNames();
             return Json(drugs, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
-        public JsonResult FindDrugsByGPI(string drugId) {           
+        public JsonResult FindDrugsByGPI(string drugId) {
             var context = new ScriptCycleContext();
             var repo = new DrugRepo(context);
             var results = repo.FindByGPI(drugId);
 
             var vm = new DrugSelectionViewModel();
-            vm.MapResultsToViewModel(results);
+            vm.MapResultsToViewModel(results, drugId);
             var dto = new DrugSearchResultDto {
                 DisplayName = vm.DisplayAs,
                 DosageOptions = vm.DosageOptions,
@@ -45,6 +43,7 @@ namespace ScriptCycle.Prototypes.Controllers {
             };
             return Json(dto);
         }
+
         [HttpPost]
         public JsonResult FindDrugsByNDC(string drugId) {
             var context = new ScriptCycleContext();
@@ -52,7 +51,7 @@ namespace ScriptCycle.Prototypes.Controllers {
             var results = repo.FindByNDC(drugId);
 
             var vm = new DrugSelectionViewModel();
-            vm.MapResultsToViewModel(results);
+            vm.MapResultsToViewModel(results, drugId);
             var dto = new DrugSearchResultDto {
                 DisplayName = vm.DisplayAs,
                 DosageOptions = vm.DosageOptions,
@@ -63,6 +62,7 @@ namespace ScriptCycle.Prototypes.Controllers {
             };
             return Json(dto);
         }
+
         [HttpPost]
         public JsonResult FindDrugsByName(string drugId) {
             var context = new ScriptCycleContext();
@@ -70,7 +70,7 @@ namespace ScriptCycle.Prototypes.Controllers {
             var results = repo.FindByName(drugId);
 
             var vm = new DrugSelectionViewModel();
-            vm.MapResultsToViewModel(results);
+            vm.MapResultsToViewModel(results, drugId);
             var dto = new DrugSearchResultDto {
                 DisplayName = vm.DisplayAs,
                 DosageOptions = vm.DosageOptions,

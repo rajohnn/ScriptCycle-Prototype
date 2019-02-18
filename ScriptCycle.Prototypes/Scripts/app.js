@@ -42,6 +42,20 @@ ko.bindingHandlers.fadeVisible = {
     }
 };
 
+ko.bindingHandlers.enterkey = {
+    init: function (element, valueAccessor, allBindings, viewModel) {
+        var callback = valueAccessor();
+        $(element).keypress(function (event) {
+            var keyCode = (event.which ? event.which : event.keyCode);
+            if (keyCode === 13) {
+                callback.call(viewModel);
+                return false;
+            }
+            return true;
+        });
+    }
+};
+
 // handles binding with bootstrap toggle buttons
 ko.bindingHandlers.bootstrapToggleOn = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {

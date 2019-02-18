@@ -1,10 +1,10 @@
-﻿<div data-bind="with: DrugSelection">
+﻿<div data-bind="with: DrugSelection" class="text-capitalize">
     <section id="main-drug-selection" style="margin-top:-7px">
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
                     <label>Type</label>
-                    <select id="type" class="form-control form-control-sm text-primary"
+                    <select id="type" class="form-control form-control-sm "
                             data-bind="options: DrugOptions,
                                 value: SelectedDrugType,
                                 optionsText: 'Value',
@@ -15,7 +15,7 @@
                 <section id="drug-search" data-bind="if: SelectedDrugType() == 3 || SelectedDrugType() == 2">
                     <label>Drug ID</label>
                     <div class="input-group">
-                        <input type="text" id="drugid" data-bind="textInput: DrugId" class="form-control form-control-sm"  />
+                        <input type="text" id="drugid" data-bind="textInput: DrugId, enterkey: drugsearch.getDrugs" class="form-control form-control-sm "  />
                         <div class="input-group-append">
                             <button class="btn btn-sm btn-outline-primary" data-bind="click: drugsearch.onSearchClicked">
                                 <span class="fa fa-search"></span>
@@ -25,7 +25,7 @@
                 </section>
                 <section id="formulary-selection" data-bind="if: SelectedDrugType() == 4">
                     <label>Formulary</label>
-                    <select id="type" class="form-control form-control-sm text-primary"
+                    <select id="type" class="form-control form-control-sm "
                             data-bind="options: Formularies,
                                 value: SelectedFormulary,
                                 optionsText: 'Value',
@@ -39,7 +39,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Dosage Options (<span data-bind="text: FilteredDosageOptions().length"></span> results)</label>
-                        <select class="form-control drug-listbox form-control-sm" size="6"
+                        <select class="form-control drug-listbox form-control-sm " size="6"
                                 data-bind="options: FilteredDosageOptions, value: SelectedDosage"></select>
                         <button data-bind="click: drugsearch.onResetClicked" class="btn btn-info btn-sm form-control">Reset</button>
                     </div>                   
@@ -47,7 +47,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Strengths (<span data-bind="text: FilteredStrengths().length"></span> results)</label>
-                        <select class="form-control drug-listbox form-control-sm" size="6"
+                        <select class="form-control drug-listbox form-control-sm " size="6"
                                 data-bind="options: FilteredStrengths, value: SelectedStrength"></select>
                         <button data-bind="click: drugsearch.onResetClicked" class="btn btn-info btn-sm form-control">Reset</button>
                     </div>
@@ -59,7 +59,7 @@
                         <label for="foobar">
                             NDC (<span data-bind="text: FilteredNDCs().length"></span> results)
                         </label>
-                        <select id="foobar" class="form-control drug-listbox form-control-sm" size="5"
+                        <select id="foobar" class="form-control drug-listbox form-control-sm " size="5"
                                 data-bind="options: FilteredNDCs, value: SelectedNDC">
                         </select>
                     </div>
@@ -67,21 +67,21 @@
                 <div class="col-lg-12">
                     <div class="form-group" style="margin-top:6px">
                         <label for="foobar">GPI (<span data-bind="text: FilteredGPIs().length"></span> results)</label>
-                        <select id="foobar" class="form-control drug-listbox form-control-sm" size="5"
+                        <select id="foobar" class="form-control drug-listbox form-control-sm " size="5"
                                 data-bind="options: FilteredGPIs, value: SelectedGPI">                           
                         </select>
                     </div>
 
                 </div>
             </div>
-            <div class="alert alert-primary">
-                <a href="#" class="small text-primary" style="margin-top:15px">
+            @*<div class="alert alert-warning">
+                <a href="#" class="small text-dark" style="margin-top:15px">
                     <span class="fa fa-external-link"></span> Pass to full drug search
                 </a>
-            </div>
+            </div>*@
             <div class="row">
                 <div class="col-lg-12">                    
-                    <button data-bind="click: drugsearch.onDrugSelectApply" style="margin-top:-5px" class="btn btn-sm btn-primary pull-right">Apply</button>
+                    <button data-bind="click: drugsearch.onDrugSelectApply" style="margin-top:-5px" class="btn btn-sm btn-primary pull-right">APPLY</button>
                 </div>
             </div>
         </section>
@@ -90,7 +90,7 @@
             <div class="col-lg-12">
                 <div class="form-group">
                     <label>Display As (Description)</label>
-                    <input type="text" data-bind="value: DisplayAs" id="drug-description" class="form-control form-control-sm" />
+                    <input type="text" data-bind="value: DisplayAs" id="drug-description" class="form-control" />
                 </div>
             </div>
         </div>
