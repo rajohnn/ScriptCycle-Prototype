@@ -40,10 +40,14 @@ namespace ScriptCycle.Prototypes.Models {
         }
 
         public List<SelectionModel> DrugOptions { get; set; } = new List<SelectionModel>();
+        public List<string> FilteredDosageOptions { get; set; } = new List<string>();
+        public List<string> FilteredStrengths { get; set; } = new List<string>();
         public List<string> DosageOptions { get; set; } = new List<string>();
         public List<string> Strengths { get; set; } = new List<string>();
         public List<string> NDCs { get; set; } = new List<string>();
+        public List<string> FilteredNDCs { get; set; } = new List<string>();
         public List<string> GPIs { get; set; } = new List<string>();
+        public List<string> FilteredGPIs { get; set; } = new List<string>();
         public List<DrugSearchResult> SearchResults { get; set; } = new List<DrugSearchResult>();
 
         /// <summary>

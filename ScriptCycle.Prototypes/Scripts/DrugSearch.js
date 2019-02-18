@@ -15,18 +15,32 @@
     },
     // called by external view to initialize the control subscriptions
     initSubscriptions: function () {
+
+        // invoked when the drug Id value changes
         drugsearch.vm.DrugSelection.DrugId.subscribe(function (value) {
             var isNumeric = drugsearch.isSearchNumeric(value);
-            drugsearch.vm.DrugSelection.IsSearchNumeric(isNumeric);
-            console.log("IsNumeric: " + isNumeric);
+            drugsearch.vm.DrugSelection.IsSearchNumeric(isNumeric);            
         });
 
+        // invoked when the selected dosage value changes
         drugsearch.vm.DrugSelection.SelectedDosage.subscribe(function (value) {
-            console.log("Dosage changed: " + value);
+            var dvm = drugsearch.vm.DrugSelection;   
+            if (value) {
+                var strength = dvm.SelectedStrength();
+                drugsearch.filterDrugResults(value, strength);                
+            }          
         });
+
+        // invoked when the selected strength value changes
         drugsearch.vm.DrugSelection.SelectedStrength.subscribe(function (value) {
-            console.log("Strength changed: " + value);
+            var dvm = drugsearch.vm.DrugSelection;
+            if (value) {
+                var dosage = dvm.SelectedDosage();
+                drugsearch.filterDrugResults(dosage, value);                
+            }          
         });
+
+        // invoked when the selected NDC changes
         drugsearch.vm.DrugSelection.SelectedNDC.subscribe(function (value) {
             console.log("NDC changed: " + value);
             var drugType = drugsearch.vm.DrugSelection.SelectedDrugType();
@@ -38,6 +52,8 @@
                 drugsearch.findDrugByNDC(value);
             }            
         });
+
+        // invoked when the selected GPI changes
         drugsearch.vm.DrugSelection.SelectedGPI.subscribe(function (value) {
             console.log("GPI changed: " + value);
             var drugType = drugsearch.vm.DrugSelection.SelectedDrugType();
@@ -51,6 +67,7 @@
             }           
         });
 
+        // invoked whne the selected drug type changes
         drugsearch.vm.DrugSelection.SelectedDrugType.subscribe(function (value) {            
             if (value === 0 || value === 1 || value === 4) {
                 drugsearch.vm.DrugSelection.ShowPanel(false);
@@ -123,22 +140,8 @@
             contentType: "application/json; charset=utf-8"
         })
         .done(function (response) {
-            var dvm = drugsearch.vm.DrugSelection;
-            dvm.DisplayAs("");
-            dvm.SearchResults.removeAll();
-            dvm.DosageOptions.removeAll();
-            dvm.Strengths.removeAll();
-            dvm.NDCs.removeAll();
-            dvm.GPIs.removeAll();
-
             if (response) {
-                dvm.SearchResults(response.SearchResults);
-                dvm.DosageOptions(response.DosageOptions);
-                dvm.Strengths(response.Strengths);
-                dvm.NDCs(response.NDCs);
-                dvm.GPIs(response.GPIs);
-                dvm.DisplayAs(drugId);
-                console.log(response);
+                drugsearch.updateViewModel(response);                
             }
             else {
                 console.log("There was a problem retrieving the drug results!");
@@ -158,7 +161,6 @@
         var payload = JSON.stringify(drugSearch);
         drugsearch.vm.DrugSelection.IsSearching(true);
         
-
         $.ajax({
             url: url,
             data: payload,
@@ -166,24 +168,10 @@
             type: "POST",
             contentType: "application/json; charset=utf-8"
         })
-        .done(function (response){
-            var dvm = drugsearch.vm.DrugSelection;
-            dvm.DisplayAs("");
-            dvm.SearchResults.removeAll();
-            dvm.DosageOptions.removeAll();
-            dvm.Strengths.removeAll();
-            dvm.NDCs.removeAll();
-            dvm.GPIs.removeAll();
-
+        .done(function (response) {
             if (response) {
-                dvm.SearchResults(response.SearchResults);
-                dvm.DosageOptions(response.DosageOptions);
-                dvm.Strengths(response.Strengths);
-                dvm.NDCs(response.NDCs);
-                dvm.GPIs(response.GPIs);
-                dvm.DisplayAs(response.DisplayName);
-                console.log(response);
-            }
+                drugsearch.updateViewModel(response);
+            }            
             else {
                 console.log("There was a problem retrieving the drug results!");
             }
@@ -202,7 +190,6 @@
         var payload = JSON.stringify(drugSearch);
         drugsearch.vm.DrugSelection.IsSearching(true);
 
-
         $.ajax({
             url: url,
             data: payload,
@@ -210,23 +197,9 @@
             type: "POST",
             contentType: "application/json; charset=utf-8"
         })
-        .done(function (response) {
-            var dvm = drugsearch.vm.DrugSelection;
-            dvm.SearchResults.removeAll();
-            dvm.DosageOptions.removeAll();
-            dvm.Strengths.removeAll();
-            dvm.NDCs.removeAll();
-            dvm.GPIs.removeAll();
-            dvm.DisplayAs("");
-
+        .done(function (response) {            
             if (response) {
-                dvm.SearchResults(response.SearchResults);
-                dvm.DosageOptions(response.DosageOptions);
-                dvm.Strengths(response.Strengths);
-                dvm.NDCs(response.NDCs);
-                dvm.GPIs(response.GPIs);
-                dvm.DisplayAs(response.DisplayName);
-                console.log(response);
+                drugsearch.updateViewModel(response);            
             }
             else {
                 console.log("There was a problem retrieving the drug results!");
@@ -238,5 +211,79 @@
         .always(function () {
             drugsearch.vm.DrugSelection.IsSearching(false);
         });
+    },
+    // filter the drug results 
+    filterDrugResults: function (dosage, strength) {
+        var dvm = drugsearch.vm.DrugSelection;
+        var filteredSearchResults = null;
+
+        $.blockUI();
+
+        if (dosage && strength) {
+            filteredSearchResults = _.filter(dvm.SearchResults(), function (searchResult) {
+                return searchResult.dosage_form === dosage &&
+                    searchResult.strength + searchResult.strength_unit_of_measure === strength;
+            });
+        }
+        else if (dosage) {
+            filteredSearchResults = _.filter(dvm.SearchResults(), function (searchResult) {
+                return searchResult.dosage_form === dosage;
+            });
+        }
+        else if (strength) {
+            filteredSearchResults = _.filter(dvm.SearchResults(), function (searchResult) {
+                return searchResult.strength + searchResult.strength_unit_of_measure === strength;
+            });
+        }        
+
+        console.log("search results: " + dvm.SearchResults().length);
+        console.log("filtered search results: " + filteredSearchResults.length);
+
+        dvm.FilteredGPIs.removeAll();
+        dvm.FilteredNDCs.removeAll();
+        dvm.FilteredStrengths.removeAll();
+        dvm.FilteredDosageOptions.removeAll();
+
+        var uniqueGPIs = _.uniq(filteredSearchResults, function (item) {
+            return item.generic_product_identifier;
+        });
+
+        var uniqueDosages = _.uniq(filteredSearchResults, function (item) { return item.dosage_form; });
+        var uniqueStrengths = _.uniq(filteredSearchResults, function (item) {
+            return [item.strength, item.strength_unit_of_measure].join();
+        });
+
+        _.forEach(uniqueDosages, function (item) { dvm.FilteredDosageOptions.push(item.dosage_form); });
+        _.forEach(uniqueStrengths, function (item) { dvm.FilteredStrengths.push(item.strength + item.strength_unit_of_measure); });
+        _.forEach(uniqueGPIs, function (item) { dvm.FilteredGPIs.push(item.generic_product_identifier); });
+        _.forEach(filteredSearchResults, function (item) { dvm.FilteredNDCs.push(item.ndc_upc_hri); });
+
+
+        $.unblockUI();
+    },
+    // clears the filtered lists 
+    updateViewModel: function (response) {
+        var dvm = drugsearch.vm.DrugSelection;
+        dvm.DisplayAs("");
+        dvm.SearchResults.removeAll();
+        dvm.DosageOptions.removeAll();
+        dvm.Strengths.removeAll();
+        dvm.NDCs.removeAll();
+        dvm.GPIs.removeAll();
+        dvm.FilteredNDCs.removeAll();
+        dvm.FilteredGPIs.removeAll();
+        dvm.FilteredStrengths.removeAll();
+        dvm.FilteredDosageOptions.removeAll();
+
+        dvm.SearchResults(response.SearchResults);
+        dvm.DosageOptions(response.DosageOptions);
+        dvm.Strengths(response.Strengths);
+        dvm.NDCs(response.NDCs);
+        dvm.GPIs(response.GPIs);
+        dvm.FilteredNDCs(response.NDCs);
+        dvm.FilteredGPIs(response.GPIs);
+        dvm.FilteredDosageOptions(response.DosageOptions);
+        dvm.FilteredStrengths(response.Strengths);
+        dvm.DisplayAs(response.DisplayName);
     }
 });
