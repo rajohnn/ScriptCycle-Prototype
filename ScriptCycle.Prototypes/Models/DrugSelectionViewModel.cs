@@ -77,19 +77,19 @@ namespace ScriptCycle.Prototypes.Models {
 
                 results.ForEach(r => {
 
-                    var exists = this.NDCs.SingleOrDefault(n => n == r.ndc_upc_hri);
+                    var exists = this.NDCs.FirstOrDefault(n => n == r.ndc_upc_hri);
                     if (string.IsNullOrEmpty(exists))
                         this.NDCs.Add(r.ndc_upc_hri);
 
-                    exists = resultGPIs.SingleOrDefault(n => n == r.generic_product_identifier);
+                    exists = resultGPIs.FirstOrDefault(n => n == r.generic_product_identifier);
                     if (string.IsNullOrEmpty(exists))
                         resultGPIs.Add(r.generic_product_identifier);
 
-                    exists = this.DosageOptions.SingleOrDefault(n => n == r.dosage_form);
+                    exists = this.DosageOptions.FirstOrDefault(n => n == r.dosage_form);
                     if (string.IsNullOrEmpty(exists))
                         this.DosageOptions.Add(r.dosage_form);
 
-                    exists = this.Strengths.SingleOrDefault(n => n == r.strength + r.strength_unit_of_measure);
+                    exists = this.Strengths.FirstOrDefault(n => n == r.strength + r.strength_unit_of_measure);
                     if (string.IsNullOrEmpty(exists))
                         this.Strengths.Add(r.strength + r.strength_unit_of_measure);
 

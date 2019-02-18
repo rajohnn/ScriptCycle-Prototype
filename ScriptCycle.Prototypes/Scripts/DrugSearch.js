@@ -114,7 +114,7 @@
         if (drugId.length < 1)
             return;
 
-        drugId = drugId.trim();
+        drugId = drugId.trim();        
         var isNumeric = drugsearch.vm.DrugSelection.IsSearchNumeric();
         var selectedDrugType = drugsearch.vm.DrugSelection.SelectedDrugType();
         console.log(selectedDrugType);
@@ -130,7 +130,7 @@
         else {
             drugsearch.findDrugByName(drugId);
         }
-        drugsearch.vm.DrugSelection.ShowPanel(true);
+        
     },
     // finds the drug by name
     // (we already have the name, so it's searching for GPI, NDC, etc.)
@@ -139,6 +139,10 @@
         var drugSearch = { drugId: drugId };
         var payload = JSON.stringify(drugSearch);
         drugsearch.vm.DrugSelection.IsSearching(true);
+
+        $("#drug-panel").block({
+            message: '<i class="fa fa-circle-o-notch text-primary fa-pulse fa-2x fa-spin" style="font-size: 40px;padding:12px;background-color: transparent"></i>'
+        });
 
         $.ajax({
             url: url,
@@ -160,6 +164,8 @@
         })
         .always(function () {
             drugsearch.vm.DrugSelection.IsSearching(false);
+            $("#drug-panel").unblock();
+            drugsearch.vm.DrugSelection.ShowPanel(true);
         });
     },
     // finds the drug by GPI
@@ -168,6 +174,9 @@
         var drugSearch = { drugId: drugId };
         var payload = JSON.stringify(drugSearch);
         drugsearch.vm.DrugSelection.IsSearching(true);
+        $("#drug-panel").block({
+            message: '<i class="fa fa-circle-o-notch text-primary fa-pulse fa-2x fa-spin" style="font-size: 40px;padding:12px;background-color: transparent"></i>'
+        });
         
         $.ajax({
             url: url,
@@ -189,6 +198,8 @@
         })
         .always(function () {
             drugsearch.vm.DrugSelection.IsSearching(false);
+            $("#drug-panel").unblock();
+            drugsearch.vm.DrugSelection.ShowPanel(true);
         });
     },
     // finds the drug by NDC
@@ -197,7 +208,9 @@
         var drugSearch = { drugId: drugId };
         var payload = JSON.stringify(drugSearch);
         drugsearch.vm.DrugSelection.IsSearching(true);
-
+        $("#drug-panel").block({
+            message: '<i class="fa fa-circle-o-notch text-primary fa-pulse fa-2x fa-spin" style="font-size: 40px;padding:12px;background-color: transparent"></i>'
+        });
         $.ajax({
             url: url,
             data: payload,
@@ -218,6 +231,8 @@
         })
         .always(function () {
             drugsearch.vm.DrugSelection.IsSearching(false);
+            $("#drug-panel").unblock();
+            drugsearch.vm.DrugSelection.ShowPanel(true);
         });
     },
     // filter the drug results 
@@ -265,9 +280,6 @@
         _.forEach(filteredSearchResults, function (item) { dvm.FilteredNDCs.push(item.ndc_upc_hri); });
 
        
-    },
-    afterRender: function () {
-        console.log("after render called...");
     },
     // clears the filtered lists 
     updateViewModel: function (response) {
