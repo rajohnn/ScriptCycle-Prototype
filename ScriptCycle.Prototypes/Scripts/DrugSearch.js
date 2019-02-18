@@ -84,7 +84,6 @@
             }
         });
     },
-
     // retrieves the drug name list which we'll use for the typeahead control
     initDrugSource: function () {
         $.get("/sharedcontrols/GetDrugList", function (data) {
@@ -99,6 +98,18 @@
     },
     // invoked when the user clicks the search button of the drug id control
     onSearchClicked: function () {
+        drugsearch.getDrugs();
+    },
+    // invoked when the user clicks the apply button
+    onDrugSelectApply: function () {
+        drugsearch.vm.DrugSelection.ShowPanel(false);
+    },   
+    // used to reset the filters 
+    onResetClicked: function () {
+        drugsearch.getDrugs();
+    },
+    // retrieves the drug results based on the drug type and drug id entered by the user
+    getDrugs: function () {
         var drugId = drugsearch.vm.DrugSelection.DrugId();
         if (drugId.length < 1)
             return;
@@ -120,10 +131,6 @@
         }
         drugsearch.vm.DrugSelection.ShowPanel(true);
     },
-    // invoked when the user clicks the apply button
-    onDrugSelectApply: function () {
-        drugsearch.vm.DrugSelection.ShowPanel(false);
-    },   
     // finds the drug by name
     // (we already have the name, so it's searching for GPI, NDC, etc.)
     findDrugByName: function (drugId) {
@@ -222,7 +229,7 @@
         if (dosage && strength) {
             filteredSearchResults = _.filter(dvm.SearchResults(), function (searchResult) {
                 return searchResult.dosage_form === dosage &&
-                    searchResult.strength + searchResult.strength_unit_of_measure === strength;
+                    (searchResult.strength + searchResult.strength_unit_of_measure) === strength;
             });
         }
         else if (dosage) {

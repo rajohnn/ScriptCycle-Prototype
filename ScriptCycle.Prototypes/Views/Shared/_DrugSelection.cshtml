@@ -29,7 +29,7 @@
                             data-bind="options: Formularies,
                                 value: SelectedFormulary,
                                 optionsText: 'Value',
-                                optionsValue: 'Id'"></select>
+                                optionsValue: 'Id'"></select>                   
                 </section>
             </div>            
         </div>
@@ -41,6 +41,7 @@
                         <label>Dosage Options (<span data-bind="text: FilteredDosageOptions().length"></span> results)</label>
                         <select class="form-control drug-listbox form-control-sm" size="6"
                                 data-bind="options: FilteredDosageOptions, value: SelectedDosage"></select>
+                        <button data-bind="click: drugsearch.onResetClicked" class="btn btn-info btn-sm form-control">Reset</button>
                     </div>                   
                 </div>
                 <div class="col-lg-6">
@@ -48,6 +49,7 @@
                         <label>Strengths (<span data-bind="text: FilteredStrengths().length"></span> results)</label>
                         <select class="form-control drug-listbox form-control-sm" size="6"
                                 data-bind="options: FilteredStrengths, value: SelectedStrength"></select>
+                        <button data-bind="click: drugsearch.onResetClicked" class="btn btn-info btn-sm form-control">Reset</button>
                     </div>
                 </div>
             </div>
