@@ -117,6 +117,9 @@
         // set the selected NDC, and let the subscription handle the rest
         drugsearch.vm.DrugSelection.SelectedNDC(item.NDC);
     },
+    onGPIRowClicked: function (item) {
+        drugsearch.vm.DrugSelection.SelectedGPI(item.GPI);
+    },
     // retrieves the drug results based on the drug type and drug id entered by the user
     getDrugs: function () {
         var drugId = drugsearch.vm.DrugSelection.DrugId();
@@ -284,8 +287,7 @@
 
         _.forEach(uniqueDosages, function (item) { dvm.FilteredDosageOptions.push(item.dosage_form); });
         _.forEach(uniqueStrengths, function (item) { dvm.FilteredStrengths.push(item.strength + item.strength_unit_of_measure); });
-        _.forEach(uniqueGPIs, function (item) { dvm.FilteredGPIs.push(item.generic_product_identifier); });
-
+       
         _.forEach(filteredSearchResults, function (item) {
             dvm.FilteredNDCs.push({
                 DisplayName: drugsearch.getDrugName(item),
@@ -294,6 +296,13 @@
                 // this is done in the C# viewmodel as well
                 MaintenanceCode: drugsearch.getMaintenanceCode(item.maintenance_drug_code),
                 NDC: item.ndc_upc_hri
+            });
+        });
+
+        _.forEach(uniqueGPIs, function (item) {
+            dvm.FilteredGPIs.push({
+                GPI: item.generic_product_identifier,
+                DisplayName: item.DisplayName
             });
         });
     },
@@ -335,6 +344,7 @@
         else
             return "Unknown";
     },
+    // retrieves the name of the drug
     getDrugName: function (item) {
         return item.drug_name + " "
             + item.dosage_form + " "
