@@ -288,9 +288,11 @@
 
         _.forEach(filteredSearchResults, function (item) {
             dvm.FilteredNDCs.push({
-                DisplayName: item.drug_name,
+                DisplayName: drugsearch.getDrugName(item),
                 MONY: item.multi_source_code,
-                MaintenanceCode: item.maintenance_drug_code,
+                // had to convert maintenance code values to yes, no, or unknown. 
+                // this is done in the C# viewmodel as well
+                MaintenanceCode: drugsearch.getMaintenanceCode(item.maintenance_drug_code),
                 NDC: item.ndc_upc_hri
             });
         });
@@ -308,7 +310,7 @@
         dvm.FilteredGPIs(response.GPIs);
         dvm.FilteredDosageOptions(response.DosageOptions);
         dvm.FilteredStrengths(response.Strengths);
-        dvm.DisplayAs(response.DisplayName);
+        dvm.DisplayAs(response.DisplayName);        
     },
     // as the name implies, it clears the current drug search control
     clear: function () {
@@ -323,5 +325,20 @@
         dvm.FilteredGPIs.removeAll();
         dvm.FilteredStrengths.removeAll();
         dvm.FilteredDosageOptions.removeAll();
+    },
+    // returns a code 
+    getMaintenanceCode: function (value) {
+        if (value === "1")
+            return "No";
+        if (value === "2")
+            return "Yes";
+        else
+            return "Unknown";
+    },
+    getDrugName: function (item) {
+        return item.drug_name + " "
+            + item.dosage_form + " "
+            + item.strength
+            + item.strength_unit_of_measure;
     }
 });

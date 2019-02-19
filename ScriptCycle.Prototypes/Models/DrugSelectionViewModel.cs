@@ -81,8 +81,8 @@ namespace ScriptCycle.Prototypes.Models {
                     if (hasNDC == null) { 
                         this.NDCs.Add(
                             new NDCDto {
-                                DisplayName = r.drug_name,
-                                MaintenanceCode = r.maintenance_drug_code,
+                                DisplayName = string.Format("{0} {1} {2}{3}", r.drug_name, r.dosage_form, r.strength, r.strength_unit_of_measure),
+                                MaintenanceCode = GetMaintenanceCode(r.maintenance_drug_code),
                                 MONY = r.multi_source_code,
                                 NDC = r.ndc_upc_hri
                             });
@@ -136,6 +136,14 @@ namespace ScriptCycle.Prototypes.Models {
                     partialGPIs.Add(gpi);
             });
             return partialGPIs;
+        }
+
+        private string GetMaintenanceCode(string value) {
+            if (value == "1")
+                return "No";
+            if (value == "2")
+                return "Yes";
+            return "Unknown";
         }
     }
 
