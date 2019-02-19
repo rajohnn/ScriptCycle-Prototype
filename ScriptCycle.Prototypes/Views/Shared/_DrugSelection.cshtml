@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label>Type</label>
+                    <label class="small">Type</label>
                     <select id="type" class="form-control form-control-sm "
                             data-bind="options: DrugOptions,
                                 value: SelectedDrugType,
@@ -13,7 +13,7 @@
             </div>
             <div class="col-lg-8">
                 <section id="drug-search" data-bind="if: SelectedDrugType() == 3 || SelectedDrugType() == 2">
-                    <label>Drug ID</label>
+                    <label class="small">Drug ID</label>
                     <div class="input-group">
                         <input type="text" id="drugid" data-bind="textInput: DrugId, enterkey: drugsearch.getDrugs" class="form-control form-control-sm "  />
                         <div class="input-group-append">
@@ -24,7 +24,7 @@
                     </div>
                 </section>
                 <section id="formulary-selection" data-bind="if: SelectedDrugType() == 4">
-                    <label>Formulary</label>
+                    <label class="small">Formulary</label>
                     <select id="type" class="form-control form-control-sm "
                             data-bind="options: Formularies,
                                 value: SelectedFormulary,
@@ -38,31 +38,52 @@
             <div class="row" style="margin-top:7px">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label>Dosage Options (<span data-bind="text: FilteredDosageOptions().length"></span> results)</label>
+                        <label class="small">Dosage Options (<span data-bind="text: FilteredDosageOptions().length"></span>)</label>
                         <select class="form-control drug-listbox form-control-sm " size="6"
                                 data-bind="options: FilteredDosageOptions, value: SelectedDosage"></select>
-                        <button data-bind="click: drugsearch.onResetClicked" class="btn btn-info btn-sm form-control">Reset</button>
+                        <button data-bind="click: drugsearch.onResetClicked" class="btn btn-outline-primary btn-sm form-control">Reset</button>
                     </div>                   
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label>Strengths (<span data-bind="text: FilteredStrengths().length"></span> results)</label>
+                        <label class="small">Strengths (<span data-bind="text: FilteredStrengths().length"></span>)</label>
                         <select class="form-control drug-listbox form-control-sm " size="6"
                                 data-bind="options: FilteredStrengths, value: SelectedStrength"></select>
-                        <button data-bind="click: drugsearch.onResetClicked" class="btn btn-info btn-sm form-control">Reset</button>
+                        <button data-bind="click: drugsearch.onResetClicked" class="btn btn-outline-primary btn-sm form-control">Reset</button>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="form-group" style="margin-top:6px">
-                        <label for="foobar">
-                            NDC (<span data-bind="text: FilteredNDCs().length"></span> results)
-                        </label>
-                        <select id="foobar" class="form-control drug-listbox form-control-sm " size="5"
-                                data-bind="options: FilteredNDCs, value: SelectedNDC">
-                        </select>
-                    </div>
+                    <label class="small">
+                        NDC
+                    </label>
+                    <span class="pull-right small" style="margin-top:5px"><span data-bind="text: FilteredNDCs().length"></span> Results</span>
+                </div>
+                <div class="col-lg-12">
+                        <table class="table small text-primary">
+                            <thead>
+                                <tr>
+                                    <th width="20%">NDC</th>
+                                    <th width="50%">Display Name</th>
+                                    <th width="15%">MONY</th>
+                                    <th width="15%">Maint</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div style="height:200px;overflow-y:scroll">
+                            <table class="table table-hover small" style="margin-top:-15px">                                
+                                <tbody data-bind="foreach: FilteredNDCs" style="height:200px;overflow-y:scroll">
+                                    <tr data-bind="click: drugsearch.onNDCRowClicked">
+                                        <td width="20%" data-bind="text: NDC"></td>
+                                        <td width="55%" data-bind="text: DisplayName"></td>
+                                        <td width="10%" data-bind="text: MONY"></td>
+                                        <td class="text-center" width="15%" data-bind="text: MaintenanceCode"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                       
+                    
                 </div>
                 <div class="col-lg-12">
                     <div class="form-group" style="margin-top:6px">
@@ -74,14 +95,17 @@
 
                 </div>
             </div>
-            @*<div class="alert alert-warning">
-                <a href="#" class="small text-dark" style="margin-top:15px">
-                    <span class="fa fa-external-link"></span> Pass to full drug search
-                </a>
-            </div>*@
             <div class="row">
-                <div class="col-lg-12">                    
-                    <button data-bind="click: drugsearch.onDrugSelectApply" style="margin-top:-5px" class="btn btn-sm btn-primary pull-right">APPLY</button>
+                <div class="col-lg-6">                   
+                    <a href="#" class="small text-dark" style="margin-top:-5px">
+                        <span class="fa fa-external-link"></span> Pass to full drug search
+                    </a>                    
+                </div>
+                <div class="col-lg-6">
+                    <span class="pull-right">
+                        <button data-bind="click: drugsearch.onClearClicked" style="margin-top:-5px" class="btn btn-sm btn-outline-primary">CLEAR</button>
+                        <button data-bind="click: drugsearch.onDrugSelectApply" style="margin-top:-5px" class="btn btn-sm btn-primary">APPLY</button>
+                    </span>                    
                 </div>
             </div>
         </section>

@@ -30,6 +30,7 @@
         $(function () {
             drugsearch.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
             drugsearch.init();
+            $("#drugid").focus();
         });
     </script>
 }

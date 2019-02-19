@@ -15,7 +15,6 @@
     },
     // called by external view to initialize the control subscriptions
     initSubscriptions: function () {
-
         // invoked when the drug Id value changes
         drugsearch.vm.DrugSelection.DrugId.subscribe(function (value) {
             var isNumeric = drugsearch.isSearchNumeric(value);
@@ -108,6 +107,16 @@
     onResetClicked: function () {
         drugsearch.getDrugs();
     },
+    onClearClicked: function () {
+        drugsearch.clear();
+        drugsearch.vm.DrugSelection.DrugId("");
+        $("#drugid").focus();
+    },
+    // when the user clicks a row in the NDC table
+    onNDCRowClicked: function (item) {
+        // set the selected NDC, and let the subscription handle the rest
+        drugsearch.vm.DrugSelection.SelectedNDC(item.NDC);
+    },
     // retrieves the drug results based on the drug type and drug id entered by the user
     getDrugs: function () {
         var drugId = drugsearch.vm.DrugSelection.DrugId();
@@ -129,8 +138,7 @@
         }
         else {
             drugsearch.findDrugByName(drugId);
-        }
-        
+        }        
     },
     // finds the drug by name
     // (we already have the name, so it's searching for GPI, NDC, etc.)
@@ -277,12 +285,33 @@
         _.forEach(uniqueDosages, function (item) { dvm.FilteredDosageOptions.push(item.dosage_form); });
         _.forEach(uniqueStrengths, function (item) { dvm.FilteredStrengths.push(item.strength + item.strength_unit_of_measure); });
         _.forEach(uniqueGPIs, function (item) { dvm.FilteredGPIs.push(item.generic_product_identifier); });
-        _.forEach(filteredSearchResults, function (item) { dvm.FilteredNDCs.push(item.ndc_upc_hri); });
 
-       
+        _.forEach(filteredSearchResults, function (item) {
+            dvm.FilteredNDCs.push({
+                DisplayName: item.drug_name,
+                MONY: item.multi_source_code,
+                MaintenanceCode: item.maintenance_drug_code,
+                NDC: item.ndc_upc_hri
+            });
+        });
     },
     // clears the filtered lists 
     updateViewModel: function (response) {
+        drugsearch.clear();
+        var dvm = drugsearch.vm.DrugSelection;
+        dvm.SearchResults(response.SearchResults);
+        dvm.DosageOptions(response.DosageOptions);
+        dvm.Strengths(response.Strengths);
+        dvm.NDCs(response.NDCs);
+        dvm.GPIs(response.GPIs);
+        dvm.FilteredNDCs(response.NDCs);
+        dvm.FilteredGPIs(response.GPIs);
+        dvm.FilteredDosageOptions(response.DosageOptions);
+        dvm.FilteredStrengths(response.Strengths);
+        dvm.DisplayAs(response.DisplayName);
+    },
+    // as the name implies, it clears the current drug search control
+    clear: function () {
         var dvm = drugsearch.vm.DrugSelection;
         dvm.DisplayAs("");
         dvm.SearchResults.removeAll();
@@ -294,16 +323,5 @@
         dvm.FilteredGPIs.removeAll();
         dvm.FilteredStrengths.removeAll();
         dvm.FilteredDosageOptions.removeAll();
-
-        dvm.SearchResults(response.SearchResults);
-        dvm.DosageOptions(response.DosageOptions);
-        dvm.Strengths(response.Strengths);
-        dvm.NDCs(response.NDCs);
-        dvm.GPIs(response.GPIs);
-        dvm.FilteredNDCs(response.NDCs);
-        dvm.FilteredGPIs(response.GPIs);
-        dvm.FilteredDosageOptions(response.DosageOptions);
-        dvm.FilteredStrengths(response.Strengths);
-        dvm.DisplayAs(response.DisplayName);
     }
 });

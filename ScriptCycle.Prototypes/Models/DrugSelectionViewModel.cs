@@ -44,8 +44,8 @@ namespace ScriptCycle.Prototypes.Models {
         public List<string> FilteredStrengths { get; set; } = new List<string>();
         public List<string> DosageOptions { get; set; } = new List<string>();
         public List<string> Strengths { get; set; } = new List<string>();
-        public List<string> NDCs { get; set; } = new List<string>();
-        public List<string> FilteredNDCs { get; set; } = new List<string>();
+        public List<NDCDto> NDCs { get; set; } = new List<NDCDto>();
+        public List<NDCDto> FilteredNDCs { get; set; } = new List<NDCDto>();
         public List<string> GPIs { get; set; } = new List<string>();
         public List<string> FilteredGPIs { get; set; } = new List<string>();
         public List<DrugSearchResult> SearchResults { get; set; } = new List<DrugSearchResult>();
@@ -77,11 +77,17 @@ namespace ScriptCycle.Prototypes.Models {
 
                 results.ForEach(r => {
 
-                    var exists = this.NDCs.FirstOrDefault(n => n == r.ndc_upc_hri);
-                    if (string.IsNullOrEmpty(exists))
-                        this.NDCs.Add(r.ndc_upc_hri);
-
-                    exists = resultGPIs.FirstOrDefault(n => n == r.generic_product_identifier);
+                    var hasNDC = this.NDCs.FirstOrDefault(n => n.NDC == r.ndc_upc_hri);
+                    if (hasNDC == null) { 
+                        this.NDCs.Add(
+                            new NDCDto {
+                                DisplayName = r.drug_name,
+                                MaintenanceCode = r.maintenance_drug_code,
+                                MONY = r.multi_source_code,
+                                NDC = r.ndc_upc_hri
+                            });
+                    }
+                    var exists = resultGPIs.FirstOrDefault(n => n == r.generic_product_identifier);
                     if (string.IsNullOrEmpty(exists))
                         resultGPIs.Add(r.generic_product_identifier);
 
@@ -109,14 +115,14 @@ namespace ScriptCycle.Prototypes.Models {
 
                 this.Strengths.Sort();
                 this.DosageOptions.Sort();
-                this.NDCs.Sort();
+                this.NDCs = NDCs.OrderBy(c => c.DisplayName).ThenBy(c=>c.NDC).ToList();
                 
             }
             else {
                 this.DisplayAs = string.Empty;
                 this.DosageOptions = new List<string>();
                 this.Strengths = new List<string>();
-                this.NDCs = new List<string>();
+                this.NDCs = new List<NDCDto>();
                 this.GPIs = new List<string>();
             }
         }
@@ -143,12 +149,19 @@ namespace ScriptCycle.Prototypes.Models {
         Standard
     }
 
+    public class NDCDto {
+        public string NDC { get; set; }
+        public string DisplayName { get; set; }
+        public string MONY { get; set; }
+        public string MaintenanceCode { get; set; }
+    }
+
     public class DrugSearchResultDto {
         public string DisplayName { get; set; }
         public List<DrugSearchResult> SearchResults { get; set; } = new List<DrugSearchResult>();
         public List<string> DosageOptions { get; set; } = new List<string>();
         public List<string> Strengths { get; set; } = new List<string>();
-        public List<string> NDCs { get; set; } = new List<string>();
+        public List<NDCDto> NDCs { get; set; } = new List<NDCDto>();
         public List<string> GPIs { get; set; } = new List<string>();
     }
 
@@ -160,5 +173,7 @@ namespace ScriptCycle.Prototypes.Models {
         public string strength_unit_of_measure { get; set; }
         public string generic_product_identifier { get; set; }
         public string ndc_upc_hri { get; set; }
+        public string multi_source_code { get; set; }
+        public string maintenance_drug_code { get; set; }
     }
 }
