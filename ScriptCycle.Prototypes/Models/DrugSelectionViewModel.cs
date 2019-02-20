@@ -98,8 +98,11 @@ namespace ScriptCycle.Prototypes.Models {
                         this.DosageOptions.Add(r.dosage_form);
 
                     exists = this.Strengths.FirstOrDefault(n => n == r.strength + r.strength_unit_of_measure);
-                    if (string.IsNullOrEmpty(exists))
-                        this.Strengths.Add(r.strength + r.strength_unit_of_measure);
+                    if (string.IsNullOrEmpty(exists)) {
+                        if (!string.IsNullOrEmpty(r.strength))
+                            this.Strengths.Add(r.strength + r.strength_unit_of_measure);
+                    }
+                        
                 });
                 resultGPIs = resultGPIs.OrderBy(c => c.GPI).ToList();
                 int length = drugId.Length;
