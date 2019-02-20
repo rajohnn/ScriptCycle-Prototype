@@ -72,7 +72,7 @@ namespace ScriptCycle.Prototypes.Models {
         public void MapResultsToViewModel(List<DrugSearchResult> results, string drugId) {
             this.SearchResults = results;
             if (results.Count > 0) {
-                this.DisplayAs = results[0].DisplayName;
+                
                 var uniqueDoages = results.GroupBy(d => d.dosage_form).Select(d => d.First()).ToList();
                 var uniqueStrengths = results.GroupBy(d => d.strength).Select(d => d.First()).ToList();
                 var resultGPIs = new List<GPIDto>();
@@ -110,7 +110,7 @@ namespace ScriptCycle.Prototypes.Models {
 
                 // make sure we have a proper partial GPI
                 if (length % 2 == 0 && length < 13) {
-                    for (int i = drugId.Length + 2; i < 13; i = i + 2) {
+                    for (int i = drugId.Length; i < 13; i = i + 2) {
                         partialGPIs.AddRange(GeneratePartialGPIs(results, i));
                     }
                 }
@@ -121,6 +121,14 @@ namespace ScriptCycle.Prototypes.Models {
                 this.GPIs.AddRange(namedPartials);
                 this.GPIs.AddRange(resultGPIs);
 
+                var selectedGPI = this.GPIs.SingleOrDefault(g => g.GPI == drugId);
+                if (selectedGPI != null) {
+                    this.DisplayAs = selectedGPI.DisplayName;
+                    this.GPIs.Remove(selectedGPI);
+                }
+                else {
+                    this.DisplayAs = results[0].DisplayName;
+                }                    
                 this.Strengths.Sort();
                 this.DosageOptions.Sort();
                 this.NDCs = NDCs.OrderBy(c => c.DisplayName).ThenBy(c => c.NDC).ToList();

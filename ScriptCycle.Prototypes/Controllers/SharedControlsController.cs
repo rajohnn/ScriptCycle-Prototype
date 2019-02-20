@@ -32,6 +32,7 @@ namespace ScriptCycle.Prototypes.Controllers {
 
             var vm = new DrugSelectionViewModel();
             vm.MapResultsToViewModel(results, drugId);
+
             var dto = new DrugSearchResultDto {
                 DisplayName = vm.DisplayAs,
                 DosageOptions = vm.DosageOptions,
@@ -40,6 +41,8 @@ namespace ScriptCycle.Prototypes.Controllers {
                 SearchResults = results,
                 Strengths = vm.Strengths
             };
+
+            
             return Json(dto);
         }
 
