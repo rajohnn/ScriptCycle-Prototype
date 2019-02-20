@@ -107,6 +107,7 @@
     onResetClicked: function () {
         drugsearch.getDrugs();
     },
+    // when the user clicks the clear button - clears & resets view
     onClearClicked: function () {
         drugsearch.clear();
         drugsearch.vm.DrugSelection.DrugId("");
@@ -117,6 +118,7 @@
         // set the selected NDC, and let the subscription handle the rest
         drugsearch.vm.DrugSelection.SelectedNDC(item.NDC);
     },
+    // when the user clicks a row in teh GPI table
     onGPIRowClicked: function (item) {
         drugsearch.vm.DrugSelection.SelectedGPI(item.GPI);
     },
@@ -231,7 +233,11 @@
         })
         .done(function (response) {            
             if (response) {
-                drugsearch.updateViewModel(response);            
+                drugsearch.updateViewModel(response); 
+                if (response.NDCs.length === 1) {
+                    var display = drugsearch.getDrugName(response.SearchResults[0]);
+                    drugsearch.vm.DrugSelection.DisplayAs(display);   
+                }
             }
             else {
                 console.log("There was a problem retrieving the drug results!");
@@ -319,7 +325,7 @@
         dvm.FilteredGPIs(response.GPIs);
         dvm.FilteredDosageOptions(response.DosageOptions);
         dvm.FilteredStrengths(response.Strengths);
-        dvm.DisplayAs(response.DisplayName);        
+        dvm.DisplayAs(response.DisplayName);                        
     },
     // as the name implies, it clears the current drug search control
     clear: function () {
