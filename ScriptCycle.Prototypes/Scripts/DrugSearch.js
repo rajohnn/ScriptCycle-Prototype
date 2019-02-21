@@ -3,8 +3,7 @@
     model: null,
     vm: null,   
     haveDrugSource: false,
-    // contains an init method so we can test the control independently 
-    // with the drugsearch namespace
+    // only required when testing a stand-alone version of the drugsearch control.
     init: function () {
         if (drugsearch.serverModel) {
             drugsearch.model = ko.observable(ko.mapping.fromJS(drugsearch.serverModel));
@@ -39,9 +38,8 @@
             }          
         });
 
-        // invoked when the selected NDC changes
-        drugsearch.vm.DrugSelection.SelectedNDC.subscribe(function (value) {
-            console.log("NDC changed: " + value);
+        // invoked when the selected NDC changes (update selected drug type)
+        drugsearch.vm.DrugSelection.SelectedNDC.subscribe(function (value) {            
             var drugType = drugsearch.vm.DrugSelection.SelectedDrugType();
             if (value) {
                 if (drugType === 2) {
@@ -52,7 +50,7 @@
             }            
         });
 
-        // invoked when the selected GPI changes
+        // invoked when the selected GPI changes (update selected drug type)
         drugsearch.vm.DrugSelection.SelectedGPI.subscribe(function (value) {
             console.log("GPI changed: " + value);
             var drugType = drugsearch.vm.DrugSelection.SelectedDrugType();
@@ -273,9 +271,10 @@
                 return searchResult.strength + searchResult.strength_unit_of_measure === strength;
             });
         }        
-
-        console.log("search results: " + dvm.SearchResults().length);
-        console.log("filtered search results: " + filteredSearchResults.length);
+        // you can enable the code below if you're seeing strange results and want to verify things
+        // are filtering properly
+        // console.log("search results: " + dvm.SearchResults().length);
+        // console.log("filtered search results: " + filteredSearchResults.length);
 
         dvm.FilteredGPIs.removeAll();
         dvm.FilteredNDCs.removeAll();
