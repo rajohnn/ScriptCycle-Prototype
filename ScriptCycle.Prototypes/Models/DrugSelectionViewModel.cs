@@ -6,7 +6,7 @@ using System.Linq;
 namespace ScriptCycle.Prototypes.Models {
 
     public class DrugSelectionViewModel {
-        private DrugSelectionOption _selectionOption;
+        private DrugSelectionOption _selectionOption = DrugSelectionOption.Standard;
         public int? SelectedDrugType { get; set; }
         public int? SelectedFormulary { get; set; }
         public string DisplayAs { get; set; }
