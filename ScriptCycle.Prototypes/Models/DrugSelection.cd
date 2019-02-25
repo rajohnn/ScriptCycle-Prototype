@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Comment CommentText="The DrugSearchResultDto is returned to the client after an Http request.">
-    <Position X="11.927" Y="0.958" Height="0.49" Width="3.054" />
+    <Position X="9" Y="8.75" Height="0.499" Width="3.054" />
   </Comment>
   <Class Name="ScriptCycle.Prototypes.Models.DrugSelectionViewModel">
-    <Position X="6" Y="1.5" Width="3.25" />
+    <Position X="5.25" Y="6" Width="3.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
+    <AssociationLine Name="GPIs" Type="ScriptCycle.Prototypes.Models.GPIDto" FixedToPoint="true">
+      <Path>
+        <Point X="7.938" Y="11.363" />
+        <Point X="7.938" Y="12" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>GQBABAAAAgAAAABAEAAIRAAAEABEIgMQBBAYAgAAQAQ=</HashCode>
+      <HashCode>GQBABAAAAgAAEABAEAAIRAAAEABEIgMQBBAYAgAAQAQ=</HashCode>
       <FileName>Models\DrugSelectionViewModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -18,31 +24,53 @@
     <ShowAsCollectionAssociation>
       <Property Name="SearchResults" />
       <Property Name="Formularies" />
+      <Property Name="NDCs" />
+      <Property Name="GPIs" />
+      <Property Name="DrugOptions" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="ScriptCycle.Prototypes.Models.DrugSearchResultDto">
-    <Position X="12" Y="1.5" Width="3" />
+    <Position X="9" Y="9.25" Width="3" />
     <TypeIdentifier>
       <HashCode>CAAAEAAAAAAAAABAAAAAAAAAAABAAAIAAAAAAAAAAAQ=</HashCode>
       <FileName>Models\DrugSelectionViewModel.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="GPIs" />
+      <Property Name="NDCs" />
+      <Property Name="SearchResults" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="ScriptCycle.Prototypes.Models.DrugSearchResult">
-    <Position X="12" Y="4" Width="3" />
+    <Position X="5.25" Y="2.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAECAAAAAACAACAAAABAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAEAABAAAECAAAAAACAACAAAgBAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Models\DrugSelectionViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ScriptCycle.Prototypes.Models.SelectionModel">
-    <Position X="1.25" Y="2" Width="2" />
+    <Position X="0.5" Y="7.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Models\MemberViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.NDCDto">
+    <Position X="4" Y="13" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAEAAAAAAAAAEAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DrugSelectionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ScriptCycle.Prototypes.Models.GPIDto">
+    <Position X="7" Y="12" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DrugSelectionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="ScriptCycle.Prototypes.Models.DrugSelectionOption">
-    <Position X="1.25" Y="3.75" Width="2" />
+    <Position X="0.5" Y="9" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>Models\DrugSelectionViewModel.cs</FileName>

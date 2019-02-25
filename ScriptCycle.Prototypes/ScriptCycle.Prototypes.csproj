@@ -196,6 +196,11 @@
     <Content Include="Content\steptherapy.min.css">
       <DependentUpon>steptherapy.css</DependentUpon>
     </Content>
+    <Content Include="Data\Scripts\0001_FindByGPI.sql" />
+    <Content Include="Data\Scripts\0002_FindByName.sql" />
+    <Content Include="Data\Scripts\0003_FindByNDC.sql" />
+    <Content Include="Data\Scripts\0004_CustomType_GPIList.sql" />
+    <Content Include="Data\Scripts\0005_GetGPIDisplayNames.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />

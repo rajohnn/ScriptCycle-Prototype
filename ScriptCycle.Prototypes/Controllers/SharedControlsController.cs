@@ -41,8 +41,6 @@ namespace ScriptCycle.Prototypes.Controllers {
                 SearchResults = results,
                 Strengths = vm.Strengths
             };
-
-            
             return Json(dto);
         }
 
