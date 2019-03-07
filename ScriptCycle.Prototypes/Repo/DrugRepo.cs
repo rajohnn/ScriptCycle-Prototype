@@ -38,6 +38,15 @@ namespace ScriptCycle.Prototypes.Repo {
             return results;
         }
 
+        public List<GPI> GetGPI() {            
+            return _ctx.Database.SqlQuery<GPI>("SELECT [tcgpi_id] as name,[tcgpi_name] as gpi_name, tc_level_code as level FROM [dbo].[mf2tcgpi_g] order by tc_level_code, tcgpi_id").ToList();
+        }
+
+        public List<GPI> GetGPI(string level) {
+            return _ctx.Database.SqlQuery<GPI>(
+                string.Format("SELECT [tcgpi_id] as name,[tcgpi_name] as gpi_name, tc_level_code as level FROM [dbo].[mf2tcgpi_g] where tcgpi_id like '{0}%' order by tc_level_code, tcgpi_id", level)).ToList();
+        }
+
         public List<GPIDto> GetPartialGPINames(List<string> partialGPIs) {
             var list = new List<GPIDto>();
             var conn = (SqlConnection)_ctx.Database.Connection;

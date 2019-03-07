@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DrugsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\SharedControlsController.cs" />
@@ -165,6 +166,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DrugSelectionViewModel.cs" />
+    <Compile Include="Models\DrugViewDto.cs" />
     <Compile Include="Models\LinqExtensions.cs" />
     <Compile Include="Models\MemberViewModel.cs" />
     <Compile Include="Models\StepTherapyViewModel.cs" />
@@ -216,6 +218,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\d3\d3.js" />
     <Content Include="Scripts\d3\d3.min.js" />
+    <Content Include="Scripts\dndTree.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -243,6 +246,10 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Models\DrugSelection.cd" />
+    <Content Include="Data\flare.json" />
+    <Content Include="Data\gpi.json" />
+    <Content Include="Data\gpi 35.json" />
+    <Content Include="Data\gpi_35.json" />
     <None Include="Properties\PublishProfiles\ScriptCyclePrototype - Web Deploy.pubxml" />
     <Content Include="Scripts\d3\README.md" />
     <Content Include="Scripts\d3\LICENSE" />
@@ -334,6 +341,7 @@
     <Content Include="Views\StepTherapy\_ModalCreateDrugFill.cshtml" />
     <Content Include="Views\Shared\_DrugSelection.cshtml" />
     <Content Include="Views\SharedControls\DrugSearch.cshtml" />
+    <Content Include="Views\Drugs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
