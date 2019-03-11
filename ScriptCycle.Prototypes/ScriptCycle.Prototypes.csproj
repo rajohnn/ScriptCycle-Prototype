@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\APController.cs" />
     <Compile Include="Controllers\DrugsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\APViewModel.cs" />
     <Compile Include="Models\DrugSelectionViewModel.cs" />
     <Compile Include="Models\DrugViewDto.cs" />
     <Compile Include="Models\LinqExtensions.cs" />
@@ -210,12 +212,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ap.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap-menu.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\burst.js" />
     <Content Include="Scripts\d3\d3.js" />
     <Content Include="Scripts\d3\d3.min.js" />
     <Content Include="Scripts\dndTree.js" />
@@ -350,6 +354,8 @@
     <Content Include="Views\Shared\_DrugSelection.cshtml" />
     <Content Include="Views\SharedControls\DrugSearch.cshtml" />
     <Content Include="Views\Drugs\Index.cshtml" />
+    <Content Include="Views\Drugs\Burst.cshtml" />
+    <Content Include="Views\AP\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

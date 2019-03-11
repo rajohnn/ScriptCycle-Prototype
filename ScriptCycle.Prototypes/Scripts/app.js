@@ -56,6 +56,93 @@ ko.bindingHandlers.enterkey = {
     }
 };
 
+function formatCurrency(symbol, value, precision) {
+    return (value < 0 ? "-" : "") + symbol + Math.abs(value).toFixed(precision).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+}
+
+function rawNumber(val) {
+    return Number(val.replace(/[^\d\.\-]/g, ""));
+}
+
+ko.bindingHandlers.currency = {
+    symbol: ko.observable("$"),
+    init: function (element, valueAccessor, allBindingsAccessor) {
+        //only inputs need this, text values don't write back
+        if ($(element).is("input") === true) {
+            var underlyingObservable = valueAccessor(),
+                interceptor = ko.computed({
+                    read: underlyingObservable,
+                    write: function (value) {
+                        if (value === "") {
+                            underlyingObservable(null);
+                        } else {
+                            underlyingObservable(rawNumber(value));
+                        }
+                    }
+                });
+            ko.bindingHandlers.value.init(element, function () {
+                return interceptor;
+            }, allBindingsAccessor);
+        }
+    },
+    update: function (element, valueAccessor, allBindingsAccessor) {
+        var symbol = ko.unwrap(allBindingsAccessor().symbol !== undefined ? allBindingsAccessor().symbol : ko.bindingHandlers.currency.symbol),
+            value = ko.unwrap(valueAccessor());
+        if ($(element).is("input") === true) {
+            //leave the boxes empty by default
+            value = value !== null && value !== undefined && value !== "" ? formatCurrency(symbol, parseFloat(value), 2) : "";
+            $(element).val(value);
+        } else {
+            //text based bindings its nice to see a 0 in place of nothing
+            value = value || 0;
+            $(element).text(formatCurrency(symbol, parseFloat(value), 2));
+        }
+    }
+};
+
+ko.bindingHandlers.number = {
+    update: function (element, valueAccessor, allBindingsAccessor) {
+        var defaults = ko.bindingHandlers.number.defaults,
+            aba = allBindingsAccessor,
+            unwrap = ko.utils.unwrapObservable,
+            value = unwrap(valueAccessor()) || valueAccessor(),
+            result = '',
+            numarray;
+
+        var separator = unwrap(aba().separator) || defaults.separator,
+            decimal = unwrap(aba().decimal) || defaults.decimal,
+            precision = unwrap(aba().precision) || defaults.precision,
+            symbol = unwrap(aba().symbol) || defaults.symbol,
+            after = unwrap(aba().after) || defaults.after;
+
+        value = parseFloat(value) || 0;
+
+        if (precision > 0)
+            value = value.toFixed(precision);
+
+        numarray = value.toString().split('.');
+
+        for (var i = 0; i < numarray.length; i++) {
+            if (i === 0) {
+                result += numarray[i].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + separator);
+            } else {
+                result += decimal + numarray[i];
+            }
+        }
+
+        result = (after) ? result += symbol : symbol + result;
+
+        ko.bindingHandlers.text.update(element, function () { return result; });
+    },
+    defaults: {
+        separator: ',',
+        decimal: '.',
+        precision: 0,
+        symbol: '',
+        after: false
+    }
+};
+
 // handles binding with bootstrap toggle buttons
 ko.bindingHandlers.bootstrapToggleOn = {
     init: function (element, valueAccessor, allBindingsAccessor, viewModel) {

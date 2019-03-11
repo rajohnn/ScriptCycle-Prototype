@@ -1,0 +1,317 @@
+﻿@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/steptherapy.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.css" rel="stylesheet">
+}
+
+<div id="ap-view" style="display:none" data-bind="visible: true">
+    <section id="step-therapy-toolbar" class="row view-toolbar">
+        <div class="col-lg-12">
+            <span class="header">Accounts Payable</span>
+            <span id="function-panel" class="pull-right">
+                <button type="button" class="btn btn-sm btn-default ">
+                    <span class="fa fa-cloud-upload"></span> Upload File
+                </button>
+            </span>
+        </div>
+    </section>
+
+    <section id="dashboard-cards">
+        <div class="row" style="margin-top:7px">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h2 data-bind="currency: AnnualTotal"></h2>
+                                Fiscal Year
+                            </div>
+                            <div class="col-lg-3 text-secondary text-center">
+                                <span class="fa fa-dollar fa-5x"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-secondary text-white">
+                        Annual Total: May 2018 - Current
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h2>
+                                    <span data-bind="number: AvgMonth, precision: 2"></span>
+                                </h2>
+                                Average Per Month
+                            </div>
+                            <div class="col-lg-3 text-secondary text-center">
+                                <span class="fa fa-arrows-h fa-5x"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-secondary text-white">
+                        Avg. Payment per month: May 2018 - Current
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h2>
+                                    <span data-bind="number: AvgClaimCount, precision: 0"></span>
+                                </h2>
+                                Average claim count per month
+                            </div>
+                            <div class="col-lg-3 text-secondary text-center">
+                                <span class="fa fa-file-text-o fa-5x"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-secondary text-white">
+                        Avg. Claim: May 2018  - Current
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h2>
+                                    <span data-bind="number: AvgPaymentCount, precision: 0"></span>
+                                </h2>
+                                Average payment count per month
+                            </div>
+                            <div class="col-lg-3 text-secondary text-center">
+                                <span class="fa fa-money fa-5x"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-secondary text-white">
+                        Avg. Payment Count: May 2018  - Current
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <hr />
+
+    <div class="row">
+        <div class="col-lg-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="120px" class="text-secondary text-left">Cycle Status</th>
+                        <th class="text-secondary text-right">Billing Date</th>
+                        <th class="text-secondary text-right">Pharmacy Paid</th>
+                        <th class="text-secondary text-right">Unique Payments</th>
+                        <th class="text-secondary text-right">Claim Count</th>
+                        <th class="text-secondary text-center"></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: BillingCycleRecords">
+                    <tr>
+                        <td>
+                            <span data-bind="if: CycleStatus() == 'Complete'">
+                                <span class="fa fa-check-circle-o text-info"></span>
+                            </span>
+                            <span data-bind="if: CycleStatus() == 'Processing'">
+                                <span class="fa fa-spin fa-spinner text-info"></span>
+                            </span>
+                            <span data-bind="text: CycleStatus"></span>
+                        </td>
+                        <td class="text-right" data-bind="text: moment(Date()).format('L')"></td>
+                        <td class="text-right" data-bind="currency: PharmacyPaid"></td>
+                        <td class="text-right" data-bind="number: UniquePayments"></td>
+                        <td class="text-right" data-bind="number: ClaimCount"></td>
+                        <td class="text-center">
+                            <a href="#" style="text-decoration:underline" data-bind="click: ap.onDisplayDetails">
+                                Claims
+                            </a>
+                            @*<button class="btn btn-sm btn-primary" data-bind="click: ap.onDisplayDetails">Claims</button>*@
+                            @*<button class="btn btn-sm btn-primary" data-bind="click: ap.onDisplaySummary">Summary</button>*@
+                        </td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+        <div class="col-lg-7">
+            <section id="billing-compare-component" data-bind="slideVisible: ShowDetails">
+                <div class="card" >
+                    <div class="card-header bg-secondary text-white">
+                        <button type="button" class="close pull-right" data-bind="click: ap.onDismissDetails"><span aria-hidden="true">&times;</span></button>
+                        <div>Billing Cycle 03/01/2019</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5>Original Billing Data</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="fa fa-check-circle text-info"></span> Pharmacy Paid</td>
+                                            <td class="text-right">$240.749.81</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="fa fa-check-circle text-info"></span> Unique Payments</td>
+                                            <td class="text-right">1,844</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="fa fa-check-circle text-info"></span> Claim Count</td>
+                                            <td class="text-right">25,693</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5>AP Cycle Data Summary</h5>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Pharmacy Paid</td>
+                                            <td class="text-right">$240.749.81</td>                                           
+                                        </tr>
+                                        <tr>
+                                            <td>Unique Payments</td>
+                                            <td class="text-right">1,844</td>                                            
+                                        </tr>
+                                        <tr>
+                                            <td>Claim Count</td>
+                                            <td class="text-right">25,693</td>                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">                               
+                                <section id="batches">
+                                    <b>Batch 1 Summary</b>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Ingredient Cost</td>
+                                                        <td class="text-right">$200,000.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total ACH</td>
+                                                        <td class="text-right">1,000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Claims</td>
+                                                        <td class="text-right">24,000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Total Dispense Fee's</td>
+                                                        <td class="text-right">$40,749.81</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Paper Checks</td>
+                                                        <td class="text-right">25,693</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Reversals</td>
+                                                        <td class="text-right">1,693</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <span class="pull-right">
+                            <button class="btn btn-sm btn-default" data-bind="click: ap.onDismissDetails">
+                                <span class="fa fa-close"></span> Dismiss
+                            </button>
+
+                            <button class="btn btn-sm btn-secondary" data-bind="click: ap.onViewClaimsFile">
+                                <span class="fa fa-navicon"></span> View Claim Details
+                            </button>
+                            <button class="btn btn-sm btn-primary" data-bind="click: ap.onViewClaimsFile">
+                                <span class="fa fa-eye"></span> SHOW ALL
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
+                <hr/>
+            </section>            
+            <div>
+                <div class="input-group input-group-sm" style="margin:3px">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text small bg-info text-white">
+                            Check #
+                        </span>
+                    </div>
+                    <input id="check_number" style="max-width:195px" class="form-control" type="text" placeholder="Check #" />
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-info">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <div id="chart"></div>
+            </div>
+            <hr />
+
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/AP.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            ap.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            ap.init();
+
+            var chart = c3.generate({
+                data: {
+                    columns: [ ap.getMonthlyPharmacyPayments() ],
+                    types: {
+                        Payments: 'area-spline'
+                    }
+                },
+                axis: {
+                    Payments: {
+                        type: 'timeseries',
+                        tick: {
+                            values: ap.getPharmacyPaymentDates()
+                        }
+                    }
+                },
+                color: {
+                    pattern: ['#007bff']
+                }
+            });
+            
+        });
+    </script>
+}

@@ -7,5 +7,9 @@ namespace ScriptCycle.Prototypes.Controllers {
         public ActionResult Index() {
             return View();
         }
+
+        public ActionResult Burst() {
+            return View();
+        }
     }
 }
