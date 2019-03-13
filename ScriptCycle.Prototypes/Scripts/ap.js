@@ -35,5 +35,15 @@
     },
     onViewClaimsFile: function () {
         console.log("on view claims file clicked.");
+    },
+    onConfigure: function () {
+        var show = ap.vm.ShowDashboard();
+        ap.vm.ShowDashboard(!show);
+    },
+    onSearchCheckNumber: function () {        
+        $("#check-modal").modal("show");
+    },
+    onCloseCheckNumberResults: function () {
+        $("#check-modal").modal("hide");
     }
 });

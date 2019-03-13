@@ -7,8 +7,7 @@ using System.Web.Mvc;
 namespace ScriptCycle.Prototypes.Controllers {
 
     public class APController : Controller {
-
-        // GET: AP
+       
         public ActionResult Index() {
             var now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
@@ -102,7 +101,81 @@ namespace ScriptCycle.Prototypes.Controllers {
                         PharmacyPaid = 512363.63M,
                         UniquePayments = 14232
                     },
-                }
+                },
+                PayeeDetailRecords = new List<PayeeDetailRecord> {
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164582",
+                        PaymentCenterId = "20465",
+                        PaymentCenterName = "CVS Corp",
+                        TotalClaims = 256,
+                        TotalPharmacyPaid = 400581.11M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164583",
+                        PaymentCenterId = "11442",
+                        PaymentCenterName = "Walgreens Corp",
+                        TotalClaims = 284,
+                        TotalPharmacyPaid = 422581.95M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164584",
+                        PaymentCenterId = "84544",
+                        PaymentCenterName = "Costco Pharmacies",
+                        TotalClaims = 211,
+                        TotalPharmacyPaid = 18881.27M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164585",
+                        PaymentCenterId = "91377",
+                        PaymentCenterName = "Rite Aid",
+                        TotalClaims = 316,
+                        TotalPharmacyPaid = 199058.63M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164586",
+                        PaymentCenterId = "20465",
+                        PaymentCenterName = "CVS Corp",
+                        TotalClaims = 256,
+                        TotalPharmacyPaid = 374343.72M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164587",
+                        PaymentCenterId = "11442",
+                        PaymentCenterName = "Walgreens Corp",
+                        TotalClaims = 284,
+                        TotalPharmacyPaid = 422847.83M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164588",
+                        PaymentCenterId = "84544",
+                        PaymentCenterName = "Costco Pharmacies",
+                        TotalClaims = 211,
+                        TotalPharmacyPaid = 12532.18M
+                    },
+                    new PayeeDetailRecord {
+                        BillingCycleDate = startDate.AddMonths(-3),
+                        APCycleName = String.Concat(startDate.AddMonths(-3).Year, startDate.AddMonths(-3).Month, startDate.AddMonths(-3).Day),
+                        CheckNumber = "164589",
+                        PaymentCenterId = "91377",
+                        PaymentCenterName = "Rite Aid",
+                        TotalClaims = 316,
+                        TotalPharmacyPaid = 199058.38M
+                    }
+                }                
             };
             vm.AnnualTotal = vm.BillingCycleRecords.Sum(bc => bc.PharmacyPaid);
             vm.AvgMonth = vm.AnnualTotal / vm.BillingCycleRecords.Count;

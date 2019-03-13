@@ -356,6 +356,8 @@
     <Content Include="Views\Drugs\Index.cshtml" />
     <Content Include="Views\Drugs\Burst.cshtml" />
     <Content Include="Views\AP\Index.cshtml" />
+    <Content Include="Views\AP\_ModalCheckSearch.cshtml" />
+    <Content Include="Views\AP\_ModalCheck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
