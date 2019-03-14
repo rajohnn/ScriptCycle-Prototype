@@ -13,72 +13,83 @@
 @Html.Partial("_ModalCheck")
 
 <section id="presentation-headers">
-    <div style="background-color:#77bef5;margin-top:6px;">
-        <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
-            <a href="/Home" class="btn btn-sm btn-default text-primary">
-                <i class="fa fa-dashboard"></i>
-            </a>
-            <a id="dashboard" href="/AP" class="btn btn-sm btn-primary text-white">
-                AP Dashboard
-            </a>
-        </div>
-
-        <span class="pull-right">
-            <div id="app-toolbar" class="toolbar-container" style="margin-top:6px;margin-right:15px">
-                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <button id="tbb-export" type="button" class="btn btn-default text-primary">
-                        <span class="fa fa-file-excel-o"></span> Export
-                    </button>
-                    <button id="tbb-print" type="button" class="btn btn-default text-primary">
-                        <span class="fa fa-print"></span> Print
-                    </button>
-                    <button id="tbb-copy" type="button" class="btn btn-default text-primary">
-                        <span class="fa fa-copy"></span> Copy
-                    </button>
-                </div>
-                <div class="btn-group" role="group" aria-label="Save">
-                    <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                        <span class="fa fa-trash"></span>
-                    </button>
-                </div>
-                <div class="btn-group" role="group" aria-label="Save">
-                    <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-secondary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
-                        <span class="fa fa-save"></span> Save
-                    </button>
-                </div>
+    <div id="ribbon">
+        <div style="background-color:#77bef5;margin-top:6px;">
+            <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
+                <a href="/Home" class="btn btn-sm btn-default text-primary">
+                    <i class="fa fa-dashboard"></i>
+                </a>
+                <a id="dashboard" href="/AP" class="btn btn-sm btn-primary text-white">
+                    AP Dashboard
+                </a>
             </div>
-        </span>
-    </div>
-    <section id="step-therapy-toolbar" class="row" style="background-color: #0367B4;">
-        <div class="col-lg-4">
-            <span class="header text-white" style="font-size:22pt;display:block;margin-top:5px;margin-left:7px">Accounts Payable</span>
-        </div>
-        <div class="col-lg-8">
-            <span id="function-panel" class="pull-right">
-                <div class="input-group input-group-sm" style="margin:3px;margin-right:25px">
-                    <button type="button" class="btn btn-sm btn-default" style="margin-right:3px">
-                        <span class="fa fa-cloud-upload"></span> Upload File
-                    </button>
-                    <button type="button" data-toggle="button" aria-pressed="false" autocomplete="off" class="btn btn-sm btn-outline-light" data-bind="click: ap.onConfigure" style="margin-right:15px">
-                        <span class="fa fa-cogs"></span> Configure
-                    </button>
 
-                    <div class="input-group-prepend">
-                        <span class="input-group-text small bg-white">
-                            Check #
-                        </span>
+            <span class="pull-right">
+                <div id="app-toolbar" class="toolbar-container" style="margin-top:6px;padding-left:15px;padding-right:15px">
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button id="tbb-export" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-file-excel-o"></span> Export
+                        </button>
+                        <button id="tbb-print" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-print"></span> Print
+                        </button>
+                        <button id="tbb-copy" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-copy"></span> Copy
+                        </button>
                     </div>
-                    <input id="check_number" style="max-width:195px" class="form-control" type="text" placeholder="Example: 16458" />
-                    <div class="input-group-append">
-                        <button class="btn btn-sm btn-secondary" data-bind="click: ap.onSearchCheckNumber">
-                            <span class="fa fa-search"></span>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-primary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
+                            <span class="fa fa-save"></span> Save
                         </button>
                     </div>
                 </div>
             </span>
-
         </div>
-    </section>
+    </div>    
+    <div id="step-therapy-toolbar">
+        <div style="background-color: #0367B4;padding:0 15px 0 15px">   
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="header text-white" style="font-size:22pt;display:block;margin-top:5px;">Accounts Payable</span>
+                </div>
+                <div class="col-lg-8">
+                    <span id="function-panel" class="pull-right">
+                        <div class="input-group input-group-sm">
+                            <button type="button" class="btn btn-sm btn-default" style="margin-right:5px">
+                                <span class="fa fa-cloud-upload"></span> Upload File
+                            </button>
+                            <button type="button"
+                                    data-toggle="button"
+                                    aria-pressed="false"
+                                    autocomplete="off"
+                                    class="btn btn-sm btn-outline-light"
+                                    style="padding:0 15px 0 15px; margin-right:5px"
+                                    data-bind="click: ap.onConfigure">
+                                <span class="fa fa-cogs"></span> Configure
+                            </button>
+
+                            <div class="input-group-prepend">
+                                <span class="input-group-text small bg-white">
+                                    Check #
+                                </span>
+                            </div>
+                            <input id="check_number" class="form-control" type="text" placeholder="Example: 16458" />
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-secondary" data-bind="click: ap.onSearchCheckNumber">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>                
+        </div>
+    </div>
 </section>
 
 <div id="ap-view" style="display:none;padding-left:15px;padding-right:15px" data-bind="visible: true">
@@ -331,7 +342,7 @@
     </section>
 
     <section id="configuration" data-bind="slideVisible: !ShowDashboard()">
-        <div style="margin-left:15px;margin-right:15px;margin-top:7px">
+        <div style="padding-left:15px;margin-top:7px">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card">

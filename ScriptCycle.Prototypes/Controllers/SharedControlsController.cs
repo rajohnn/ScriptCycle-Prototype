@@ -17,6 +17,7 @@ namespace ScriptCycle.Prototypes.Controllers {
         }
 
         [HttpGet]
+        [OutputCache(Location =System.Web.UI.OutputCacheLocation.Client,Duration=86400 )]
         public JsonResult GetDrugList() {
             var context = new ScriptCycleContext();
             var repo = new DrugRepo(context);
