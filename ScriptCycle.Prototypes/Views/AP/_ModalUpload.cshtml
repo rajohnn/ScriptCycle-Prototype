@@ -1,0 +1,114 @@
+﻿<div class="modal fade" id="upload-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <span class="modal-title" id="myModalLabel2">
+                    File Selection
+                </span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <h6 class="text-primary">Please specifiy the location of the file you wish to upload</h6>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                               <label><input type="radio" name="option" value="1" checked /> ScriptCycle File Manager</label>
+                            </div>
+                            <div class="card-body">
+                                <div style="max-height: 400px;overflow-y:scroll;margin-top:-5px">
+                                    <ul class="list-group text-primary">
+                                        <li class="list-group-item">
+                                            <span class="fa fa-folder-open"></span> Billing Manager
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <span class="fa fa-folder-open"></span> Billing Cycles
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item list-group-item-action">
+                                                            <span class="fa fa-file"></span> 2019-02-01
+                                                        </li>
+                                                        <li class="list-group-item list-group-item-action">
+                                                            <span class="fa fa-file"></span> 2019-01-01
+                                                        </li>
+                                                        <li class="list-group-item list-group-item-action">
+                                                            <span class="fa fa-file"></span> 2018-12-01
+                                                        </li>
+                                                        <li class="list-group-item list-group-item-action">
+                                                            <span class="fa fa-file"></span> 2018-11-01
+                                                        </li>
+                                                        <li class="list-group-item list-group-item-action">
+                                                            <span class="fa fa-file"></span> 2018-10-01
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="fa fa-folder"></span> Eligibility
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="fa fa-folder"></span> Pharmacy Manager
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="fa fa-folder"></span> Prescriber Manager
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="fa fa-folder"></span> Batch Center
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="fa fa-folder"></span> Drug Manager
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                               <label><input type="radio" name="option" value="2" /> Local Network</label>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Select Directory</label>
+                                    <div class="input-group">
+                                        <input id="location" type="text" class="form-control form-control-sm" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-sm">Browse...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Select File Layout</label>
+                                    <div class="input-group">
+                                        <select id="file-layout" class="form-control form-control-sm">
+                                            <option>Option 1</option>
+                                            <option>Option 2</option>
+                                            <option>Option 3</option>
+                                            <option>Option 4</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-sm">
+                                                <span class="fa fa-external-link-square"></span> Manage File Layouts
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-right">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" style="min-width:192px" class="btn btn-primary">
+                        <span class="fa fa-cloud-upload"></span> Upload
+                    </button>
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div>

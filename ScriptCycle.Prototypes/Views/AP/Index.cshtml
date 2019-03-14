@@ -11,6 +11,7 @@
 }
 
 @Html.Partial("_ModalCheck")
+@Html.Partial("_ModalUpload")
 
 <section id="presentation-headers">
     <div id="ribbon">
@@ -60,13 +61,14 @@
                 <div class="col-lg-8">
                     <span id="function-panel" class="pull-right">
                         <div class="input-group input-group-sm">
-                            <button type="button" class="btn btn-sm btn-default" style="margin-right:5px">
+                            <button type="button" class="btn btn-sm btn-default" data-bind="click: ap.onUpload" style="margin-right:5px">
                                 <span class="fa fa-cloud-upload"></span> Upload File
                             </button>
                             <button type="button"
-                                    data-toggle="button"
-                                    aria-pressed="false"
+                                    data-toggle="button"                                    
+                                    aria-pressed="true"
                                     autocomplete="off"
+                                    class-toggle="btn-outline-light"
                                     class="btn btn-sm btn-outline-light"
                                     style="padding:0 15px 0 15px; margin-right:5px"
                                     data-bind="click: ap.onConfigure">
@@ -343,256 +345,265 @@
 
     <section id="configuration" data-bind="slideVisible: !ShowDashboard()">
         <div style="padding-left:15px;margin-top:7px">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            <span class="fa fa-database"></span> Data Source
-                        </div>
-                        <div class="card-body">
-                            <div class="form-check">
-                                <input class="form-check-input" name="data-source-option" type="radio" id="ds1" checked value="1" />
-                                <label class="form-check-label" for="ds1">
-                                    Use Billing Manager Data
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" name="data-source-option" type="radio" id="ds2" value="2" />
-                                <label class="form-check-label" for="ds2">
-                                    Use Custom Data File
-                                </label>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label>Select Directory</label>
-                                    <div class="input-group">
-                                        <input type="text" name="directory" class="form-control form-control-sm" style="max-width:200px" />
-                                        <div class="input-group-append">
-                                            <button class="btn btn-sm btn-secondary">Browse...</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>
-                                        Select File Layout
-                                    </label>
-                                    <div class="input-group">
-                                        <input type="text" name="file-layout" class="form-control form-control-sm" style="max-width:200px" />
-                                        <div class="input-group-append">
-                                            <button class="btn btn-sm btn-secondary">Browse...</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:5px">
-                        <div class="card-header bg-secondary text-white">
-                            <span class="fa fa-database"></span> Payee Data
-                        </div>
-                        <div class="card-body">
-                            <div class="form-check">
-                                <input class="form-check-input" name="payee-data-option" checked type="radio" id="pd1" value="1" />
-                                <label class="form-check-label" for="pd1">
-                                    Use Pharmacy Manager Data
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" name="payee-data-option" type="radio" id="pd2" value="2" />
-                                <label class="form-check-label" for="pd2">
-                                    Manage Payee List Separatley
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-header bg-dark text-white" style="font-size:large">
+                    <span class="fa fa-cogs"></span> Account Payable Configuration
+                    <button type="button" class="close" data-bind="click: ap.onDismissConfigure" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            Notification Settings
-                        </div>
-                        <div class="card-body">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="foo" id="notification" />
-                                <label class="form-check-label" for="notification">
-                                    Generate AP Cycle Summary Notification
-                                </label>
-                            </div>
-                            <section id="notification-options" style="margin-left:25px">
-                                <div class="form-check">
-                                    <input class="form-check-input" name="notification-option" type="radio" id="ex1" value="1" checked />
-                                    <label class="form-check-label" for="ex1">
-                                        After Each AP Cycle
-                                    </label>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    <span class="fa fa-database"></span> Data Source
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="notification-option" type="radio" id="ex2" value="2" />
-                                    <label class="form-check-label" for="ex2">
-                                        Weekly
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="notification-option" type="radio" id="ex3" value="3" />
-                                    <label class="form-check-label" for="ex3">
-                                        Monthly
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" name="notification-option" type="radio" id="ex4" value="4" />
-                                    <label class="form-check-label" for="ex4">
-                                        Only Upon Error
-                                    </label>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:5px">
-                        <div class="card-header bg-secondary text-white">
-                            Distribution List
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="input-group" style="margin-top:10px">                                       
-                                        <select id="users" class="form-control form-control-sm" >
-                                            <option>Aaron Fredrick</option>
-                                            <option>Adam Trunnell</option>
-                                            <option>Billy Buckles</option>
-                                            <option>Ojal Acharya</option>
-                                            <option>Todd Evans</option>
-                                        </select>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-sm btn-secondary">Add</button>
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="data-source-option" type="radio" id="ds1" checked value="1" />
+                                        <label class="form-check-label" for="ds1">
+                                            Use Billing Manager Data
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="data-source-option" type="radio" id="ds2" value="2" />
+                                        <label class="form-check-label" for="ds2">
+                                            Use Custom Data File
+                                        </label>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Select Directory</label>
+                                            <div class="input-group">
+                                                <input type="text" name="directory" class="form-control form-control-sm" style="max-width:200px" />
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-sm btn-secondary">Browse...</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>
+                                                Select File Layout
+                                            </label>
+                                            <div class="input-group">
+                                                <input type="text" name="file-layout" class="form-control form-control-sm" style="max-width:200px" />
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-sm btn-secondary">Browse...</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-7">
-                                    <table class="table">
-                                        @*<thead>
-                                            <tr>
-                                                <th width="50"></th>
-                                                <th>User Name</th>
-                                                <th>Date Added</th>
-                                            </tr>
-                                        </thead>*@
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-danger">
-                                                        <span class="fa fa-trash-o"></span>
-                                                    </button>
-                                                </td>
-                                                <td>Teresa Thompson</td>
-                                                <td>01/22/2019</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <button class="btn btn-sm btn-outline-danger">
-                                                        <span class="fa fa-trash-o"></span>
-                                                    </button>
-                                                </td>
-                                                <td>Major Grimes</td>
-                                                <td>04/05/2018</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            </div>
+                            <div class="card" style="margin-top:5px">
+                                <div class="card-header bg-secondary text-white">
+                                    <span class="fa fa-database"></span> Payee Data
                                 </div>
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="payee-data-option" checked type="radio" id="pd1" value="1" />
+                                        <label class="form-check-label" for="pd1">
+                                            Use Pharmacy Manager Data
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="payee-data-option" type="radio" id="pd2" value="2" />
+                                        <label class="form-check-label" for="pd2">
+                                            Manage Payee List Separatley
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header bg-secondary text-white">
+                                    Notification Settings
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="foo" id="notification" />
+                                        <label class="form-check-label" for="notification">
+                                            Generate AP Cycle Summary Notification
+                                        </label>
+                                    </div>
+                                    <section id="notification-options" style="margin-left:25px">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="notification-option" type="radio" id="ex1" value="1" checked />
+                                            <label class="form-check-label" for="ex1">
+                                                After Each AP Cycle
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="notification-option" type="radio" id="ex2" value="2" />
+                                            <label class="form-check-label" for="ex2">
+                                                Weekly
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="notification-option" type="radio" id="ex3" value="3" />
+                                            <label class="form-check-label" for="ex3">
+                                                Monthly
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="notification-option" type="radio" id="ex4" value="4" />
+                                            <label class="form-check-label" for="ex4">
+                                                Only Upon Error
+                                            </label>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="card" style="margin-top:5px">
+                                <div class="card-header bg-secondary text-white">
+                                    Distribution List
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <div class="input-group" style="margin-top:10px">
+                                                <select id="users" class="form-control form-control-sm">
+                                                    <option>Aaron Fredrick</option>
+                                                    <option>Adam Trunnell</option>
+                                                    <option>Billy Buckles</option>
+                                                    <option>Ojal Acharya</option>
+                                                    <option>Todd Evans</option>
+                                                </select>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-sm btn-secondary">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <table class="table">
+                                                @*<thead>
+                                        <tr>
+                                            <th width="50"></th>
+                                            <th>User Name</th>
+                                            <th>Date Added</th>
+                                        </tr>
+                                    </thead>*@
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-outline-danger">
+                                                                <span class="fa fa-trash-o"></span>
+                                                            </button>
+                                                        </td>
+                                                        <td>Teresa Thompson</td>
+                                                        <td>01/22/2019</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-outline-danger">
+                                                                <span class="fa fa-trash-o"></span>
+                                                            </button>
+                                                        </td>
+                                                        <td>Major Grimes</td>
+                                                        <td>04/05/2018</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" style="margin-top:5px">
-                        <div class="card-header bg-secondary text-white">
-                            General Options
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Starting Check #</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label>Automatic AP Cycles</label><br />
-                                        <input type="checkbox" checked data-width="150" data-onstyle="secondary" data-toggle="toggle">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                
-                                <div class="col-lg-4">
-                                    <label>AP Batch Name</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-batch-name" type="radio" id="bn1" value="1" checked />
-                                        <label class="form-check-label" for="ex1">
-                                            Date
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-batch-name" type="radio" id="bn2" value="2" />
-                                        <label class="form-check-label" for="ex2">
-                                            Incrementing Value
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-batch-name" type="radio" id="bn3" value="3" />
-                                        <label class="form-check-label" for="ex3">
-                                            Value
-                                        </label>
-                                        <input type="text" name="batch-name-value" />
-                                    </div>
+                            <div class="card" style="margin-top:5px">
+                                <div class="card-header bg-secondary text-white">
+                                    General Options
                                 </div>
-                                <div class="col-lg-4">
-                                    <label>Consolidate Payments</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
-                                        <label class="form-check-label" for="ac1">
-                                            Payment Center ID
-                                        </label>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Starting Check #</label>
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Automatic AP Cycles</label><br />
+                                                <input type="checkbox" checked data-width="150" data-onstyle="secondary" data-toggle="toggle">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
-                                        <label class="form-check-label" for="ac2">
-                                            NCPDP #
-                                        </label>
+                                    <div class="row">
+
+                                        <div class="col-lg-4">
+                                            <label>AP Batch Name</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-batch-name" type="radio" id="bn1" value="1" checked />
+                                                <label class="form-check-label" for="ex1">
+                                                    Date
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-batch-name" type="radio" id="bn2" value="2" />
+                                                <label class="form-check-label" for="ex2">
+                                                    Incrementing Value
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-batch-name" type="radio" id="bn3" value="3" />
+                                                <label class="form-check-label" for="ex3">
+                                                    Value
+                                                </label>
+                                                <input type="text" name="batch-name-value" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Consolidate Payments</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
+                                                <label class="form-check-label" for="ac1">
+                                                    Payment Center ID
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
+                                                <label class="form-check-label" for="ac2">
+                                                    NCPDP #
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
+                                                <label class="form-check-label" for="ac3">
+                                                    Affiliate ID
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac4" value="4" />
+                                                <label class="form-check-label" for="ac4">
+                                                    NPI #
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Payee Files Stored To:</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="payee-storage" type="radio" id="ps1" value="1" checked />
+                                                <label class="form-check-label" for="ps1">
+                                                    SC File Manager (Cloud Storage)
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="payee-storage" type="radio" id="ps2" value="2" />
+                                                <label class="form-check-label" for="ps2">
+                                                    Select Location
+                                                </label>
+                                                <button class="btn btn-secondary btn-sm">Browse...</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
-                                        <label class="form-check-label" for="ac3">
-                                            Affiliate ID
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="ap-consolidate" type="radio" id="ac4" value="4" />
-                                        <label class="form-check-label" for="ac4">
-                                            NPI #
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Payee Files Stored To:</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="payee-storage" type="radio" id="ps1" value="1" checked />
-                                        <label class="form-check-label" for="ps1">
-                                            SC File Manager (Cloud Storage)
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="payee-storage" type="radio" id="ps2" value="2" />
-                                        <label class="form-check-label" for="ps2">
-                                            Select Location
-                                        </label>
-                                        <button class="btn btn-secondary btn-sm">Browse...</button>
-                                    </div>                                    
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
 

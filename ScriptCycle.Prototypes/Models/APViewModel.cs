@@ -8,9 +8,11 @@ namespace ScriptCycle.Prototypes.Models {
         public decimal? AvgMonth { get; set; }
         public decimal? AvgPaymentCount { get; set; }
         public decimal? AvgClaimCount { get; set; }
-        public bool? ShowDashboard { get; set; } = true;
-        public bool? ShowDetails { get; set; } = false;
-        public bool? ShowCheckResults { get; set; } = false;
+        public bool ShowDashboard { get; set; } = true;
+        public bool ShowDetails { get; set; } = false;
+        public bool ShowCheckResults { get; set; } = false;
+        public bool ShowUpload { get; set; } = false;
+        public bool ShowConfig { get; set; } = false;
         public List<BillingCycleRecord> BillingCycleRecords { get; set; } = new List<BillingCycleRecord>();
         public List<PayeeDetailRecord> PayeeDetailRecords { get; set; } = new List<PayeeDetailRecord>();
         public ClaimDetailModel ClaimDetail = new ClaimDetailModel {

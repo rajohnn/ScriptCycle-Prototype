@@ -40,6 +40,12 @@
         var show = ap.vm.ShowDashboard();
         ap.vm.ShowDashboard(!show);
     },
+    onDismissConfigure: function () {
+        ap.vm.ShowDashboard(true);
+    },
+    onUpload: function () {
+        $("#upload-modal").modal("show");
+    },
     onSearchCheckNumber: function () {        
         $("#check-modal").modal("show");
     },
