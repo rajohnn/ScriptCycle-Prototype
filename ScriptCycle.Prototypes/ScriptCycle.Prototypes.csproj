@@ -359,6 +359,7 @@
     <Content Include="Views\AP\_ModalCheckSearch.cshtml" />
     <Content Include="Views\AP\_ModalCheck.cshtml" />
     <Content Include="Views\AP\_ModalUpload.cshtml" />
+    <Content Include="Views\AP\_Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

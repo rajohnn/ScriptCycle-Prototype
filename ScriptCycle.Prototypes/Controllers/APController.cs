@@ -188,5 +188,147 @@ namespace ScriptCycle.Prototypes.Controllers {
 
             return View(vm);
         }
+
+        [HttpGet]
+        public JsonResult GetCycles() {
+            var list = new List<BillingCycleDto> {
+                new BillingCycleDto { Date = "11/01/2018", ID = 11, Name = "11-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "10/01/2018", ID = 10, Name = "10-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "09/01/2018", ID = 9, Name = "09-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "08/01/2018", ID = 8, Name = "08-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "07/01/2018", ID = 7, Name = "07-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "06/01/2018", ID = 6, Name = "06-01-2018, Batch Name" }
+            };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetClaimDetails() {
+            var list = new List<ClaimDetailDto> {
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465821",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524677",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465822",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524678",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465823",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524679",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465824",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524687",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465825",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524697",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465826",
+                    RxDate = "10/01/2018",
+                    NCPDP = "213533",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465827",
+                    RxDate = "10/01/2018",
+                    NCPDP = "2342333",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465828",
+                    RxDate = "10/01/2018",
+                    NCPDP = "34243324",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                }
+            };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
+
+    
 }

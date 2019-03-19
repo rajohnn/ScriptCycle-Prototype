@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="~/Content/steptherapy.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.css" rel="stylesheet">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+   <style>
+       #form .dx-fieldset {
+           height: 500px;
+       }
+    </style>
 }
 
 @Html.Partial("_ModalCheck")
 @Html.Partial("_ModalUpload")
 
-<section id="presentation-headers">
+<section id="presentation-headers" style="display:none" data-bind="visible: true">
     <div id="ribbon">
         <div style="background-color:#77bef5;margin-top:6px;">
             <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
@@ -24,31 +29,31 @@
                     AP Dashboard
                 </a>
             </div>
-
             <span class="pull-right">
                 <div id="app-toolbar" class="toolbar-container" style="margin-top:6px;padding-left:15px;padding-right:15px">
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <button id="tbb-export" type="button" class="btn btn-default text-primary">
-                            <span class="fa fa-file-excel-o"></span> Export
-                        </button>
-                        <button id="tbb-print" type="button" class="btn btn-default text-primary">
-                            <span class="fa fa-print"></span> Print
-                        </button>
-                        <button id="tbb-copy" type="button" class="btn btn-default text-primary">
-                            <span class="fa fa-copy"></span> Copy
-                        </button>
+                   
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button id="tbb-export" type="button" class="btn btn-default text-primary">
+                                <span class="fa fa-file-excel-o"></span> Export
+                            </button>
+                            <button id="tbb-print" type="button" class="btn btn-default text-primary">
+                                <span class="fa fa-print"></span> Print
+                            </button>
+                            <button id="tbb-copy" type="button" class="btn btn-default text-primary">
+                                <span class="fa fa-copy"></span> Copy
+                            </button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Save">
+                            <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Save">
+                            <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-primary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
+                                <span class="fa fa-save"></span> Save
+                            </button>
+                        </div>
                     </div>
-                    <div class="btn-group" role="group" aria-label="Save">
-                        <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
-                            <span class="fa fa-trash"></span>
-                        </button>
-                    </div>
-                    <div class="btn-group" role="group" aria-label="Save">
-                        <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-primary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
-                            <span class="fa fa-save"></span> Save
-                        </button>
-                    </div>
-                </div>
             </span>
         </div>
     </div>    
@@ -60,30 +65,48 @@
                 </div>
                 <div class="col-lg-8">
                     <span id="function-panel" class="pull-right">
-                        <div class="input-group input-group-sm">
-                            <button type="button" class="btn btn-sm btn-default" data-bind="click: ap.onUpload" style="margin-right:5px">
-                                <span class="fa fa-cloud-upload"></span> Upload File
-                            </button>
-                            <button type="button"
-                                    data-toggle="button"                                    
-                                    aria-pressed="true"
-                                    autocomplete="off"
-                                    class-toggle="btn-outline-light"
-                                    class="btn btn-sm btn-outline-light"
-                                    style="padding:0 15px 0 15px; margin-right:5px"
-                                    data-bind="click: ap.onConfigure">
-                                <span class="fa fa-cogs"></span> Configure
-                            </button>
+                        <div id="dashboard-toolbars" data-bind="visible: !ShowAPDetails()">
+                            <div class="input-group input-group-sm">
+                                <button type="button" class="btn btn-sm btn-default" data-bind="click: ap.onDetails" style="margin-right: 5px">
+                                    <span class="fa fa-navicon"></span> Claim Details
+                                </button>
+                                <button type="button" class="btn btn-sm btn-default" data-bind="click: ap.onUpload" style="margin-right:5px">
+                                    <span class="fa fa-cloud-upload"></span> Upload File
+                                </button>
+                                <button type="button"
+                                        data-toggle="button"
+                                        aria-pressed="true"
+                                        autocomplete="off"
+                                        class-toggle="btn-outline-light"
+                                        class="btn btn-sm btn-outline-light"
+                                        style="padding:0 15px 0 15px; margin-right:5px"
+                                        data-bind="click: ap.onConfigure">
+                                    <span class="fa fa-cogs"></span> Configure
+                                </button>
 
-                            <div class="input-group-prepend">
-                                <span class="input-group-text small bg-white">
-                                    Check #
-                                </span>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text small bg-white">
+                                        Check #
+                                    </span>
+                                </div>
+                                <input id="check_number" class="form-control" type="text" placeholder="Example: 16458" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-sm btn-secondary" data-bind="click: ap.onSearchCheckNumber">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </div>
                             </div>
-                            <input id="check_number" class="form-control" type="text" placeholder="Example: 16458" />
-                            <div class="input-group-append">
-                                <button class="btn btn-sm btn-secondary" data-bind="click: ap.onSearchCheckNumber">
-                                    <span class="fa fa-search"></span>
+                        </div>
+                        <div id="detail-toolbars" data-bind="visible: ShowAPDetails">
+                            <div class="input-group input-group-sm">
+                                <button type="button" class="btn btn-sm btn-default" style="margin-right: 5px">
+                                    Open Details
+                                </button>
+                                <button type="button" class="btn btn-sm btn-default" style="margin-right:5px">
+                                    Open TX Lookup
+                                </button>
+                                <button type="button" class="btn btn-sm btn-default" style="margin-right:5px">
+                                    Open Paid Claims
                                 </button>
                             </div>
                         </div>
@@ -96,504 +119,505 @@
 
 <div id="ap-view" style="display:none;padding-left:15px;padding-right:15px" data-bind="visible: true">
 
-    <section id="dashboard" data-bind="slideVisible: ShowDashboard">
-        <section id="dashboard-cards">
-            <div class="row" style="margin-top:7px">
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <h2 data-bind="currency: AnnualTotal"></h2>
-                                    Fiscal Year
-                                </div>
-                                <div class="col-lg-3 text-secondary text-center">
-                                    <span class="fa fa-dollar fa-5x"></span>
+    <section id="dashboard" >
+        <section id="dashboard-view" data-bind="slideVisible: ShowDashboard">
+            <div id="dashboard-cards">
+                <div class="row" style="margin-top:7px">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h4 data-bind="currency: AnnualTotal"></h4>
+                                        Fiscal Year
+                                    </div>
+                                    <div class="col-lg-3 text-secondary text-center">
+                                        <span class="fa fa-dollar fa-5x"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer bg-secondary text-white">
-                            Annual Total: May 2018 - Current
+                            <div class="card-footer bg-secondary text-white">
+                                Annual Total: May 2018 - Current
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <h2>
-                                        <span data-bind="number: AvgMonth, precision: 2"></span>
-                                    </h2>
-                                    Average Per Month
-                                </div>
-                                <div class="col-lg-3 text-secondary text-center">
-                                    <span class="fa fa-arrows-h fa-5x"></span>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h4>
+                                            <span data-bind="number: AvgMonth, precision: 2"></span>
+                                        </h4>
+                                        Average Per Month
+                                    </div>
+                                    <div class="col-lg-3 text-secondary text-center">
+                                        <span class="fa fa-arrows-h fa-5x"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer bg-secondary text-white">
-                            Avg. Payment per month: May 2018 - Current
+                            <div class="card-footer bg-secondary text-white">
+                                Avg. Payment per month: May 2018 - Current
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <h2>
-                                        <span data-bind="number: AvgClaimCount, precision: 0"></span>
-                                    </h2>
-                                    Average claim count per month
-                                </div>
-                                <div class="col-lg-3 text-secondary text-center">
-                                    <span class="fa fa-file-text-o fa-5x"></span>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h4>
+                                            <span data-bind="number: AvgClaimCount, precision: 0"></span>
+                                        </h4>
+                                        Average claim count per month
+                                    </div>
+                                    <div class="col-lg-3 text-secondary text-center">
+                                        <span class="fa fa-file-text-o fa-5x"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer bg-secondary text-white">
-                            Avg. Claim: May 2018  - Current
+                            <div class="card-footer bg-secondary text-white">
+                                Avg. Claim: May 2018  - Current
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <h2>
-                                        <span data-bind="number: AvgPaymentCount, precision: 0"></span>
-                                    </h2>
-                                    Average payment count per month
-                                </div>
-                                <div class="col-lg-3 text-secondary text-center">
-                                    <span class="fa fa-money fa-5x"></span>
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <h4>
+                                            <span data-bind="number: AvgPaymentCount, precision: 0"></span>
+                                        </h4>
+                                        Average payment count per month
+                                    </div>
+                                    <div class="col-lg-3 text-secondary text-center">
+                                        <span class="fa fa-money fa-5x"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer bg-secondary text-white">
-                            Avg. Payment Count: May 2018  - Current
+                            <div class="card-footer bg-secondary text-white">
+                                Avg. Payment Count: May 2018  - Current
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <hr style="margin:9px" />
-        <div class="row">
-            <div class="col-lg-5">
-                <table class="table">
-                    <thead class="bg-white text-secondary">
-                        <tr>
-                            <th width="120px" class="text-left">Cycle Status</th>
-                            <th class="text-right">Billing Date</th>
-                            <th class="text-right">Pharmacy Paid</th>
-                            <th class="text-right">Unique Payments</th>
-                            <th class="text-right">Claim Count</th>
-                            <th class="text-center"></th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: BillingCycleRecords">
-                        <tr>
-                            <td>
-                                <span data-bind="if: CycleStatus() == 'Complete'">
-                                    <span class="fa fa-check-circle-o text-info"></span>
-                                </span>
-                                <span data-bind="if: CycleStatus() == 'Processing'">
-                                    <span class="fa fa-spin fa-spinner text-info"></span>
-                                </span>
-                                <span data-bind="text: CycleStatus"></span>
-                            </td>
-                            <td class="text-right" data-bind="text: moment(Date()).format('L')"></td>
-                            <td class="text-right" data-bind="currency: PharmacyPaid"></td>
-                            <td class="text-right" data-bind="number: UniquePayments"></td>
-                            <td class="text-right" data-bind="number: ClaimCount"></td>
-                            <td class="text-center">
-                                <a href="#" style="text-decoration:underline" data-bind="click: ap.onDisplayDetails">
-                                    Claims
-                                </a>
-                                @*<button class="btn btn-sm btn-secondary" data-bind="click: ap.onDisplayDetails">Claims</button>*@
-                                @*<button class="btn btn-sm btn-secondary" data-bind="click: ap.onDisplaySummary">Summary</button>*@
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-7">
+            <hr style="margin:9px" />
+            <div class="row">
+                <div class="col-lg-5">
+                    <table class="table">
+                        <thead class="bg-white text-secondary">
+                            <tr>
+                                <th width="120px" class="text-left">Cycle Status</th>
+                                <th class="text-right">Billing Date</th>
+                                <th class="text-right">Pharmacy Paid</th>
+                                <th class="text-right">Unique Payments</th>
+                                <th class="text-right">Claim Count</th>
+                                <th class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: BillingCycleRecords">
+                            <tr>
+                                <td>
+                                    <span data-bind="if: CycleStatus() == 'Complete'">
+                                        <span class="fa fa-check-circle-o text-info"></span>
+                                    </span>
+                                    <span data-bind="if: CycleStatus() == 'Processing'">
+                                        <span class="fa fa-spin fa-spinner text-info"></span>
+                                    </span>
+                                    <span data-bind="text: CycleStatus"></span>
+                                </td>
+                                <td class="text-right" data-bind="text: moment(Date()).format('L')"></td>
+                                <td class="text-right" data-bind="currency: PharmacyPaid"></td>
+                                <td class="text-right" data-bind="number: UniquePayments"></td>
+                                <td class="text-right" data-bind="number: ClaimCount"></td>
+                                <td class="text-center">
+                                    <a href="#" style="text-decoration:underline" data-bind="click: ap.onDisplayDetails">
+                                        Claims
+                                    </a>
+                                    @*<button class="btn btn-sm btn-secondary" data-bind="click: ap.onDisplayDetails">Claims</button>*@
+                                    @*<button class="btn btn-sm btn-secondary" data-bind="click: ap.onDisplaySummary">Summary</button>*@
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-7">
 
-                <section id="billing-compare-component" data-bind="slideVisible: ShowDetails">
-                    <div class="card">
-                        <div class="card-header bg-secondary text-white">
-                            <button type="button" class="close pull-right" data-bind="click: ap.onDismissDetails"><span aria-hidden="true">&times;</span></button>
-                            <div>Billing Cycle 03/01/2019</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h5>Original Billing Data</h5>
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td><span class="fa fa-check-circle text-info"></span> Pharmacy Paid</td>
-                                                <td class="text-right">$240.749.81</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="fa fa-check-circle text-info"></span> Unique Payments</td>
-                                                <td class="text-right">1,844</td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="fa fa-check-circle text-info"></span> Claim Count</td>
-                                                <td class="text-right">25,693</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <section id="billing-compare-component" data-bind="slideVisible: ShowDetails">
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white">
+                                <button type="button" class="close pull-right" data-bind="click: ap.onDismissDetails"><span aria-hidden="true">&times;</span></button>
+                                <div>Billing Cycle 03/01/2019</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>Original Billing Data</h5>
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td><span class="fa fa-check-circle text-info"></span> Pharmacy Paid</td>
+                                                    <td class="text-right">$240.749.81</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="fa fa-check-circle text-info"></span> Unique Payments</td>
+                                                    <td class="text-right">1,844</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="fa fa-check-circle text-info"></span> Claim Count</td>
+                                                    <td class="text-right">25,693</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h5>AP Cycle Data Summary</h5>
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Pharmacy Paid</td>
+                                                    <td class="text-right">$240.749.81</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Unique Payments</td>
+                                                    <td class="text-right">1,844</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Claim Count</td>
+                                                    <td class="text-right">25,693</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <h5>AP Cycle Data Summary</h5>
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>Pharmacy Paid</td>
-                                                <td class="text-right">$240.749.81</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Unique Payments</td>
-                                                <td class="text-right">1,844</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Claim Count</td>
-                                                <td class="text-right">25,693</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <section id="batches">
+                                            <span style="margin-left:50px;font-size:14pt" class="text-black-50">Batch 1 Summary</span>
+                                            <div class="row">
+                                                <div class="col-lg-5 offset-lg-1">
+
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Ingredient Cost</td>
+                                                                <td class="text-right">$200,000.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Total ACH</td>
+                                                                <td class="text-right">1,000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Claims</td>
+                                                                <td class="text-right">24,000</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Total Dispense Fee's</td>
+                                                                <td class="text-right">$40,749.81</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Total Paper Checks</td>
+                                                                <td class="text-right">25,693</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Reversals</td>
+                                                                <td class="text-right">1,693</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="card-footer bg-white">
+                                <span class="pull-right">
+                                    <button class="btn btn-sm btn-default" data-bind="click: ap.onDismissDetails">
+                                        <span class="fa fa-close"></span> Dismiss
+                                    </button>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <section id="batches">
-                                        <span style="margin-left:50px;font-size:14pt" class="text-black-50">Batch 1 Summary</span>
+                                    <button class="btn btn-sm btn-secondary" data-bind="click: ap.onViewClaimsFile">
+                                        <span class="fa fa-navicon"></span> View Claim Details
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary" data-bind="click: ap.onViewClaimsFile">
+                                        <span class="fa fa-eye"></span> SHOW ALL
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <hr />
+                    </section>
+                    <section id="chart-placeholder">
+                        <div>
+                            <div id="chart"></div>
+                        </div>
+                    </section>
+                    <hr />
+                </div>
+            </div>
+        </section>       
+        <section id="configuration" data-bind="slideVisible: ShowConfig()">
+            <div style="padding-left:15px;margin-top:7px">
+                <div class="card">
+                    <div class="card-header bg-dark text-white" style="font-size:large">
+                        <span class="fa fa-cogs"></span> Account Payable Configuration
+                        <button type="button" class="close" data-bind="click: ap.onDismissConfigure" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header bg-secondary text-white">
+                                        <span class="fa fa-database"></span> Data Source
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="data-source-option" type="radio" id="ds1" checked value="1" />
+                                            <label class="form-check-label" for="ds1">
+                                                Use Billing Manager Data
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="data-source-option" type="radio" id="ds2" value="2" />
+                                            <label class="form-check-label" for="ds2">
+                                                Use Custom Data File
+                                            </label>
+                                        </div>
+                                        <hr />
                                         <div class="row">
-                                            <div class="col-lg-5 offset-lg-1">
-
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Ingredient Cost</td>
-                                                            <td class="text-right">$200,000.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Total ACH</td>
-                                                            <td class="text-right">1,000</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Claims</td>
-                                                            <td class="text-right">24,000</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            <div class="col-lg-6">
+                                                <label>Select Directory</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="directory" class="form-control form-control-sm" style="max-width:200px" />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-sm btn-secondary">Browse...</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-lg-6">
+                                                <label>
+                                                    Select File Layout
+                                                </label>
+                                                <div class="input-group">
+                                                    <input type="text" name="file-layout" class="form-control form-control-sm" style="max-width:200px" />
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-sm btn-secondary">Browse...</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top:5px">
+                                    <div class="card-header bg-secondary text-white">
+                                        <span class="fa fa-database"></span> Payee Data
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="payee-data-option" checked type="radio" id="pd1" value="1" />
+                                            <label class="form-check-label" for="pd1">
+                                                Use Pharmacy Manager Data
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="payee-data-option" type="radio" id="pd2" value="2" />
+                                            <label class="form-check-label" for="pd2">
+                                                Manage Payee List Separatley
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header bg-secondary text-white">
+                                        Notification Settings
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="foo" id="notification" />
+                                            <label class="form-check-label" for="notification">
+                                                Generate AP Cycle Summary Notification
+                                            </label>
+                                        </div>
+                                        <section id="notification-options" style="margin-left:25px">
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="notification-option" type="radio" id="ex1" value="1" checked />
+                                                <label class="form-check-label" for="ex1">
+                                                    After Each AP Cycle
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="notification-option" type="radio" id="ex2" value="2" />
+                                                <label class="form-check-label" for="ex2">
+                                                    Weekly
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="notification-option" type="radio" id="ex3" value="3" />
+                                                <label class="form-check-label" for="ex3">
+                                                    Monthly
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="notification-option" type="radio" id="ex4" value="4" />
+                                                <label class="form-check-label" for="ex4">
+                                                    Only Upon Error
+                                                </label>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top:5px">
+                                    <div class="card-header bg-secondary text-white">
+                                        Distribution List
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <div class="input-group" style="margin-top:10px">
+                                                    <select id="users" class="form-control form-control-sm">
+                                                        <option>Aaron Fredrick</option>
+                                                        <option>Adam Trunnell</option>
+                                                        <option>Billy Buckles</option>
+                                                        <option>Ojal Acharya</option>
+                                                        <option>Todd Evans</option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-sm btn-secondary">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-7">
                                                 <table class="table">
+                                                    @*<thead>
+                                                    <tr>
+                                                        <th width="50"></th>
+                                                        <th>User Name</th>
+                                                        <th>Date Added</th>
+                                                    </tr>
+                                                </thead>*@
                                                     <tbody>
                                                         <tr>
-                                                            <td>Total Dispense Fee's</td>
-                                                            <td class="text-right">$40,749.81</td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-outline-danger">
+                                                                    <span class="fa fa-trash-o"></span>
+                                                                </button>
+                                                            </td>
+                                                            <td>Teresa Thompson</td>
+                                                            <td>01/22/2019</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Total Paper Checks</td>
-                                                            <td class="text-right">25,693</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Reversals</td>
-                                                            <td class="text-right">1,693</td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-outline-danger">
+                                                                    <span class="fa fa-trash-o"></span>
+                                                                </button>
+                                                            </td>
+                                                            <td>Major Grimes</td>
+                                                            <td>04/05/2018</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
+
                                         </div>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-white">
-                            <span class="pull-right">
-                                <button class="btn btn-sm btn-default" data-bind="click: ap.onDismissDetails">
-                                    <span class="fa fa-close"></span> Dismiss
-                                </button>
-
-                                <button class="btn btn-sm btn-secondary" data-bind="click: ap.onViewClaimsFile">
-                                    <span class="fa fa-navicon"></span> View Claim Details
-                                </button>
-                                <button class="btn btn-sm btn-secondary" data-bind="click: ap.onViewClaimsFile">
-                                    <span class="fa fa-eye"></span> SHOW ALL
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                    <hr />
-                </section>
-                <section id="chart-placeholder">
-                    <div>
-                        <div id="chart"></div>
-                    </div>
-                </section>
-                <hr />
-            </div>
-        </div>
-    </section>
-
-    <section id="configuration" data-bind="slideVisible: !ShowDashboard()">
-        <div style="padding-left:15px;margin-top:7px">
-            <div class="card">
-                <div class="card-header bg-dark text-white" style="font-size:large">
-                    <span class="fa fa-cogs"></span> Account Payable Configuration
-                    <button type="button" class="close" data-bind="click: ap.onDismissConfigure" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header bg-secondary text-white">
-                                    <span class="fa fa-database"></span> Data Source
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="data-source-option" type="radio" id="ds1" checked value="1" />
-                                        <label class="form-check-label" for="ds1">
-                                            Use Billing Manager Data
-                                        </label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="data-source-option" type="radio" id="ds2" value="2" />
-                                        <label class="form-check-label" for="ds2">
-                                            Use Custom Data File
-                                        </label>
+                                </div>
+                                <div class="card" style="margin-top:5px">
+                                    <div class="card-header bg-secondary text-white">
+                                        General Options
                                     </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label>Select Directory</label>
-                                            <div class="input-group">
-                                                <input type="text" name="directory" class="form-control form-control-sm" style="max-width:200px" />
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-sm btn-secondary">Browse...</button>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Starting Check #</label>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Automatic AP Cycles</label><br />
+                                                    <input type="checkbox" checked data-width="150" data-onstyle="secondary" data-toggle="toggle">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <label>
-                                                Select File Layout
-                                            </label>
-                                            <div class="input-group">
-                                                <input type="text" name="file-layout" class="form-control form-control-sm" style="max-width:200px" />
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-sm btn-secondary">Browse...</button>
+                                        <div class="row">
+
+                                            <div class="col-lg-4">
+                                                <label>AP Batch Name</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-batch-name" type="radio" id="bn1" value="1" checked />
+                                                    <label class="form-check-label" for="ex1">
+                                                        Date
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-batch-name" type="radio" id="bn2" value="2" />
+                                                    <label class="form-check-label" for="ex2">
+                                                        Incrementing Value
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-batch-name" type="radio" id="bn3" value="3" />
+                                                    <label class="form-check-label" for="ex3">
+                                                        Value
+                                                    </label>
+                                                    <input type="text" name="batch-name-value" />
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card" style="margin-top:5px">
-                                <div class="card-header bg-secondary text-white">
-                                    <span class="fa fa-database"></span> Payee Data
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="payee-data-option" checked type="radio" id="pd1" value="1" />
-                                        <label class="form-check-label" for="pd1">
-                                            Use Pharmacy Manager Data
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="payee-data-option" type="radio" id="pd2" value="2" />
-                                        <label class="form-check-label" for="pd2">
-                                            Manage Payee List Separatley
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header bg-secondary text-white">
-                                    Notification Settings
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="foo" id="notification" />
-                                        <label class="form-check-label" for="notification">
-                                            Generate AP Cycle Summary Notification
-                                        </label>
-                                    </div>
-                                    <section id="notification-options" style="margin-left:25px">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="notification-option" type="radio" id="ex1" value="1" checked />
-                                            <label class="form-check-label" for="ex1">
-                                                After Each AP Cycle
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="notification-option" type="radio" id="ex2" value="2" />
-                                            <label class="form-check-label" for="ex2">
-                                                Weekly
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="notification-option" type="radio" id="ex3" value="3" />
-                                            <label class="form-check-label" for="ex3">
-                                                Monthly
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="notification-option" type="radio" id="ex4" value="4" />
-                                            <label class="form-check-label" for="ex4">
-                                                Only Upon Error
-                                            </label>
-                                        </div>
-                                    </section>
-                                </div>
-                            </div>
-                            <div class="card" style="margin-top:5px">
-                                <div class="card-header bg-secondary text-white">
-                                    Distribution List
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="input-group" style="margin-top:10px">
-                                                <select id="users" class="form-control form-control-sm">
-                                                    <option>Aaron Fredrick</option>
-                                                    <option>Adam Trunnell</option>
-                                                    <option>Billy Buckles</option>
-                                                    <option>Ojal Acharya</option>
-                                                    <option>Todd Evans</option>
-                                                </select>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-sm btn-secondary">Add</button>
+                                            <div class="col-lg-4">
+                                                <label>Consolidate Payments</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
+                                                    <label class="form-check-label" for="ac1">
+                                                        Payment Center ID
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
+                                                    <label class="form-check-label" for="ac2">
+                                                        NCPDP #
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
+                                                    <label class="form-check-label" for="ac3">
+                                                        Affiliate ID
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-consolidate" type="radio" id="ac4" value="4" />
+                                                    <label class="form-check-label" for="ac4">
+                                                        NPI #
+                                                    </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <table class="table">
-                                                @*<thead>
-                                        <tr>
-                                            <th width="50"></th>
-                                            <th>User Name</th>
-                                            <th>Date Added</th>
-                                        </tr>
-                                    </thead>*@
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-danger">
-                                                                <span class="fa fa-trash-o"></span>
-                                                            </button>
-                                                        </td>
-                                                        <td>Teresa Thompson</td>
-                                                        <td>01/22/2019</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <button class="btn btn-sm btn-outline-danger">
-                                                                <span class="fa fa-trash-o"></span>
-                                                            </button>
-                                                        </td>
-                                                        <td>Major Grimes</td>
-                                                        <td>04/05/2018</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card" style="margin-top:5px">
-                                <div class="card-header bg-secondary text-white">
-                                    General Options
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label>Starting Check #</label>
-                                                <input type="text" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="form-group">
-                                                <label>Automatic AP Cycles</label><br />
-                                                <input type="checkbox" checked data-width="150" data-onstyle="secondary" data-toggle="toggle">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-
-                                        <div class="col-lg-4">
-                                            <label>AP Batch Name</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-batch-name" type="radio" id="bn1" value="1" checked />
-                                                <label class="form-check-label" for="ex1">
-                                                    Date
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-batch-name" type="radio" id="bn2" value="2" />
-                                                <label class="form-check-label" for="ex2">
-                                                    Incrementing Value
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-batch-name" type="radio" id="bn3" value="3" />
-                                                <label class="form-check-label" for="ex3">
-                                                    Value
-                                                </label>
-                                                <input type="text" name="batch-name-value" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>Consolidate Payments</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
-                                                <label class="form-check-label" for="ac1">
-                                                    Payment Center ID
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
-                                                <label class="form-check-label" for="ac2">
-                                                    NCPDP #
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
-                                                <label class="form-check-label" for="ac3">
-                                                    Affiliate ID
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac4" value="4" />
-                                                <label class="form-check-label" for="ac4">
-                                                    NPI #
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <label>Payee Files Stored To:</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="payee-storage" type="radio" id="ps1" value="1" checked />
-                                                <label class="form-check-label" for="ps1">
-                                                    SC File Manager (Cloud Storage)
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="payee-storage" type="radio" id="ps2" value="2" />
-                                                <label class="form-check-label" for="ps2">
-                                                    Select Location
-                                                </label>
-                                                <button class="btn btn-secondary btn-sm">Browse...</button>
+                                            <div class="col-lg-4">
+                                                <label>Payee Files Stored To:</label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="payee-storage" type="radio" id="ps1" value="1" checked />
+                                                    <label class="form-check-label" for="ps1">
+                                                        SC File Manager (Cloud Storage)
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="payee-storage" type="radio" id="ps2" value="2" />
+                                                    <label class="form-check-label" for="ps2">
+                                                        Select Location
+                                                    </label>
+                                                    <button class="btn btn-secondary btn-sm">Browse...</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -602,9 +626,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-            
-        </div>
+        </section>
+    </section> 
+    <section id="details" data-bind="fadeVisible: ShowAPDetails">
+        @Html.Partial("_Details")
     </section>
 
 </div>
@@ -638,6 +665,7 @@
                     pattern: ['#007bff']
                 }
             });
+
 
         });
     </script>

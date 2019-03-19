@@ -78,9 +78,15 @@
             <div class="modal-footer">
                 <span class="pull-right">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">
-                        <span class="fa fa-external-link-square"></span> Display in Claims Details
-                    </button>
+                    <span data-bind="visible: SelectedClaim() != null">
+                        <button type="button" class="btn btn-primary">Open in Tx Lookup</button>
+                        <button type="button" class="btn btn-primary">Open in Paid Claims</button>
+                    </span>
+                    <span data-bind="ifnot: SelectedClaim">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-external-link-square"></span> Display in Claims Details
+                        </button>
+                    </span>
                 </span>
 
             </div>

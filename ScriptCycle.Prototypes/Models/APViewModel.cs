@@ -13,6 +13,8 @@ namespace ScriptCycle.Prototypes.Models {
         public bool ShowCheckResults { get; set; } = false;
         public bool ShowUpload { get; set; } = false;
         public bool ShowConfig { get; set; } = false;
+        public bool ShowAPDetails { get; set; } = false;
+        public ClaimDetailDto SelectedClaim { get; set; }
         public List<BillingCycleRecord> BillingCycleRecords { get; set; } = new List<BillingCycleRecord>();
         public List<PayeeDetailRecord> PayeeDetailRecords { get; set; } = new List<PayeeDetailRecord>();
         public ClaimDetailModel ClaimDetail = new ClaimDetailModel {
@@ -77,5 +79,27 @@ namespace ScriptCycle.Prototypes.Models {
         public string CheckNumber { get; set; }
         public decimal? TotalPharmacyPaid { get; set; }
         public int? TotalClaims { get; set; }
+    }
+
+    public class BillingCycleDto {
+        public int ID { get; set; }
+        public string Date { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class ClaimDetailDto {
+        public string Name { get; set; }
+        public string BillingDate { get; set; }
+        public string ClaimDate { get; set; }
+        public string Rx { get; set; }
+        public string RxDate { get; set; }
+        public string NCPDP { get; set; }
+        public string PharmacyName { get; set; }
+        public string PharmacyChain { get; set; }
+        public string PharmacyChainCode { get; set; }
+        public string Col20180101 { get; set; }
+        public string Code { get; set; }
+        public string NDC { get; set; }
+        public string DrugName { get; set; }
     }
 }
