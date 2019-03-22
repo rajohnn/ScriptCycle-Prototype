@@ -9,6 +9,173 @@ namespace ScriptCycle.Prototypes.Controllers {
     public class APController : Controller {
        
         public ActionResult Index() {
+            var vm = GetMockAPViewModel();
+            return View(vm);
+        }
+
+        public ActionResult Process() {
+            var vm = new APProcessViewModel();
+            return View(vm);
+        }
+
+        public ActionResult Details() {
+            var vm = GetMockAPViewModel();
+            return View(vm);
+        }
+
+        [HttpGet]
+        public JsonResult GetCycles() {
+            var list = new List<BillingCycleDto> {
+                new BillingCycleDto { Date = "11/01/2018", ID = 11, Name = "11-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "10/01/2018", ID = 10, Name = "10-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "09/01/2018", ID = 9, Name = "09-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "08/01/2018", ID = 8, Name = "08-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "07/01/2018", ID = 7, Name = "07-01-2018, Batch Name" },
+                new BillingCycleDto { Date = "06/01/2018", ID = 6, Name = "06-01-2018, Batch Name" }
+            };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetClaimDetails() {
+            var list = new List<ClaimDetailDto> {
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465821",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524677",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465822",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524678",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465823",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524679",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465824",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524687",
+                    PharmacyName = "CVS #45887",
+                    PharmacyChain = "039",
+                    PharmacyChainCode = "039 CVS",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465825",
+                    RxDate = "10/01/2018",
+                    NCPDP = "1524697",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465826",
+                    RxDate = "10/01/2018",
+                    NCPDP = "213533",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465827",
+                    RxDate = "10/01/2018",
+                    NCPDP = "2342333",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                },
+                new ClaimDetailDto {
+                    Name ="20180101",
+                    BillingDate ="01/01/2018",
+                    ClaimDate = "01/10/2018",
+                    Rx = "465828",
+                    RxDate = "10/01/2018",
+                    NCPDP = "34243324",
+                    PharmacyName = "WAG #5541",
+                    PharmacyChain = "226",
+                    PharmacyChainCode = "226 Walgreens",
+                    Col20180101 = "54688-1046-10",
+                    Code = "Zocor 10MG",
+                    NDC = "30",
+                    DrugName = "$82.17"
+                }
+            };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetProcesses() {
+            var list = new List<ProcessRecord>();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetProcessRecords() {
+            var list = GetMockProcessData();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        private APViewModel GetMockAPViewModel() {
             var now = DateTime.Now;
             var startDate = new DateTime(now.Year, now.Month, 1);
             var vm = new APViewModel {
@@ -175,7 +342,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                         TotalClaims = 316,
                         TotalPharmacyPaid = 199058.38M
                     }
-                }                
+                }
             };
             vm.AnnualTotal = vm.BillingCycleRecords.Sum(bc => bc.PharmacyPaid);
             vm.AvgMonth = vm.AnnualTotal / vm.BillingCycleRecords.Count;
@@ -185,148 +352,174 @@ namespace ScriptCycle.Prototypes.Controllers {
 
             vm.AvgClaimCount = claimCountTotal / vm.BillingCycleRecords.Count;
             vm.AvgPaymentCount = paymentCountTotal / vm.BillingCycleRecords.Count;
-
-            return View(vm);
+            return vm;
         }
 
-        [HttpGet]
-        public JsonResult GetCycles() {
-            var list = new List<BillingCycleDto> {
-                new BillingCycleDto { Date = "11/01/2018", ID = 11, Name = "11-01-2018, Batch Name" },
-                new BillingCycleDto { Date = "10/01/2018", ID = 10, Name = "10-01-2018, Batch Name" },
-                new BillingCycleDto { Date = "09/01/2018", ID = 9, Name = "09-01-2018, Batch Name" },
-                new BillingCycleDto { Date = "08/01/2018", ID = 8, Name = "08-01-2018, Batch Name" },
-                new BillingCycleDto { Date = "07/01/2018", ID = 7, Name = "07-01-2018, Batch Name" },
-                new BillingCycleDto { Date = "06/01/2018", ID = 6, Name = "06-01-2018, Batch Name" }
-            };
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public JsonResult GetClaimDetails() {
-            var list = new List<ClaimDetailDto> {
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465821",
-                    RxDate = "10/01/2018",
+        private List<ProcessRecord> GetMockProcessData() {
+            var list = new List<ProcessRecord> {
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
                     NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "039",
+                    PharmacyChainCodeLabel = "039 CVS",
                     PharmacyName = "CVS #45887",
-                    PharmacyChain = "039",
-                    PharmacyChainCode = "039 CVS",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
-                },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465822",
+                    Qty = 30,
                     RxDate = "10/01/2018",
-                    NCPDP = "1524678",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "039",
+                     PharmacyChainCodeLabel = "039 CVS",
                     PharmacyName = "CVS #45887",
-                    PharmacyChain = "039",
-                    PharmacyChainCode = "039 CVS",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
-                },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465823",
+                    Qty = 30,
                     RxDate = "10/01/2018",
-                    NCPDP = "1524679",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "039",
+                     PharmacyChainCodeLabel = "039 CVS",
                     PharmacyName = "CVS #45887",
-                    PharmacyChain = "039",
-                    PharmacyChainCode = "039 CVS",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
-                },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465824",
+                    Qty = 30,
                     RxDate = "10/01/2018",
-                    NCPDP = "1524687",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "039",
+                     PharmacyChainCodeLabel = "039 CVS",
                     PharmacyName = "CVS #45887",
-                    PharmacyChain = "039",
-                    PharmacyChainCode = "039 CVS",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
-                },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465825",
+                    Qty = 30,
                     RxDate = "10/01/2018",
-                    NCPDP = "1524697",
-                    PharmacyName = "WAG #5541",
-                    PharmacyChain = "226",
-                    PharmacyChainCode = "226 Walgreens",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
                 },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465826",
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "039",
+                     PharmacyChainCodeLabel = "039 CVS",
+                    PharmacyName = "CVS #45887",
+                    Qty = 30,
                     RxDate = "10/01/2018",
-                    NCPDP = "213533",
-                    PharmacyName = "WAG #5541",
-                    PharmacyChain = "226",
-                    PharmacyChainCode = "226 Walgreens",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
                 },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465827",
-                    RxDate = "10/01/2018",
-                    NCPDP = "2342333",
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "226",
+                    PharmacyChainCodeLabel = "226 Walgreens",
                     PharmacyName = "WAG #5541",
-                    PharmacyChain = "226",
-                    PharmacyChainCode = "226 Walgreens",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
+                    Qty = 30,
+                    RxDate = "10/01/2018",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
                 },
-                new ClaimDetailDto {
-                    Name ="20180101",
-                    BillingDate ="01/01/2018",
-                    ClaimDate = "01/10/2018",
-                    Rx = "465828",
-                    RxDate = "10/01/2018",
-                    NCPDP = "34243324",
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "226",
+                     PharmacyChainCodeLabel = "226 Walgreens",
                     PharmacyName = "WAG #5541",
-                    PharmacyChain = "226",
-                    PharmacyChainCode = "226 Walgreens",
-                    Col20180101 = "54688-1046-10",
-                    Code = "Zocor 10MG",
-                    NDC = "30",
-                    DrugName = "$82.17"
-                }
+                    Qty = 30,
+                    RxDate = "10/01/2018",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "226",
+                     PharmacyChainCodeLabel = "226 Walgreens",
+                    PharmacyName = "WAG #5541",
+                    Qty = 30,
+                    RxDate = "10/01/2018",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "226",
+                     PharmacyChainCodeLabel = "226 Walgreens",
+                    PharmacyName = "WAG #5541",
+                    Qty = 30,
+                    RxDate = "10/01/2018",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
+                new ProcessRecord{
+                    ClaimCycleDate = "10/01/2018",
+                    DrugName = "Zocor 10MG",
+                    NCPDP = "1524677",
+                    NDC = "54688-1046-10",
+                    PaidDispenseFee = 1.50m,
+                    PaidIngredientCost = 82.17m,
+                    PaidTax = 0.00m,
+                    PharmacyChainCode = "226",
+                     PharmacyChainCodeLabel = "226 Walgreens",
+                    PharmacyName = "WAG #5541",
+                    Qty = 30,
+                    RxDate = "10/01/2018",
+                    RxNumber = "468521",
+                    TotalPharmacyPaid = 83.67m
+                },
             };
-            return Json(list, JsonRequestBehavior.AllowGet);
+            
+            return list;
         }
     }
 

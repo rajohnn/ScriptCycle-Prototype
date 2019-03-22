@@ -1,7 +1,7 @@
 ﻿@using Newtonsoft.Json
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AP - Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles {
@@ -67,9 +67,7 @@
                     <span id="function-panel" class="pull-right">
                         <div id="dashboard-toolbars" data-bind="visible: !ShowAPDetails()">
                             <div class="input-group input-group-sm">
-                                <button type="button" class="btn btn-sm btn-default" data-bind="click: ap.onDetails" style="margin-right: 5px">
-                                    <span class="fa fa-navicon"></span> Claim Details
-                                </button>
+                               
                                 <button type="button" class="btn btn-sm btn-default" data-bind="click: ap.onUpload" style="margin-right:5px">
                                     <span class="fa fa-cloud-upload"></span> Upload File
                                 </button>
@@ -630,9 +628,7 @@
             </div>
         </section>
     </section> 
-    <section id="details" data-bind="fadeVisible: ShowAPDetails">
-        @Html.Partial("_Details")
-    </section>
+    
 
 </div>
 

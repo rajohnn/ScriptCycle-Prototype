@@ -166,6 +166,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\APProcessViewModel.cs" />
     <Compile Include="Models\APViewModel.cs" />
     <Compile Include="Models\DrugSelectionViewModel.cs" />
     <Compile Include="Models\DrugViewDto.cs" />
@@ -212,6 +213,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\ap-details.js" />
+    <Content Include="Scripts\ap-process.js" />
     <Content Include="Scripts\ap.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap-menu.js" />
@@ -262,6 +265,7 @@
     <Content Include="Data\gpi_35.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\sample.json" />
     <None Include="Properties\PublishProfiles\ScriptCyclePrototype - Web Deploy.pubxml" />
     <Content Include="Scripts\d3\README.md" />
     <Content Include="Scripts\d3\LICENSE" />
@@ -360,6 +364,10 @@
     <Content Include="Views\AP\_ModalCheck.cshtml" />
     <Content Include="Views\AP\_ModalUpload.cshtml" />
     <Content Include="Views\AP\_Details.cshtml" />
+    <Content Include="Views\AP\Process.cshtml" />
+    <Content Include="Views\AP\Details.cshtml" />
+    <Content Include="Views\AP\_ModalFiles.cshtml" />
+    <Content Include="Views\AP\_ModalFilePosting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

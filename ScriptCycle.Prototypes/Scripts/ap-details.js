@@ -1,74 +1,24 @@
 ﻿Declare("ap", {
     serverModel: null,
     model: null,
-    vm: null,    
+    vm: null,
     init: function () {
         if (ap.serverModel) {
             ap.model = ko.observable(ko.mapping.fromJS(ap.serverModel));
         }
-        ap.vm = ap.model();       
+        ap.vm = ap.model();
         ko.applyBindings(ap.model);
+
         $("#grid-payees").dxDataGrid({
             dataSource: ap.vm.PayeeDetailRecords,
             selection: { mode: 'single' },
             grouping: { contextMenuEnabled: true },
             groupPanel: { visible: true },
             onSelectionChanged: function (selectedItem) {
-                console.log(selectedItem);               
+                console.log(selectedItem);
             }
         });
-    },
-    getMonthlyPharmacyPayments: function () {
-        var payments = [];
-        payments.push('Payments'); // add chart axis title
-        _.forEach(ap.vm.BillingCycleRecords().reverse(), function (item) {
-            payments.push(item.PharmacyPaid());
-        });
-        return payments;
-    },
-    getPharmacyPaymentDates: function () {
-        var dates = [];
-        _.forEach(ap.vm.BillingCycleRecords(), function (item) {
-            dates.push(moment(item.Date()).format('L'));
-        });
-        return dates;
-    },
-    onDismissDetails: function () {
-        ap.vm.ShowDetails(false);
-    },
-    onDisplayDetails: function () {
-        ap.vm.ShowDetails(true);
-    },
-    onDisplaySummary: function () {
-        ap.vm.ShowDetails(true);
-    },
-    onViewClaimsFile: function () {
-        console.log("on view claims file clicked.");
-    },
-    onConfigure: function () {
-        var show = ap.vm.ShowDashboard();
-        ap.vm.ShowDashboard(!show);
-        ap.vm.ShowConfig(show);
-        ap.vm.ShowAPDetails(false);
-    },
-    onDismissConfigure: function () {
-        ap.vm.ShowDashboard(true);
-        ap.vm.ShowConfig(false);
-        ap.vm.ShowAPDetails(false);
-    },
-    onUpload: function () {
-        $("#upload-modal").modal("show");
-    },
-    onSearchCheckNumber: function () {        
-        $("#check-modal").modal("show");
-    },
-    onCloseCheckNumberResults: function () {
-        $("#check-modal").modal("hide");
-    },
-    onDetails: function () {
-        ap.vm.ShowDashboard(false);
-        ap.vm.ShowAPDetails(true);
-    }
+    }    
 });
 
 $(function () {
@@ -86,20 +36,20 @@ $(function () {
 
     $("#grid-claims").dxDataGrid({
         dataSource: new DevExpress.data.DataSource({
-            load: function () {                
-                return $.getJSON('/ap/GetClaimDetails').done(function (result) {                  
+            load: function () {
+                return $.getJSON('/ap/GetClaimDetails').done(function (result) {
                     $("#grid-claims").dxDataGrid("columnOption", "PharmacyChainCode", "groupIndex", 0);
                 });
             }
-        }),    
+        }),
         selection: { mode: 'single' },
         grouping: { contextMenuEnabled: true },
         groupPanel: { visible: true },
-        onSelectionChanged: function (selectedItem) {           
+        onSelectionChanged: function (selectedItem) {
             ap.vm.SelectedClaim(selectedItem);
             $("#check-modal").modal('show');
         }
-    });    
+    });
 
     $("#gridBox").dxDropDownBox({
         value: [8],

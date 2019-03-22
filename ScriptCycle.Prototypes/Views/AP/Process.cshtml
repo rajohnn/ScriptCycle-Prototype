@@ -1,0 +1,195 @@
+﻿@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "AP - Process";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/steptherapy.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.css" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <style>
+        #form .dx-fieldset {
+            height: 500px;
+        }
+    </style>
+}
+
+@Html.Partial("_ModalFiles")
+@Html.Partial("_modalFilePosting")
+
+
+<section id="presentation-headers" style="display:none" data-bind="visible: true">
+    <div id="ribbon">
+        <div style="background-color:#77bef5;margin-top:6px;">
+            <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
+                <a href="/Home" class="btn btn-sm btn-default text-primary">
+                    <i class="fa fa-dashboard"></i>
+                </a>
+                <a id="dashboard" href="/AP/process" class="btn btn-sm btn-primary text-white">
+                    AP Processor
+                </a>
+            </div>
+            <span class="pull-right">
+                <div id="app-toolbar" class="toolbar-container" style="margin-top:6px;padding-left:15px;padding-right:15px">
+
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button id="tbb-export" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-file-excel-o"></span> Export
+                        </button>
+                        <button id="tbb-print" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-print"></span> Print
+                        </button>
+                        <button id="tbb-copy" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-copy"></span> Copy
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-primary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
+                            <span class="fa fa-save"></span> Save
+                        </button>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div id="step-therapy-toolbar">
+        <div style="background-color: #0367B4;padding:0 15px 0 15px">
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="header text-white" style="font-size:22pt;display:block;padding:5px;">Accounts Payable Processor</span>
+                </div>
+                <div class="col-lg-8">
+                    <span id="function-panel" class="pull-right">
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="ap-view" style="display:none;" data-bind="visible: true">  
+
+    <table class="table table-bordered">
+        <tbody style="font-size:12pt">
+            <tr style="cursor: pointer">
+                <td width="20%" class="text-center" data-bind="click:function() { apProcess.onGotoStep(1) }, css: { 'bg-info text-white' : Step() > 0 }">
+                    <span data-bind="visible: Step() == 1" class="fa fa-check-circle"></span>
+                    Step 1: Name Batch
+                </td>
+                <td width="20%" class="text-center" data-bind="click:function() { apProcess.onGotoStep(2) }, css: { 'bg-info text-white' : Step() > 1 }">
+                    <span data-bind="visible: Step() == 2" class="fa fa-check-circle"></span>
+                    Step 2: General AP Summary
+                </td>
+                <td width="20%" class="text-center" data-bind="click:function() {apProcess.onGotoStep(3)}, css: { 'bg-info text-white' : Step() > 2 }">
+                    <span data-bind="visible: Step() == 3" class="fa fa-check-circle"></span>
+                    Step 3: Approval
+                </td>
+                <td width="20%" class="text-center" data-bind="click:function() { apProcess.onGotoStep(4)}, css: { 'bg-info text-white' : Step() > 3 }">
+                    <span data-bind="visible: Step() == 4" class="fa fa-check-circle"></span>
+                    Step 4: Generate Files
+                </td>
+                <td width="20%" class="text-center" data-bind="click:function() { apProcess.onGotoStep(5)}, css: { 'bg-info text-white' : Step() > 4 }">
+                    <span data-bind="visible: Step() == 5" class="fa fa-check-circle"></span>
+                    Step 5: Post Files
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <section id="main-view" style="padding:0 15px 0 15px">
+        @*<h5 style="font-size:18pt;" class="pull-right">Status: <span class="text-success">Ready to Process</span></h5>*@
+        <div class="row" style="background-color:#ddd">
+            <section id="step1" class="col-lg-4 offset-lg-4" data-bind="slideVisible: Step() == 1" style="min-height:650px">
+                <div class="container d-flex h-100">
+                    <div class="row justify-content-center align-self-center">
+                        <div class="card" style="min-width:550px">
+                            <div class="card-header bg-primary text-white">
+                                Create New Process
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Billing Cycle Selector</label><br />
+                                    <div id="gridBox"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>AP Batch Name: </label>
+                                    <input id="batch-name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="pull-right">
+                                    <button class="btn btn-primary" data-bind="click: apProcess.onNextStep">
+                                        Next Step
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </section>
+            <section id="step2" class="col-lg-12" data-bind="slideVisible: Step()  == 2">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Claims to Process: Step <span data-bind="text: Step"></span> of 5
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div id="batch-grid"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="pull-right">
+                            <button class="btn btn-default" data-bind="click: apProcess.onPreviousStep">
+                                <span class="fa fa-arrow-left"></span> Back
+                            </button>
+                            <button class="btn btn-primary" data-bind="click: apProcess.onNextStep" style="width:225px">Continue</button>
+                        </span>                        
+                    </div>
+                </div>
+            </section>
+            <section id="step3" class="col-lg-12" data-bind="slideVisible: Step()  > 2">               
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Claims to Process: Step <span data-bind="text: Step"></span> of 5
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <div id="batch-grid-2"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="pull-right">
+                            <button class="btn btn-default" data-bind="click: apProcess.onPreviousStep">
+                                <span class="fa fa-arrow-left"></span> Back
+                            </button>
+                            <button class="btn btn-primary" data-bind="click: apProcess.onNextStep" style="width:225px">Generate Files</button>
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>
+   
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/ap-process.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            apProcess.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            apProcess.init();
+        });
+    </script>
+
+}
