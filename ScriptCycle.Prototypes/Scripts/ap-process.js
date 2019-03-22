@@ -28,6 +28,7 @@
             if (value === 100) {
                 $("#file-posting-modal").modal('hide');
                 console.log("complete");
+                apProcess.vm.Step(1);
             }
         });
         ko.applyBindings(apProcess.model);       
