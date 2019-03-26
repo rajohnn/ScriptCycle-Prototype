@@ -12,7 +12,9 @@
         $("#grid-payees").dxDataGrid({
             dataSource: ap.vm.PayeeDetailRecords,
             selection: { mode: 'single' },
-            grouping: { contextMenuEnabled: true },
+            grouping: {
+                contextMenuEnabled: true
+            },
             groupPanel: { visible: true },
             onSelectionChanged: function (selectedItem) {
                 console.log(selectedItem);
@@ -44,10 +46,29 @@ $(function () {
         dataSource: new DevExpress.data.DataSource({
             load: function () {
                 return $.getJSON('/ap/GetClaimDetails').done(function (result) {
-                    $("#grid-claims").dxDataGrid("columnOption", "PharmacyChainCode", "groupIndex", 0);
+                    console.log("load of claims is done.");
+                    //$("#grid-claims").dxDataGrid("columnOption", "PharmacyChainCode", "groupIndex", 0);
                 });
             }
         }),
+        columns: [
+            "Name",
+            "BillingDate",
+            "ClaimDate",
+            "Rx",
+            "RxDate",
+            "NCPDP",
+            "PharmacyName",
+            "PharmacyChain",
+            {
+                dataField: "PharmacyChainCode",
+                groupIndex: 0
+            },            
+            "Col20180101",
+            "Code",
+            "NDC",
+            "DrugName"
+        ],
         selection: { mode: 'single' },
         grouping: { contextMenuEnabled: true },
         groupPanel: { visible: true },
