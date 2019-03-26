@@ -17,7 +17,7 @@
 
 @Html.Partial("_ModalFiles")
 @Html.Partial("_modalFilePosting")
-
+@Html.Partial("_ModalCheck")
 
 <section id="presentation-headers" style="display:none" data-bind="visible: true">
     <div id="ribbon">
@@ -66,7 +66,19 @@
                 </div>
                 <div class="col-lg-8">
                     <span id="function-panel" class="pull-right">
-                        
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text small bg-white">
+                                    Check #
+                                </span>
+                            </div>
+                            <input id="check_number" class="form-control" type="text" placeholder="Example: 16458" />
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-secondary" data-bind="click: apProcess.onSearchCheckNumber">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </div>
+                        </div>
                     </span>
                 </div>
             </div>
@@ -74,7 +86,7 @@
     </div>
 </section>
 
-<div id="ap-view" style="display:none;" data-bind="visible: true">  
+<div id="ap-view" style="display:none;" data-bind="visible: true">
 
     <table class="table table-bordered">
         <tbody style="font-size:12pt">
@@ -132,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
             </section>
             <section id="step2" class="col-lg-12" data-bind="slideVisible: Step()  == 2">
                 <div class="card">
@@ -150,11 +162,11 @@
                                 <span class="fa fa-arrow-left"></span> Back
                             </button>
                             <button class="btn btn-primary" data-bind="click: apProcess.onNextStep" style="width:225px">Continue</button>
-                        </span>                        
+                        </span>
                     </div>
                 </div>
             </section>
-            <section id="step3" class="col-lg-12" data-bind="slideVisible: Step()  > 2">               
+            <section id="step3" class="col-lg-12" data-bind="slideVisible: Step()  > 2">
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         Claims to Process: Step <span data-bind="text: Step"></span> of 5
@@ -177,7 +189,7 @@
         </div>
     </section>
 </div>
-   
+
 
 @section scripts {
     <script type="text/javascript" src="~/Scripts/ap-process.js"></script>

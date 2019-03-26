@@ -18,7 +18,13 @@
                 console.log(selectedItem);
             }
         });
-    }    
+    },
+    onSearchCheckNumber: function () {
+        $("#check-modal").modal("show");
+    },
+    onCloseCheckNumberResults: function () {
+        $("#check-modal").modal("hide");
+    },
 });
 
 $(function () {

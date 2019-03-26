@@ -57,7 +57,13 @@
         var timer = setInterval(function () {
             apProcess.vm.PostProgress(apProcess.vm.PostProgress() + 1);
         }, 150);
-    }  
+    },
+    onSearchCheckNumber: function () {
+        $("#check-modal").modal("show");
+    },
+    onCloseCheckNumberResults: function () {
+        $("#check-modal").modal("hide");
+    }
 });
 
 $(function () {

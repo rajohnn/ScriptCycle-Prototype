@@ -15,6 +15,9 @@
     </style>
 }
 
+@Html.Partial("_ModalCheck")
+@Html.Partial("_ModalUpload")
+
 <section id="presentation-headers" style="display:none" data-bind="visible: true">
     <div id="ribbon">
         <div style="background-color:#77bef5;margin-top:6px;">
@@ -22,8 +25,8 @@
                 <a href="/Home" class="btn btn-sm btn-default text-primary">
                     <i class="fa fa-dashboard"></i>
                 </a>
-                <a id="dashboard" href="/AP/process" class="btn btn-sm btn-primary text-white">
-                    AP Processor
+                <a id="dashboard" href="/AP/Details" class="btn btn-sm btn-primary text-white">
+                    AP - Details
                 </a>
             </div>
             <span class="pull-right">
@@ -62,7 +65,19 @@
                 </div>
                 <div class="col-lg-8">
                     <span id="function-panel" class="pull-right">
-
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text small bg-white">
+                                    Check #
+                                </span>
+                            </div>
+                            <input id="check_number" class="form-control" type="text" placeholder="Example: 16458" />
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-secondary" data-bind="click: ap.onSearchCheckNumber">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </div>
+                        </div>
                     </span>
                 </div>
             </div>
@@ -83,8 +98,8 @@
 
     <script type="text/javascript">
         $(function () {
-            apProcess.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
-            apProcess.init();
+            ap.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            ap.init();
         });
     </script>
 

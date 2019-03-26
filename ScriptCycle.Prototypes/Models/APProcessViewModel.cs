@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ScriptCycle.Prototypes.Models {
 
@@ -7,7 +8,26 @@ namespace ScriptCycle.Prototypes.Models {
         public int Step { get; set; } = 1;
         public int FileProgress { get; set; } = 0;
         public int PostProgress { get; set; } = 0;
-
+        public ClaimDetailModel ClaimDetail = new ClaimDetailModel {
+            PaymentInfo = new PaymentInfoModel {
+                CheckDate = DateTime.Now.AddMonths(-2),
+                CheckNumber = 16458,
+                CheckTotal = 393643.16M,
+                ClaimAmount = 393643.16M,
+                PaidToChain = "CVS",
+                PaymentCycle = "10012018",
+                PaymentType = "Check"
+            },
+            PharmacyInfo = new PharmacyInfoModel {
+                ChainCode = "039",
+                ChainName = "CVS",
+                Name = "CVC #45887",
+                NCPDP = "1524677",
+                PaymentCenterId = "0522212",
+                PaymentCenterName = "CVS Master Payment Center"
+            }
+        };
+        public ClaimDetailDto SelectedClaim { get; set; }
         public List<ProcessRecord> ProcessRecords = new List<ProcessRecord>();
     }
 
