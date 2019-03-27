@@ -8,9 +8,18 @@
     <link rel="stylesheet" href="~/Content/steptherapy.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.css" rel="stylesheet">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <style>
-        #form .dx-fieldset {
-            height: 500px;
+    <style>        
+        .dx-datagrid-group-panel .dx-group-panel-item {
+            color: #77bef5 !important;
+            border: 1px solid #77bef5 !important;
+        }
+        .dx-datagrid-headers .dx-header-row {
+            background-color: #0367B4;
+            color: white;
+        }
+        .dx-group-cell {
+            background-color: #77bef5!important;
+            color: #0367B4;
         }
     </style>
 }
@@ -67,7 +76,7 @@
                     <span id="function-panel" class="pull-right">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text small bg-white">
+                                <span class="input-group-text input-group-sm small bg-white">
                                     Check #
                                 </span>
                             </div>

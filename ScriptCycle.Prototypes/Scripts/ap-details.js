@@ -15,6 +15,18 @@
             grouping: {
                 contextMenuEnabled: true
             },
+            columns: [
+                "BillingCycleDate",
+                "APCycleName",
+                "PaymentCenterId",
+                {
+                    dataField: "PaymentCenterName",
+                    groupIndex: 0
+                },
+                "CheckNumber",
+                "TotalPharmacyPaid",
+                "TotalClaims"
+            ],
             groupPanel: { visible: true },
             onSelectionChanged: function (selectedItem) {
                 console.log(selectedItem);
@@ -46,8 +58,7 @@ $(function () {
         dataSource: new DevExpress.data.DataSource({
             load: function () {
                 return $.getJSON('/ap/GetClaimDetails').done(function (result) {
-                    console.log("load of claims is done.");
-                    //$("#grid-claims").dxDataGrid("columnOption", "PharmacyChainCode", "groupIndex", 0);
+                    console.log("load of claims is done.");                    
                 });
             }
         }),
@@ -81,20 +92,27 @@ $(function () {
     $("#gridBox").dxDropDownBox({
         value: [8],
         valueExpr: "ID",
-        placeholder: "Select a value...",
+        placeholder: "Select billing cycles...",
         displayExpr: "Name",
         showClearButton: true,
         dataSource: makeAsyncDataSource("getcycles"),
         contentTemplate: function (e) {
             var value = e.component.option("value"),
                 $dataGrid = $("<div>").dxDataGrid({
+                    configuration: {
+                        showCheckboxesMode: 'Always'
+                    },
                     dataSource: e.component.option("dataSource"),
-                    columns: ["ID", "Name", "Date"],
+                    columns: [
+                        { dataField: "ID", width: 50 },
+                        { dataField: "Name", width: 200 },
+                        { dataField: "Date", width: 125 }
+                    ],
                     hoverStateEnabled: true,
                     paging: { enabled: true, pageSize: 10 },
-                    filterRow: { visible: true },
+                    filterRow: { visible: false },
                     scrolling: { mode: "infinite" },
-                    //height: 245,
+                    height: 345,
                     selection: { mode: "multiple" },
                     selectedRowKeys: value,
                     onSelectionChanged: function (selectedItems) {
@@ -117,9 +135,9 @@ $(function () {
     $("#gridBox2").dxDropDownBox({
         value: [8],
         valueExpr: "ID",
-        placeholder: "Select a value...",
+        placeholder: "Select billing cycles...",
         displayExpr: "Name",
-        showClearButton: true,
+        showClearButton: true,       
         dataSource: makeAsyncDataSource("getcycles"),
         contentTemplate: function (e) {
             var value = e.component.option("value"),
@@ -128,7 +146,7 @@ $(function () {
                     columns: ["Name"],
                     hoverStateEnabled: true,
                     paging: { enabled: true, pageSize: 10 },
-                    filterRow: { visible: true },
+                    filterRow: { visible: false },
                     scrolling: { mode: "infinite" },
                     //height: 245,
                     selection: { mode: "multiple" },
@@ -164,9 +182,8 @@ $(function () {
                     columns: ["Name"],
                     hoverStateEnabled: true,
                     paging: { enabled: true, pageSize: 10 },
-                    filterRow: { visible: true },
-                    scrolling: { mode: "infinite" },
-                    //height: 245,
+                    filterRow: { visible: false },
+                    scrolling: { mode: "infinite" },                    
                     selection: { mode: "multiple" },
                     selectedRowKeys: value,
                     onSelectionChanged: function (selectedItems) {
