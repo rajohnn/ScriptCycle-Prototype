@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\APController.cs" />
+    <Compile Include="Controllers\ARController.cs" />
     <Compile Include="Controllers\DrugsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -168,6 +169,7 @@
     </Compile>
     <Compile Include="Models\APProcessViewModel.cs" />
     <Compile Include="Models\APViewModel.cs" />
+    <Compile Include="Models\ARViewModel.cs" />
     <Compile Include="Models\DrugSelectionViewModel.cs" />
     <Compile Include="Models\DrugViewDto.cs" />
     <Compile Include="Models\LinqExtensions.cs" />
@@ -217,6 +219,7 @@
     <Content Include="Scripts\ap-process.js" />
     <Content Include="Scripts\ap.js" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\ar.js" />
     <Content Include="Scripts\bootstrap-menu.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -368,6 +371,7 @@
     <Content Include="Views\AP\Details.cshtml" />
     <Content Include="Views\AP\_ModalFiles.cshtml" />
     <Content Include="Views\AP\_ModalFilePosting.cshtml" />
+    <Content Include="Views\AR\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

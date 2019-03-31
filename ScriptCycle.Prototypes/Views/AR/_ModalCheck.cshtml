@@ -1,0 +1,96 @@
+﻿<div class="modal fade" id="check-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <span class="modal-title" id="myModalLabel2">
+                    Results for check # "<b>16458*</b>"
+                </span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body" data-bind="with: ClaimDetail" style="margin-bottom:-20px">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table text-secondary">
+                            <tbody data-bind="with: PharmacyInfo">
+                                <tr>
+                                    <td class="bg-light text-dark">NCPDP #</td>
+                                    <td data-bind="text: NCPDP"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Pharmacy Name</td>
+                                    <td data-bind="text: Name"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Pharmacy Chain Code</td>
+                                    <td data-bind="text: ChainCode"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Pharmacy Chain Name</td>
+                                    <td data-bind="text: ChainName"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Payment Center ID</td>
+                                    <td data-bind="text: PaymentCenterId"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Payment Center Name</td>
+                                    <td data-bind="text: PaymentCenterName"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <table class="table text-secondary">
+                            <tbody data-bind="with: PaymentInfo">
+                                <tr>
+                                    <td class="bg-light text-dark">AP Payment Cycle</td>
+                                    <td data-bind="text: PaymentCycle"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Check Date</td>
+                                    <td data-bind="text: moment(CheckDate()).format('L')"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Claim Amount</td>
+                                    <td data-bind="currency: ClaimAmount"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Check Number</td>
+                                    <td data-bind="text: CheckNumber"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Check Total</td>
+                                    <td data-bind="currency: CheckTotal"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Payment Type</td>
+                                    <td data-bind="text: PaymentType"></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg-light text-dark">Payment To</td>
+                                    <td data-bind="text: PaidToChain"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="pull-right">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <span data-bind="visible: SelectedClaim() != null">
+                        <button type="button" class="btn btn-primary">Open in Tx Lookup</button>
+                        <button type="button" class="btn btn-primary">Open in Paid Claims</button>
+                    </span>
+                    <span data-bind="ifnot: SelectedClaim">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-external-link-square"></span> Display in Claims Details
+                        </button>
+                    </span>
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
