@@ -12,12 +12,22 @@
         #form .dx-fieldset {
             height: 500px;
         }
+        .nav-tabs .notification-tab .nav-link:not(.active) {
+            background-color: white;
+            color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .nav-tabs .notification-tab .nav-link {
+            background-color: #17a2b8;
+            color: white;
+            border-color:#17a2b8;
+        }
     </style>
 }
 
 <section id="presentation-headers" style="display:none" data-bind="visible: true">
     <div id="ribbon">
-        <div style="background-color:#77bef5;margin-top:6px;">
+        <div style="background-color:#77bef5;">
             <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
                 <a href="/Home" class="btn btn-sm btn-default text-primary">
                     <i class="fa fa-dashboard"></i>
@@ -81,12 +91,12 @@
 
                                 <div class="input-group-prepend">
                                     <span class="input-group-text small bg-white">
-                                        Check #
+                                        Invoice #
                                     </span>
                                 </div>
-                                <input id="check_number" class="form-control" type="text" placeholder="Example: 16458" />
+                                <input id="invoice_number" class="form-control" type="text" placeholder="Example: 1200" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-sm btn-secondary" data-bind="click: ar.onSearchCheckNumber">
+                                    <button class="btn btn-sm btn-secondary" data-bind="click: ar.onSearchInvoiceNumber">
                                         <span class="fa fa-search"></span>
                                     </button>
                                 </div>
@@ -116,15 +126,16 @@
 <div id="ap-view" style="display:none;padding-left:15px;padding-right:15px" data-bind="visible: true">
 
     <section id="dashboard">
+
         <section id="dashboard-view" data-bind="slideVisible: ShowDashboard">
             <div id="dashboard-cards">
                 <div class="row" style="margin-top:7px">
                     <div class="col-lg-3">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-secondary">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h4 data-bind="currency: AnnualTotal"></h4>
+                                        <h3 data-bind="currency: AnnualTotal"></h3>
                                         Fiscal Year
                                     </div>
                                     <div class="col-lg-3 text-secondary text-center">
@@ -132,19 +143,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer bg-secondary text-white">
-                                Annual Total: May 2018 - Current
+                            <div class="card-footer bg-info text-white">
+                                Total Recieved: May 2018 - Current
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-secondary">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h4>
+                                        <h3>
                                             <span data-bind="number: AvgMonth, precision: 2"></span>
-                                        </h4>
+                                        </h3>
                                         Average Per Month
                                     </div>
                                     <div class="col-lg-3 text-secondary text-center">
@@ -152,19 +163,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer bg-secondary text-white">
-                                Avg. Payment per month: May 2018 - Current
+                            <div class="card-footer bg-info text-white">
+                                Avg. invoiced per month: May 2018 - Current
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-secondary">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h4>
+                                        <h3>
                                             <span data-bind="number: AvgClaimCount, precision: 0"></span>
-                                        </h4>
+                                        </h3>
                                         Average claim count per month
                                     </div>
                                     <div class="col-lg-3 text-secondary text-center">
@@ -172,19 +183,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer bg-secondary text-white">
+                            <div class="card-footer bg-info text-white">
                                 Avg. Claim: May 2018  - Current
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body text-secondary">
                                 <div class="row">
                                     <div class="col-lg-9">
-                                        <h4>
+                                        <h3>
                                             <span data-bind="number: AvgPaymentCount, precision: 0"></span>
-                                        </h4>
+                                        </h3>
                                         Average payment count per month
                                     </div>
                                     <div class="col-lg-3 text-secondary text-center">
@@ -192,7 +203,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer bg-secondary text-white">
+                            <div class="card-footer bg-info text-white">
                                 Avg. Payment Count: May 2018  - Current
                             </div>
                         </div>
@@ -229,7 +240,7 @@
                                 <td class="text-right" data-bind="number: UniqueInvoices"></td>
                                 <td class="text-right" data-bind="number: ClaimCount"></td>
                                 <td class="text-center">
-                                    <a href="#" style="text-decoration:underline">
+                                    <a href="#" style="text-decoration:underline" data-bind="click: ar.onDisplayDetails">
                                         Claims
                                     </a>
                                 </td>
@@ -241,9 +252,9 @@
 
                     <section id="billing-compare-component" data-bind="slideVisible: ShowDetails">
                         <div class="card">
-                            <div class="card-header bg-secondary text-white">
+                            <div class="card-header bg-info text-white">
                                 <button type="button" class="close pull-right" data-bind="click: ar.onDismissDetails"><span aria-hidden="true">&times;</span></button>
-                                <div>Billing Cycle 03/01/2019</div>
+                                <div>Claim Details - Billing Cycle 03/01/2019</div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -252,11 +263,11 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td><span class="fa fa-check-circle text-info"></span> Pharmacy Paid</td>
+                                                    <td><span class="fa fa-check-circle text-info"></span> Client Billed</td>
                                                     <td class="text-right">$240.749.81</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="fa fa-check-circle text-info"></span> Unique Payments</td>
+                                                    <td><span class="fa fa-check-circle text-info"></span> Unique Invoices</td>
                                                     <td class="text-right">1,844</td>
                                                 </tr>
                                                 <tr>
@@ -271,11 +282,11 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <td>Pharmacy Paid</td>
+                                                    <td>Client Billed</td>
                                                     <td class="text-right">$240.749.81</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Unique Payments</td>
+                                                    <td>Unique Invoices</td>
                                                     <td class="text-right">1,844</td>
                                                 </tr>
                                                 <tr>
@@ -301,7 +312,7 @@
                                                                 <td class="text-right">$200,000.00</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Total ACH</td>
+                                                                <td>Total Invoices</td>
                                                                 <td class="text-right">1,000</td>
                                                             </tr>
                                                             <tr>
@@ -319,7 +330,7 @@
                                                                 <td class="text-right">$40,749.81</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Total Paper Checks</td>
+                                                                <td>Total Unique Groups</td>
                                                                 <td class="text-right">25,693</td>
                                                             </tr>
                                                             <tr>
@@ -340,10 +351,10 @@
                                         <span class="fa fa-close"></span> Dismiss
                                     </button>
 
-                                    <button class="btn btn-sm btn-secondary" data-bind="click: ar.onViewClaimsFile">
+                                    <button class="btn btn-sm btn-primary" data-bind="click: ar.onViewClaimsFile">
                                         <span class="fa fa-navicon"></span> View Claim Details
                                     </button>
-                                    <button class="btn btn-sm btn-secondary" data-bind="click: ar.onViewClaimsFile">
+                                    <button class="btn btn-sm btn-primary" data-bind="click: ar.onViewClaimsFile">
                                         <span class="fa fa-eye"></span> SHOW ALL
                                     </button>
                                 </span>
@@ -360,18 +371,19 @@
                 </div>
             </div>
         </section>
+
         <section id="configuration" data-bind="slideVisible: ShowConfig()">
             <div style="padding-left:15px;margin-top:7px">
                 <div class="card">
-                    <div class="card-header bg-dark text-white" style="font-size:large">
-                        <span class="fa fa-cogs"></span> Account Payable Configuration
+                    <div class="card-header bg-info text-white" style="font-size:large">
+                        <span class="fa fa-cogs"></span> Account Receivable Configuration
                         <button type="button" class="close" data-bind="click: ar.onDismissConfigure" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
-                                    <div class="card-header bg-secondary text-white">
+                                    <div class="card-header bg-info text-white">
                                         <span class="fa fa-database"></span> Data Source
                                     </div>
                                     <div class="card-body">
@@ -394,7 +406,7 @@
                                                 <div class="input-group">
                                                     <input type="text" name="directory" class="form-control form-control-sm" style="max-width:200px" />
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-sm btn-secondary">Browse...</button>
+                                                        <button class="btn btn-sm btn-info">Browse...</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -405,7 +417,7 @@
                                                 <div class="input-group">
                                                     <input type="text" name="file-layout" class="form-control form-control-sm" style="max-width:200px" />
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-sm btn-secondary">Browse...</button>
+                                                        <button class="btn btn-sm btn-info">Browse...</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -413,143 +425,17 @@
                                     </div>
                                 </div>
                                 <div class="card" style="margin-top:5px">
-                                    <div class="card-header bg-secondary text-white">
-                                        <span class="fa fa-database"></span> Payee Data
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="payee-data-option" checked type="radio" id="pd1" value="1" />
-                                            <label class="form-check-label" for="pd1">
-                                                Use Pharmacy Manager Data
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="payee-data-option" type="radio" id="pd2" value="2" />
-                                            <label class="form-check-label" for="pd2">
-                                                Manage Payee List Separatley
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-header bg-secondary text-white">
-                                        Notification Settings
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="foo" id="notification" />
-                                            <label class="form-check-label" for="notification">
-                                                Generate AP Cycle Summary Notification
-                                            </label>
-                                        </div>
-                                        <section id="notification-options" style="margin-left:25px">
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="notification-option" type="radio" id="ex1" value="1" checked />
-                                                <label class="form-check-label" for="ex1">
-                                                    After Each AP Cycle
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="notification-option" type="radio" id="ex2" value="2" />
-                                                <label class="form-check-label" for="ex2">
-                                                    Weekly
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="notification-option" type="radio" id="ex3" value="3" />
-                                                <label class="form-check-label" for="ex3">
-                                                    Monthly
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="notification-option" type="radio" id="ex4" value="4" />
-                                                <label class="form-check-label" for="ex4">
-                                                    Only Upon Error
-                                                </label>
-                                            </div>
-                                        </section>
-                                    </div>
-                                </div>
-                                <div class="card" style="margin-top:5px">
-                                    <div class="card-header bg-secondary text-white">
-                                        Distribution List
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <div class="input-group" style="margin-top:10px">
-                                                    <select id="users" class="form-control form-control-sm">
-                                                        <option>Aaron Fredrick</option>
-                                                        <option>Adam Trunnell</option>
-                                                        <option>Billy Buckles</option>
-                                                        <option>Ojal Acharya</option>
-                                                        <option>Todd Evans</option>
-                                                    </select>
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-sm btn-secondary">Add</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-7">
-                                                <table class="table">
-                                                    @*<thead>
-                                                            <tr>
-                                                                <th width="50"></th>
-                                                                <th>User Name</th>
-                                                                <th>Date Added</th>
-                                                            </tr>
-                                                        </thead>*@
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-sm btn-outline-danger">
-                                                                    <span class="fa fa-trash-o"></span>
-                                                                </button>
-                                                            </td>
-                                                            <td>Teresa Thompson</td>
-                                                            <td>01/22/2019</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-sm btn-outline-danger">
-                                                                    <span class="fa fa-trash-o"></span>
-                                                                </button>
-                                                            </td>
-                                                            <td>Major Grimes</td>
-                                                            <td>04/05/2018</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card" style="margin-top:5px">
-                                    <div class="card-header bg-secondary text-white">
+                                    <div class="card-header bg-info text-white">
                                         General Options
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label>Starting Check #</label>
-                                                    <input type="text" class="form-control" />
+                                                    <label>Automatic AR Cycles</label><br />
+                                                    <input type="checkbox" checked data-width="150" data-onstyle="info" data-toggle="toggle">
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label>Automatic AP Cycles</label><br />
-                                                    <input type="checkbox" checked data-width="150" data-onstyle="secondary" data-toggle="toggle">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col-lg-4">
-                                                <label>AP Batch Name</label>
+                                                <label>AR Batch Name</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="ap-batch-name" type="radio" id="bn1" value="1" checked />
                                                     <label class="form-check-label" for="ex1">
@@ -570,52 +456,415 @@
                                                     <input type="text" name="batch-name-value" />
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <label>Consolidate Payments</label>
+                                            <div class="col-lg-6">
+                                                <label>Consolidate Invoice By</label>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
                                                     <label class="form-check-label" for="ac1">
-                                                        Payment Center ID
+                                                        From Billing Manager Config
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
                                                     <label class="form-check-label" for="ac2">
-                                                        NCPDP #
+                                                        Organizations
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
                                                     <label class="form-check-label" for="ac3">
-                                                        Affiliate ID
+                                                        Carriers
                                                     </label>
                                                 </div>
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="ap-consolidate" type="radio" id="ac4" value="4" />
                                                     <label class="form-check-label" for="ac4">
-                                                        NPI #
+                                                        Groups
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="ap-consolidate" type="radio" id="ac4" value="4" />
+                                                    <label class="form-check-label" for="ac4">
+                                                        Manage Individually in Payers Tab
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
-                                                <label>Payee Files Stored To:</label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top:5px">
+                                    <div class="card-header bg-info text-white">
+                                        Invoice Template
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Globally Managed Invoice Templates</label><br />
+                                                    <input type="checkbox" checked data-width="150" data-onstyle="info" data-toggle="toggle">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h5 class="text-info">Files To Generate in each cycle:</h5>
+                                                <section id="file-types">
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt1">Invoice
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt2">PDF
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt3">CSV
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt4">Excel
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt5">Word
+                                                        </label>
+                                                    </div>
+                                                </section>
+                                                <div class="form-group form-inline text-secondary" style="margin-top:6px">
+                                                    <label for="inv-template">Invoice Template: </label>&nbsp;&nbsp;
+                                                    <select class="form-control form-control-sm" id="inv-template">
+                                                        <option value="" selected disabled>Options...</option>
+                                                        <option>Template 1</option>
+                                                        <option>Template 2</option>
+                                                        <option>Template 3</option>
+                                                        <option>Template 4</option>
+                                                    </select>
+                                                </div>
+                                                <button class="btn btn-sm btn-info">
+                                                    Manage Invoice Templates
+                                                </button>
+                                                <hr />
+                                                <section id="claim-file-types">
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt1c">Claim Details
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt2c">PDF
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt3c">CSV
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="opt4c">Excel
+                                                        </label>
+                                                    </div>
+                                                </section>
+                                                <div class="form-group form-inline text-secondary" style="margin-top:6px">
+                                                    <label for="inv-template">Claim Template: </label>&nbsp;&nbsp;
+                                                    <select class="form-control form-control-sm" id="claim-detail-template">
+                                                        <option value="" selected disabled>Options...</option>
+                                                        <option>Template 1</option>
+                                                        <option>Template 2</option>
+                                                        <option>Template 3</option>
+                                                        <option>Template 4</option>
+                                                    </select>
+
+                                                </div>
+                                                <button class="btn btn-sm btn-info">
+                                                    Manage Claim Detail Templates
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header bg-info text-white">
+                                        Notification Settings
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="payee-storage" type="radio" id="ps1" value="1" checked />
-                                                    <label class="form-check-label" for="ps1">
-                                                        SC File Manager (Cloud Storage)
+                                                    <input class="form-check-input" type="checkbox" value="foo" id="notification" />
+                                                    <label class="form-check-label" for="notification">
+                                                        Generate AP Cycle Summary Notification
                                                     </label>
                                                 </div>
+                                                <section id="notification-options" style="margin-left:25px">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="notification-option" type="radio" id="ex1" value="1" checked />
+                                                        <label class="form-check-label" for="ex1">
+                                                            After Each AP Cycle
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="notification-option" type="radio" id="ex2" value="2" />
+                                                        <label class="form-check-label" for="ex2">
+                                                            Weekly
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="notification-option" type="radio" id="ex3" value="3" />
+                                                        <label class="form-check-label" for="ex3">
+                                                            Monthly
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="notification-option" type="radio" id="ex4" value="4" />
+                                                        <label class="form-check-label" for="ex4">
+                                                            Only Upon Error
+                                                        </label>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div class="col-lg-6">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="payee-storage" type="radio" id="ps2" value="2" />
-                                                    <label class="form-check-label" for="ps2">
-                                                        Select Location
+                                                    <input class="form-check-input" type="checkbox" value="foobar" id="invoice-report" />
+                                                    <label class="form-check-label" for="invoice-report">
+                                                        Generate Unpaid Invoice Report
                                                     </label>
-                                                    <button class="btn btn-secondary btn-sm">Browse...</button>
+                                                </div>
+                                                <section id="unpaid-options" style="margin-left:25px">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="unpaid-option" type="radio" id="ex-option1" value="1" checked />
+                                                        <label class="form-check-label" for="ex-option1">
+                                                            After Each AR Cycle
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="unpaid-option" type="radio" id="ex-option2" value="2" />
+                                                        <label class="form-check-label" for="ex-option2">
+                                                            Weekly
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="unpaid-option" type="radio" id="ex-option3" value="3" />
+                                                        <label class="form-check-label" for="ex-option3">
+                                                            Monthly
+                                                        </label>
+                                                    </div>                                                   
+                                                </section>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="card" style="margin-top:5px">
+                                    <div class="card-header bg-info text-white">
+                                        Distribution Lists
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li class="nav-item notification-tab">
+                                                        <a id="summary-tab" data-toggle="tab" class="nav-link active" href="#notification-summary">AP Cycle Summary Notification List</a>
+                                                    </li>
+                                                    <li class="nav-item notification-tab">
+                                                        <a id="unpaid-tab" data-toggle="tab" class="nav-link" href="#notification-unpaid">Unpaid Invoice Report Notification List</a>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="notification-management">
+                                                    <div class="tab-pane fade show active" id="notification-summary" role="tabpanel">
+                                                        <div class="row" style="margin-top:6px">
+                                                            <div class="col-lg-5">
+                                                                <div class="input-group" style="margin-top:10px">
+                                                                    <select id="users" class="form-control form-control-sm">
+                                                                        <option>Aaron Fredrick</option>
+                                                                        <option>Adam Trunnell</option>
+                                                                        <option>Billy Buckles</option>
+                                                                        <option>Ojal Acharya</option>
+                                                                        <option>Todd Evans</option>
+                                                                    </select>
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-sm btn-info">Add</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <section id="distro-list" style="height:350px;overflow-y:scroll;overflow-x:hidden">
+                                                                    <table class="table text-secondary">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>John Bosley</td>
+                                                                                <td>03/11/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Cooter Davenport</td>
+                                                                                <td>03/22/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Sabrina Duncan</td>
+                                                                                <td>10/21/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Kelly Garett</td>
+                                                                                <td>01/12/2019</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Major Grimes</td>
+                                                                                <td>04/05/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Jill Munroe</td>
+                                                                                <td>06/07/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Kris Munroe</td>
+                                                                                <td>06/21/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Julie Rogers</td>
+                                                                                <td>06/07/2017</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Teresa Thompson</td>
+                                                                                <td>01/22/2019</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </section>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="notification-unpaid" role="tabpanel">
+                                                        <div class="row" style="margin-top:6px">
+                                                            <div class="col-lg-5">
+                                                                <div class="input-group" style="margin-top:10px">
+                                                                    <select id="users" class="form-control form-control-sm">
+                                                                        <option>Aaron Fredrick</option>
+                                                                        <option>Adam Trunnell</option>
+                                                                        <option>Billy Buckles</option>
+                                                                        <option>Ojal Acharya</option>
+                                                                        <option>Todd Evans</option>
+                                                                    </select>
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-sm btn-info">Add</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-7" style="height:350px;overflow-y:scroll;overflow-x:hidden">
+                                                                <section id="distro2">
+                                                                    <table class="table">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Rosco P. Coltrane</td>
+                                                                                <td>02/14/2019</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Cooter Davenport</td>
+                                                                                <td>03/22/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Cooter Davenport</td>
+                                                                                <td>03/22/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Cooter Davenport</td>
+                                                                                <td>03/22/2018</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <button class="btn btn-sm btn-outline-danger">
+                                                                                        <span class="fa fa-trash-o"></span>
+                                                                                    </button>
+                                                                                </td>
+                                                                                <td>Cooter Davenport</td>
+                                                                                <td>03/22/2018</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </section>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

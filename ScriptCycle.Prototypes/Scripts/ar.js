@@ -25,16 +25,34 @@
         return dates;
     },
     onUpload: function () {
-
+        $("#upload-modal").modal("show");
     },
     onConfigure: function () {
-
+        var show = ar.vm.ShowDashboard();
+        ar.vm.ShowDashboard(!show);
+        ar.vm.ShowConfig(show);
+        ar.vm.ShowARDetails(false);
     },
-    onSearchCheckNumber: function () {
-
+    onDismissConfigure: function () {
+        ar.vm.ShowDashboard(true);
+        ar.vm.ShowConfig(false);
+        ar.vm.ShowARDetails(false);
+    },
+    onSearchInvoiceNumber: function () {
+        $("#invoice-modal").modal("show");
+    },
+    onCloseCheckNumberResults: function () {
+        $("#invoice-modal").modal("hide");
     },
     onDismissDetails: function () {
-
+        ar.vm.ShowDetails(false);
+    },
+    onDisplayDetails: function () {
+        ar.vm.ShowDetails(true);
+    },
+    onDetails: function () {
+        ar.vm.ShowDashboard(false);
+        ar.vm.ShowARDetails(true);
     }
 });
 
