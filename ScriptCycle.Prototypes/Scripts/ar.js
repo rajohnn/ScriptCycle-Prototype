@@ -39,10 +39,10 @@
         ar.vm.ShowARDetails(false);
     },
     onSearchInvoiceNumber: function () {
-        $("#invoice-modal").modal("show");
+        $("#check-modal").modal("show");
     },
     onCloseCheckNumberResults: function () {
-        $("#invoice-modal").modal("hide");
+        $("#check-modal").modal("hide");
     },
     onDismissDetails: function () {
         ar.vm.ShowDetails(false);

@@ -364,8 +364,8 @@
     <Content Include="Views\Drugs\Burst.cshtml" />
     <Content Include="Views\AP\Index.cshtml" />
     <Content Include="Views\AP\_ModalCheckSearch.cshtml" />
-    <Content Include="Views\AP\_ModalCheck.cshtml" />
-    <Content Include="Views\AP\_ModalUpload.cshtml" />
+    <Content Include="Views\Shared\_ModalCheck.cshtml" />
+    <Content Include="Views\Shared\_ModalUpload.cshtml" />
     <Content Include="Views\AP\_Details.cshtml" />
     <Content Include="Views\AP\Process.cshtml" />
     <Content Include="Views\AP\Details.cshtml" />

@@ -13,6 +13,26 @@ namespace ScriptCycle.Prototypes.Models {
         public bool? ShowDetails { get; set; } = false;
         public bool? ShowConfig { get; set; } = false;
         public List<ClientPaymentModel> ClientPayments { get; set; } = new List<ClientPaymentModel>();
+        public ClaimDetailDto SelectedClaim { get; set; }
+        public ClaimDetailModel ClaimDetail = new ClaimDetailModel {
+            PaymentInfo = new PaymentInfoModel {
+                CheckDate = DateTime.Now.AddMonths(-2),
+                CheckNumber = 16458,
+                CheckTotal = 393643.16M,
+                ClaimAmount = 393643.16M,
+                PaidToChain = "CVS",
+                PaymentCycle = "10012018",
+                PaymentType = "Check"
+            },
+            PharmacyInfo = new PharmacyInfoModel {
+                ChainCode = "039",
+                ChainName = "CVS",
+                Name = "CVC #45887",
+                NCPDP = "1524677",
+                PaymentCenterId = "0522212",
+                PaymentCenterName = "CVS Master Payment Center"
+            }
+        };
     }
 
     public class ClientPaymentModel {
