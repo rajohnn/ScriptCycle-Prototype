@@ -269,6 +269,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\sample.json" />
+    <Content Include="Content\SampleInvoice.pdf" />
     <None Include="Properties\PublishProfiles\ScriptCyclePrototype - Web Deploy.pubxml" />
     <Content Include="Scripts\d3\README.md" />
     <Content Include="Scripts\d3\LICENSE" />
@@ -372,6 +373,7 @@
     <Content Include="Views\AP\_ModalFiles.cshtml" />
     <Content Include="Views\AP\_ModalFilePosting.cshtml" />
     <Content Include="Views\AR\Index.cshtml" />
+    <Content Include="Views\AR\_ModalInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
