@@ -219,6 +219,7 @@
     <Content Include="Scripts\ap-process.js" />
     <Content Include="Scripts\ap.js" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\ar-template.js" />
     <Content Include="Scripts\ar.js" />
     <Content Include="Scripts\bootstrap-menu.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -374,6 +375,7 @@
     <Content Include="Views\AP\_ModalFilePosting.cshtml" />
     <Content Include="Views\AR\Index.cshtml" />
     <Content Include="Views\AR\_ModalInvoice.cshtml" />
+    <Content Include="Views\AR\TemplateLibrary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

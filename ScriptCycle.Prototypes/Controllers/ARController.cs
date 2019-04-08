@@ -114,5 +114,11 @@ namespace ScriptCycle.Prototypes.Controllers {
             vm.AvgPaymentCount = paymentCountTotal / vm.ClientPayments.Count;
             return View(vm);
         }
+
+        public ActionResult TemplateLibrary()
+        {
+            var model = new ARTemplateModel();
+            return View(model);
+        }
     }
 }

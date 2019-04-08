@@ -43,4 +43,9 @@ namespace ScriptCycle.Prototypes.Models {
         public int? UniqueInvoices { get; set; }
         public int? ClaimCount { get; set; }
     }
+
+    public class ARTemplateModel
+    {
+        public string Name { get; set; }
+    }
 }

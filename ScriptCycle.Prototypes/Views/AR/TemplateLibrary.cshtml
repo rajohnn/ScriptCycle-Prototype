@@ -1,0 +1,110 @@
+﻿@using Newtonsoft.Json
+@{
+    ViewBag.Title = "AR - Template Library";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.6/quill.core.css" />
+    <style>
+        .dx-htmleditor-content img {
+            vertical-align: middle;
+            padding-right: 10px;
+        }
+         #form .dx-fieldset {
+            height: 500px;
+        }
+        .nav-tabs .notification-tab .nav-link:not(.active) {
+            background-color: white;
+            color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .nav-tabs .notification-tab .nav-link {
+            background-color: #17a2b8;
+            color: white;
+            border-color: #17a2b8;
+        }
+    </style>
+}
+<section id="presentation-headers" style="display:none" data-bind="visible: true">    
+    <div id="step-therapy-toolbar">
+        <div style="background-color: #0367B4;padding:0 15px 5px 15px">
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="header text-white" style="font-size:22pt;display:block;margin-top:5px;">Template Manager</span>
+                </div>
+                <div class="col-lg-8">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row" style="display:none" data-bind="visible: true">
+    <div class="col-lg-2">
+        <div class="card" style="margin:6px;height:40vh">
+            <div class="card-header bg-info text-white">
+                Invoice Templates
+            </div>
+            <div class="card-body">
+                <div id="invoice-tree"></div>
+            </div>
+        </div>
+        <div class="card" style="margin:6px;height:40vh">
+            <div class="card-header bg-info text-white">
+                Claim Detail Templates
+            </div>
+            <div class="card-body">
+                <div id="claim-tree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10" style="margin-left:-25px!important">
+        <div class="card" style="margin:6px">
+            <div class="card-header bg-info text-white">
+                <span style="font-size:12pt;font-weight:bold">
+                    <span class="fa fa-file"></span> 2018 MedOne HS
+                </span>
+            </div>
+            <div class="card-body" style="height:75vh">
+                <section id="html-editor-document">
+                    <div class="html-editor">
+                        <p align="right">
+                            Carrier: 1001<br />
+                            Invoice Number: 13294<br />
+                            Invoice Date: 06/01/2018<br />
+                            Due Date: 06/06/2018<br />
+                            Prescription Plan Charges for:<br />
+                            05/24/2018 to 05/31/2018
+                        </p>
+                        <div>
+                            <img src="~/Content/images/medone.jpg" alt="MedOne Healthcare">
+                        </div>
+
+                        <p align="left">
+                            PO Box 1537<br/>
+                            Dubuque IA 52004<br/>
+                            1-888-88-4MED1
+                        </p>
+                        <br/>
+                        <br/>
+                        
+
+                    </div>
+                </section>
+               
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section scripts {    
+    <script type="text/javascript" src="~/Scripts/ar-template.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            arTemplate.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            arTemplate.init();
+        });
+    </script>
+}
