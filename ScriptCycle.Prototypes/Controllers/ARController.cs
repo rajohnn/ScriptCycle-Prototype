@@ -277,7 +277,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                         TotalClaims = 256,
                         TotalInvoiceAmount = 374343.72M,
                         DueDate = DateTime.Now.AddDays(31),
-                        Status = "Unpaid"
+                        Status = "Partial Payment"
                     },
                     new InvoiceDetailRecord {
                         BillingCycleDate = startDate.AddMonths(-3),
@@ -288,7 +288,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                         TotalClaims = 284,
                         TotalInvoiceAmount = 422847.83M,
                         DueDate = DateTime.Now.AddDays(31),
-                        Status = "Unpaid"
+                        Status = "Paid in Full"
                     },
                     new InvoiceDetailRecord {
                         BillingCycleDate = startDate.AddMonths(-3),
@@ -299,7 +299,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                         TotalClaims = 211,
                         TotalInvoiceAmount = 12532.18M,
                         DueDate = DateTime.Now.AddDays(31),
-                        Status = "Unpaid"
+                        Status = "Paid in Full"
                     },
                     new InvoiceDetailRecord {
                         BillingCycleDate = startDate.AddMonths(-3),
@@ -310,7 +310,7 @@ namespace ScriptCycle.Prototypes.Controllers {
                         TotalClaims = 316,
                         TotalInvoiceAmount = 199058.38M,
                         DueDate = DateTime.Now.AddDays(31),
-                        Status = "Unpaid"
+                        Status = "Paid in Full"
                     }
                 }
             };
