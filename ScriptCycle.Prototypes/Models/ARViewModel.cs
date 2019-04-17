@@ -33,6 +33,8 @@ namespace ScriptCycle.Prototypes.Models {
                 PaymentCenterName = "CVS Master Payment Center"
             }
         };
+        public List<BillingCycleRecord> BillingCycleRecords { get; set; } = new List<BillingCycleRecord>();
+        public List<InvoiceDetailRecord> InvoiceDetailRecords { get; set; } = new List<InvoiceDetailRecord>();
     }
 
     public class ClientPaymentModel {

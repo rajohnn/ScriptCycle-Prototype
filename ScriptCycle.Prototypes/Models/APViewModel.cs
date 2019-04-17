@@ -81,6 +81,19 @@ namespace ScriptCycle.Prototypes.Models {
         public int? TotalClaims { get; set; }
     }
 
+    public class InvoiceDetailRecord
+    {
+        public DateTime? BillingCycleDate { get; set; }
+        public string ARCycleName { get; set; }
+        public string InvoiceNumber { get; set; }
+        public string PayerID { get; set; }
+        public string PayerName { get; set; }
+        public decimal? TotalInvoiceAmount { get; set; }
+        public int? TotalClaims { get; set; }
+        public DateTime? DueDate { get; set; }
+        public string Status { get; set; }
+    }
+
     public class BillingCycleDto {
         public int ID { get; set; }
         public string Date { get; set; }

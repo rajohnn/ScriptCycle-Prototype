@@ -1,0 +1,118 @@
+﻿@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "AR - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/steptherapy.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.css" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <style>
+        .dx-datagrid-group-panel .dx-group-panel-item {
+            color: #77bef5 !important;
+            border: 1px solid #77bef5 !important;
+        }
+
+        .dx-datagrid-headers .dx-header-row {
+            background-color: #0367B4;
+            color: white;
+        }
+
+        .dx-group-cell {
+            background-color: #77bef5 !important;
+            color: #0367B4;
+        }
+    </style>
+}
+
+@Html.Partial("_ModalInvoice")
+@Html.Partial("_ModalUpload")
+
+<section id="presentation-headers" style="display:none" data-bind="visible: true">
+    <div id="ribbon">
+        <div style="background-color:#77bef5;margin-top:6px;">
+            <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
+                <a href="/Home" class="btn btn-sm btn-default text-primary">
+                    <i class="fa fa-dashboard"></i>
+                </a>
+                <a id="dashboard" href="/AR/Details" class="btn btn-sm btn-primary text-white">
+                    AR - Details
+                </a>
+            </div>
+            <span class="pull-right">
+                <div id="app-toolbar" class="toolbar-container" style="margin-top:6px;padding-left:15px;padding-right:15px">
+
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button id="tbb-export" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-file-excel-o"></span> Export
+                        </button>
+                        <button id="tbb-print" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-print"></span> Print
+                        </button>
+                        <button id="tbb-copy" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-copy"></span> Copy
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-primary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
+                            <span class="fa fa-save"></span> Save
+                        </button>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div id="step-therapy-toolbar">
+        <div style="background-color: #0367B4;padding:0 15px 0 15px">
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="header text-white" style="font-size:22pt;display:block;padding:5px;">Accounts Receivable Details</span>
+                </div>
+                <div class="col-lg-8">
+                    <span id="function-panel" class="pull-right">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text input-group-sm small bg-white">
+                                    Invoice #
+                                </span>
+                            </div>
+                            <input id="invoice_number" class="form-control" type="text" placeholder="Example: 1231" />
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-secondary" data-bind="click: ap.onSearchCheckNumber">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="details" style="padding:15px;display:none" data-bind="visible: true">
+    @Html.Partial("_Details")
+</section>
+
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/ar-details.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            ap.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            ap.init();
+        });
+    </script>
+
+}
+

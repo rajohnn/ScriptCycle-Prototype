@@ -1,0 +1,57 @@
+﻿<div style="margin-top:7px;">
+    <ul class="nav nav-tabs" style="font-size:14pt">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#claims">Claim</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#payee">Invoices</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#chart-view">Chart</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active text-primary" id="claims">
+            <div class="row" style="margin-top:12px">
+                <div class="col-lg-6">
+                    <form class="form-inline">
+                        <label class="text-secondary" style="margin-right:15px;margin-left:15px" for="gridBox">Billing Cycle Selector</label>
+                        <div id="gridBox" class="text-primary" style="width:500px"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="margin-top:17px">
+                <div class="col-lg-12">
+                    <div id="grid-claims"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="payee">
+            <div class="row" style="margin-top:12px">
+                <div class="col-lg-6">
+                    <form class="form-inline">
+                        <label class="text-secondary" style="margin-right:15px;margin-left:15px" for="gridBox2">Billing Cycle Selector</label>
+                        <div id="gridBox2" class="text-primary" style="width:500px"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="margin-top:17px">
+                <div class="col-lg-12">
+                    <div id="grid-invoices"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="chart-view">
+            <div class="row" style="margin-top:12px">
+                <div class="col-lg-6">
+                    <form class="form-inline">
+                        <label class="text-secondary" style="margin-right:15px;margin-left:15px" for="gridBox3">Billing Cycle Selector</label>
+                        <div id="gridBox3" class="text-primary" style="width:500px"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
