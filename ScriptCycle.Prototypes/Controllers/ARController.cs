@@ -123,8 +123,39 @@ namespace ScriptCycle.Prototypes.Controllers {
 
         public ActionResult TemplateLibrary()
         {
-            var model = new ARTemplateModel();
-            return View(model);
+            var vm = new ARTemplateModel();
+            return View(vm);
+        }
+
+        public ActionResult PayerList()
+        {
+            var vm = new PayerListViewModel();
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            vm.Payers.Add(new PayerListModel { });
+            return View(vm);
         }
 
         private ARViewModel GetMockAPViewModel()

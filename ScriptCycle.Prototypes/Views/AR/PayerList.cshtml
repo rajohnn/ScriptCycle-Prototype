@@ -1,0 +1,488 @@
+﻿@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "AR - Payer List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles {
+    <link rel="stylesheet" href="~/Content/steptherapy.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.css" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+}
+
+<section id="presentation-headers" style="display:none" data-bind="visible: true">
+    <div id="ribbon">
+        <div style="background-color:#77bef5;">
+            <div id="breadcrumb-panel" class="breadcrumb-panel btn btn-group btn-breadcrumb">
+                <a href="/Home" class="btn btn-sm btn-default text-primary">
+                    <i class="fa fa-dashboard"></i>
+                </a>
+                <a id="dashboard" href="/AP" class="btn btn-sm btn-primary text-white">
+                    Payer List
+                </a>
+            </div>
+            <span class="pull-right">
+                <div id="app-toolbar" class="toolbar-container" style="margin-top:6px;padding-left:15px;padding-right:15px">
+
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button id="tbb-export" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-file-excel-o"></span> Export
+                        </button>
+                        <button id="tbb-print" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-print"></span> Print
+                        </button>
+                        <button id="tbb-copy" type="button" class="btn btn-default text-primary">
+                            <span class="fa fa-copy"></span> Copy
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-delete" type="button" class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-placement="bottom" title="Delete">
+                            <span class="fa fa-trash"></span>
+                        </button>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Save">
+                        <button id="tbb-save" type="button" style="width:90px" class="btn btn-sm btn-primary text-white" data-toggle="tooltip" data-placement="bottom" title="Save">
+                            <span class="fa fa-save"></span> Save
+                        </button>
+                    </div>
+                </div>
+            </span>
+        </div>
+    </div>
+    <div id="step-therapy-toolbar">
+        <div style="background-color: #0367B4;padding:0 15px 0 15px">
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="header text-white" style="font-size:22pt;display:block;margin-top:5px;">Payer List</span>
+                </div>
+                <div class="col-lg-8">
+                    <span id="function-panel" class="pull-right">
+                        <div id="dashboard-toolbars">
+                            <div class="input-group input-group-sm">
+
+                                <button type="button" class="btn btn-sm btn-default" data-bind="click: arPayer.onUpload" style="margin-right:5px">
+                                    <span class="fa fa-cloud-upload"></span> Upload File
+                                </button>
+                                <button type="button"
+                                        data-toggle="button"
+                                        aria-pressed="true"
+                                        autocomplete="off"
+                                        class-toggle="btn-outline-light"
+                                        class="btn btn-sm btn-outline-light"
+                                        style="padding:0 15px 0 15px; margin-right:5px"
+                                        data-bind="click: arPayer.onConfigure">
+                                    <span class="fa fa-cogs"></span> Configure
+                                </button>
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text small bg-white">
+                                        Invoice #
+                                    </span>
+                                </div>
+                                <input id="invoice_number" class="form-control" type="text" placeholder="Example: 1200" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-sm btn-secondary" data-bind="click: arPayer.onSearchInvoiceNumber">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="arPayer-view" style="display:none;padding-left:15px;padding-right:15px" data-bind="visible: true">
+    <div id="grid-view" data-bind="slideVisible: ShowDashboard">
+        <div id="grid-payers">
+        </div>
+    </div>
+
+    <section id="configuration" data-bind="slideVisible: ShowConfig()">
+        <div style="padding-left:15px;margin-top:7px">
+            <div class="card">
+                <div class="card-header bg-dark text-white" style="font-size:large">
+                    <span class="fa fa-cogs"></span> Payer Configuration
+                    <button type="button" class="close" data-bind="click: arPayer.onDismissConfigure" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card" style="margin-top:-5px">
+                                <div class="card-header bg-dark text-white">
+                                    Payer Config
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Payer Type</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
+                                                <label class="form-check-label" for="ac1">
+                                                    Group
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
+                                                <label class="form-check-label" for="ac2">
+                                                    Carrier
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
+                                                <label class="form-check-label" for="ac3">
+                                                    Organization
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Invoice Delivery Method</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
+                                                <label class="form-check-label" for="ac1">
+                                                    Email
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
+                                                <label class="form-check-label" for="ac2">
+                                                    Mail
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
+                                                <label class="form-check-label" for="ac3">
+                                                    FTP
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <label>Invoicing Managed at:</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac1" value="1" checked />
+                                                <label class="form-check-label" for="ac1">
+                                                    Group
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac2" value="2" />
+                                                <label class="form-check-label" for="ac2">
+                                                    Carrier
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="ap-consolidate" type="radio" id="ac3" value="3" />
+                                                <label class="form-check-label" for="ac3">
+                                                    Organization
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-row">
+                                                <select id="options" class="form-control form-control-sm" style="margin-bottom:7px">
+                                                    <option value="1">Options</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            Net Terms
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="form-control" />
+                                                    <div class="input-group-append">
+                                                        <div class="input-group-text">days</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card" style="margin-top:-5px">
+                                <div class="card-header bg-dark text-white">
+                                    Invoice Template
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-5" style="border-right: 1px solid #eee">
+                                            <div class="form-group">
+                                                <label>Invoice Templates</label><br />
+                                                <input type="checkbox" checked data-width="150" data-onstyle="dark" data-toggle="toggle">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <section id="file-types">
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt1">Invoice
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt2">PDF
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt3">CSV
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt4">Excel
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt5">Word
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <div class="form-group form-inline text-secondary" style="margin-top:6px">
+                                                <label for="inv-template">Invoice Template: </label>&nbsp;&nbsp;
+                                                <select class="form-control form-control-sm form-control form-control-sm-sm" id="inv-template">
+                                                    <option value="" selected disabled>Options...</option>
+                                                    <option>Template 1</option>
+                                                    <option>Template 2</option>
+                                                    <option>Template 3</option>
+                                                    <option>Template 4</option>
+                                                </select>
+                                            </div>
+                                            <hr />
+                                            <section id="claim-file-types">
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt1c">Claim Details
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt2c">PDF
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt3c">CSV
+                                                    </label>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="opt4c">Excel
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <div class="form-group form-inline text-secondary" style="margin-top:6px">
+                                                <label for="inv-template">Claim Template: </label>&nbsp;&nbsp;
+                                                <select class="form-control form-control-sm form-control form-control-sm-sm" id="claim-detail-template">
+                                                    <option value="" selected disabled>Options...</option>
+                                                    <option>Template 1</option>
+                                                    <option>Template 2</option>
+                                                    <option>Template 3</option>
+                                                    <option>Template 4</option>
+                                                </select>
+
+                                            </div>
+                                            <button class="btn btn-sm btn-dark">
+                                                <span class="fa fa-magic"></span> Manage Templates
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header bg-dark text-white">
+                                    Contact Information
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Group Name</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Address Type</label>
+                                                <select class="form-control form-control-sm">
+                                                    <option>Primary</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control form-control-sm" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>State</label>
+                                                        <input type="text" class="form-control form-control-sm" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>Zip</label>
+                                                        <input type="text" class="form-control form-control-sm" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label>Group Email address</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Group Number:</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Group Phone:</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Group Fax:</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contact Type:</label>
+                                                <select class="form-control form-control-sm">
+                                                    <option>Main</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contact Name:</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contact Title:</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contact Email Address:</label>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                           
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header bg-dark text-white">
+                                    Invoice History
+                                </div>
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Invoice #</th>
+                                                <th>Invoice Date</th>
+                                                <th>Invoice Amount</th>
+                                                <th>Invoice Paid Amount</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>12345</td>
+                                                <td>01/01/2019</td>
+                                                <td>$15,468.78</td>
+                                                <td>$15,468.78</td>
+                                                <td>
+                                                    <button class="btn btn-sm">
+                                                        <span class="fa fa-2x fa-external-link"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>65443</td>
+                                                <td>01/15/2019</td>
+                                                <td>$15,544.78</td>
+                                                <td>$15,544.78</td>
+                                                <td>
+                                                    <button class="btn btn-sm">
+                                                        <span class="fa fa-2x fa-external-link"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>91432</td>
+                                                <td>02/01/2019</td>
+                                                <td>$15,468.78</td>
+                                                <td>$15,468.78</td>
+                                                <td>
+                                                    <button class="btn btn-sm">
+                                                        <span class="fa fa-2x fa-external-link"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>333214</td>
+                                                <td>02/15/2019</td>
+                                                <td>$15,468.78</td>
+                                                <td>$15,468.78</td>
+                                                <td>
+                                                    <button class="btn btn-sm">
+                                                        <span class="fa fa-2x fa-external-link"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/ar-payer.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.13/c3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            arPayer.serverModel = @Html.Raw(JsonConvert.SerializeObject(Model));
+            arPayer.init();            
+        });
+    </script>
+}
+

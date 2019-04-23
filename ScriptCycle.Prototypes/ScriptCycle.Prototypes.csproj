@@ -174,6 +174,7 @@
     <Compile Include="Models\DrugViewDto.cs" />
     <Compile Include="Models\LinqExtensions.cs" />
     <Compile Include="Models\MemberViewModel.cs" />
+    <Compile Include="Models\PayerListModel.cs" />
     <Compile Include="Models\StepTherapyViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\DrugRepo.cs" />
@@ -220,6 +221,7 @@
     <Content Include="Scripts\ap.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\ar-details.js" />
+    <Content Include="Scripts\ar-payer.js" />
     <Content Include="Scripts\ar-template.js" />
     <Content Include="Scripts\ar.js" />
     <Content Include="Scripts\bootstrap-menu.js" />
@@ -379,6 +381,7 @@
     <Content Include="Views\AR\TemplateLibrary.cshtml" />
     <Content Include="Views\AR\Details.cshtml" />
     <Content Include="Views\AR\_Details.cshtml" />
+    <Content Include="Views\AR\PayerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
